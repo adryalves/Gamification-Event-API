@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "6Hr2Likriwea/fmE2yg01xYwkjFH9CFJMBGszZvMYxRuvxIQS92J9g5rx2j4ryXsF6v3Or2cDEjdE2gTg1wlaQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\GamificationEvent.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\adrya\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\adrya\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\adrya\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\adrya\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\adrya\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\adrya\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
