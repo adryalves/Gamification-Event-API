@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GamificationEvent.Core\GamificationEvent.Core.csproj" />
+  </ItemGroup>
+
 </Project>

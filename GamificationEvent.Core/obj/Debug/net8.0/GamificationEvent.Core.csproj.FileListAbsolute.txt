@@ -1,0 +1,12 @@
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\bin\Debug\net8.0\GamificationEvent.Core.deps.json
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\bin\Debug\net8.0\GamificationEvent.Core.dll
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\bin\Debug\net8.0\GamificationEvent.Core.pdb
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\GamificationEvent.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\GamificationEvent.Core.AssemblyInfoInputs.cache
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\GamificationEvent.Core.AssemblyInfo.cs
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\GamificationEvent.Core.csproj.CoreCompileInputs.cache
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\GamificationEvent.Core.sourcelink.json
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\GamificationEvent.Core.dll
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\refint\GamificationEvent.Core.dll
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\GamificationEvent.Core.pdb
+C:\Users\adrya\source\repos\GamificationEventBackend\GamificationEvent.Core\obj\Debug\net8.0\ref\GamificationEvent.Core.dll

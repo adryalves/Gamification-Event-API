@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "GamificationEvent.Application/1.0.0": {
+        "dependencies": {
+          "GamificationEvent.Core": "1.0.0"
+        },
+        "runtime": {
+          "GamificationEvent.Application.dll": {}
+        }
+      },
+      "GamificationEvent.Core/1.0.0": {
+        "runtime": {
+          "GamificationEvent.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GamificationEvent.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GamificationEvent.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
