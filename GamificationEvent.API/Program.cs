@@ -1,7 +1,9 @@
+using GamificationEvent.Application.UseCases.UsuarioUseCases;
+using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Infrastructure.Data.Persistence;
+using GamificationEvent.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-
-
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,11 +15,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(
         connectionString,
-        ServerVersion.AutoDetect(connectionString), // AGORA ISTO VAI FUNCIONAR
+        ServerVersion.AutoDetect(connectionString), 
         b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)
     );
 });
 
+// Repository
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+// UseCase
+builder.Services.AddScoped<CadastrarUsuarioUseCase>();
 
 builder.Services.AddControllers();
 
