@@ -3,8 +3,200 @@
   "WorkspaceRootPath": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\mensagem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\mensagem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\interacaopublicacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\interacaopublicacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\perguntapesquisa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\perguntapesquisa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\participantenotificacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\participantenotificacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\desafioparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\desafioparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\desafio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\desafio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\subevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\subevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\passaporteparticipanteitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\passaporteparticipanteitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\passaporteparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\passaporteparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\participante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\participante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\inscrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\inscrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.api\\dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|solutionrelative:gamificationevent.api\\dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\paletacor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\paletacor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\participantequizrespostum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\participantequizrespostum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\perguntassubevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\perguntassubevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\usuarioredesocial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\usuarioredesocial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\respostaparticipanteperguntum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\respostaparticipanteperguntum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\palestrante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\palestrante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\estande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\estande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\cor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\cor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\checkinestande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\checkinestande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\data\\persistence\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\data\\persistence\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30C89D3D-86F3-4915-BF3D-7BBDC71F7F34}|GamificationEvent.Application\\GamificationEvent.Application.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.application\\usecases\\usuariousecases\\cadastrarusuariousecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30C89D3D-86F3-4915-BF3D-7BBDC71F7F34}|GamificationEvent.Application\\GamificationEvent.Application.csproj|solutionrelative:gamificationevent.application\\usecases\\usuariousecases\\cadastrarusuariousecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\status_mensagem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\status_mensagem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\status_conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\status_conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\tipo_interacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\tipo_interacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\tipo_pergunta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\tipo_pergunta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\status_notificacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\status_notificacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\status_desafio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\status_desafio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\tipo_desafio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\tipo_desafio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\modalidade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\modalidade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\status_item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\status_item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\enums\\cargo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\enums\\cargo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.api\\controllers\\cadastroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|solutionrelative:gamificationevent.api\\controllers\\cadastroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|solutionrelative:gamificationevent.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.infrastructure\\gamificationevent.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B7BE09E9-D22D-4601-9AAA-9C4489D75CA1}|GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj|solutionrelative:gamificationevent.infrastructure\\gamificationevent.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|solutionrelative:gamificationevent.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|solutionrelative:gamificationevent.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.api\\gamificationevent.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{24FE137E-0848-4CDA-95EB-168A075703E4}|GamificationEvent.API\\GamificationEvent.API.csproj|solutionrelative:gamificationevent.api\\gamificationevent.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\interfaces\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\interfaces\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\gamificationevent.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|solutionrelative:gamificationevent.core\\gamificationevent.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30C89D3D-86F3-4915-BF3D-7BBDC71F7F34}|GamificationEvent.Application\\GamificationEvent.Application.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.application\\gamificationevent.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{30C89D3D-86F3-4915-BF3D-7BBDC71F7F34}|GamificationEvent.Application\\GamificationEvent.Application.csproj|solutionrelative:gamificationevent.application\\gamificationevent.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1AB1FDD6-1DE0-4CC2-BE61-0CEB6A10E48C}|GamificationEvent.Core\\GamificationEvent.Core.csproj|c:\\users\\adrya\\source\\repos\\gamificationeventbackend\\gamificationevent.core\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,11 +218,627 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Conexao.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Conexao.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Conexao.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Conexao.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Conexao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:15:04.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InteracaoPublicacao.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\InteracaoPublicacao.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\InteracaoPublicacao.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\InteracaoPublicacao.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\InteracaoPublicacao.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAA4AAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:14:45.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PerguntaPesquisa.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntaPesquisa.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntaPesquisa.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntaPesquisa.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntaPesquisa.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:14:11.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ParticipanteNotificacao.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteNotificacao.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteNotificacao.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteNotificacao.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteNotificacao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:13:21.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DesafioParticipante.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\DesafioParticipante.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\DesafioParticipante.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\DesafioParticipante.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\DesafioParticipante.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:10:05.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SubEvento.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\SubEvento.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\SubEvento.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\SubEvento.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\SubEvento.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABgAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:09:39.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PassaporteParticipanteItem.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipanteItem.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipanteItem.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipanteItem.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipanteItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:09:16.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PassaporteParticipante.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipante.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipante.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipante.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\PassaporteParticipante.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T19:08:49.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UsuarioRedeSocial.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\UsuarioRedeSocial.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\UsuarioRedeSocial.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\UsuarioRedeSocial.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\UsuarioRedeSocial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:29:48.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "RespostaParticipantePerguntum.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\RespostaParticipantePerguntum.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\RespostaParticipantePerguntum.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\RespostaParticipantePerguntum.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\RespostaParticipantePerguntum.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:29:07.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Mensagem.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Mensagem.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Mensagem.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Mensagem.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Mensagem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:27:36.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PaletaCor.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PaletaCor.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\PaletaCor.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PaletaCor.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\PaletaCor.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:27:09.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\AppDbContext.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\AppDbContext.cs",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAIQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:25:56.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Cor.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Cor.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Cor.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Cor.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Cor.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAmwA0AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:24:58.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PerguntasSubEvento.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntasSubEvento.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntasSubEvento.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntasSubEvento.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\PerguntasSubEvento.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:20:22.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Status_Mensagem.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Mensagem.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Status_Mensagem.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Mensagem.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Status_Mensagem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:17:11.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Status_Conexao.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Conexao.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Status_Conexao.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Conexao.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Status_Conexao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:16:13.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Tipo_Interacao.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Tipo_Interacao.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Tipo_Interacao.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Tipo_Interacao.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Tipo_Interacao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:14:43.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Tipo_Pergunta.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Tipo_Pergunta.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Tipo_Pergunta.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Tipo_Pergunta.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Tipo_Pergunta.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:09:40.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Status_Notificacao.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Notificacao.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Status_Notificacao.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Notificacao.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Status_Notificacao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:07:57.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Status_Desafio.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Desafio.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Status_Desafio.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Desafio.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Status_Desafio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:06:41.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Tipo_Desafio.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Tipo_Desafio.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Tipo_Desafio.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Tipo_Desafio.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Tipo_Desafio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:03:59.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Modalidade.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Modalidade.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Modalidade.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Modalidade.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Modalidade.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:02:32.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Status_Item.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Item.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Status_Item.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status_Item.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Status_Item.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T18:01:31.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Status.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Status.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Status.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Status.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T17:59:00.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Inscrito.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Inscrito.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Inscrito.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Inscrito.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Inscrito.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T17:18:56.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Cargo.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Cargo.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Enums\\Cargo.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Enums\\Cargo.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Enums\\Cargo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T01:50:33.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-10T01:36:13.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Palestrante.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Palestrante.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Palestrante.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Palestrante.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Palestrante.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T01:19:00.468Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Participante.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Participante.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Participante.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Participante.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Participante.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T01:18:56.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ParticipanteQuizRespostum.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteQuizRespostum.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteQuizRespostum.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteQuizRespostum.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\ParticipanteQuizRespostum.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T01:18:31.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UsuarioDTO.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\DTOs\\UsuarioDTO.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.API\\DTOs\\UsuarioDTO.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\DTOs\\UsuarioDTO.cs",
+              "RelativeToolTip": "GamificationEvent.API\\DTOs\\UsuarioDTO.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAABEAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T02:20:34.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "CadastrosController.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\Controllers\\CadastrosController.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.API\\Controllers\\CadastrosController.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\Controllers\\CadastrosController.cs",
+              "RelativeToolTip": "GamificationEvent.API\\Controllers\\CadastrosController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABgAAAB6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T02:06:35.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABoAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T01:43:00.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "GamificationEvent.Infrastructure.csproj",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\GamificationEvent.Infrastructure.csproj",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAYwBYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-09T01:41:47.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CadastrarUsuarioUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Application\\UseCases\\UsuarioUseCases\\CadastrarUsuarioUseCase.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Application\\UseCases\\UsuarioUseCases\\CadastrarUsuarioUseCase.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Application\\UseCases\\UsuarioUseCases\\CadastrarUsuarioUseCase.cs",
+              "RelativeToolTip": "GamificationEvent.Application\\UseCases\\UsuarioUseCases\\CadastrarUsuarioUseCase.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T01:32:42.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "IUsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Interfaces\\IUsuarioRepository.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Interfaces\\IUsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Interfaces\\IUsuarioRepository.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Interfaces\\IUsuarioRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T01:26:59.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "GamificationEvent.Core.csproj",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\GamificationEvent.Core.csproj",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\GamificationEvent.Core.csproj",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\GamificationEvent.Core.csproj",
+              "RelativeToolTip": "GamificationEvent.Core\\GamificationEvent.Core.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-09T01:14:34.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Entidades\\Usuario.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Core\\Entidades\\Usuario.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Entidades\\Usuario.cs",
+              "RelativeToolTip": "GamificationEvent.Core\\Entidades\\Usuario.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAArwA4AAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T01:13:50.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "GamificationEvent.Application.csproj",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Application\\GamificationEvent.Application.csproj",
+              "RelativeDocumentMoniker": "GamificationEvent.Application\\GamificationEvent.Application.csproj",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Application\\GamificationEvent.Application.csproj",
+              "RelativeToolTip": "GamificationEvent.Application\\GamificationEvent.Application.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-09T00:59:54.612Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Usuario.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Usuario.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Usuario.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Usuario.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T00:44:19.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "GamificationEvent.API\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\appsettings.Development.json",
+              "RelativeToolTip": "GamificationEvent.API\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-08T01:31:10.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\appsettings.json",
+              "RelativeDocumentMoniker": "GamificationEvent.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\appsettings.json",
+              "RelativeToolTip": "GamificationEvent.API\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAwAgAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-08T01:07:32.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\Program.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.API\\Program.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\Program.cs",
+              "RelativeToolTip": "GamificationEvent.API\\Program.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAQAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T01:07:07.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Estande.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Estande.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Estande.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Estande.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Estande.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T00:59:33.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Desafio.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Desafio.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Desafio.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Desafio.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Desafio.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAABQAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T00:59:26.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Evento.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Evento.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\Evento.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\Evento.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\Evento.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAmwCEAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T00:58:01.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CheckinEstande.cs",
+              "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\CheckinEstande.cs",
+              "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Data\\Persistence\\CheckinEstande.cs",
+              "ToolTip": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Data\\Persistence\\CheckinEstande.cs",
+              "RelativeToolTip": "GamificationEvent.Infrastructure\\Data\\Persistence\\CheckinEstande.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T00:55:07.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
               "Title": "GamificationEvent.API.csproj",
               "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.API\\GamificationEvent.API.csproj",
               "RelativeDocumentMoniker": "GamificationEvent.API\\GamificationEvent.API.csproj",
@@ -38,12 +846,11 @@
               "RelativeToolTip": "GamificationEvent.API\\GamificationEvent.API.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-04T01:07:10.138Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-04T01:07:10.138Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 49,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Core\\Class1.cs",
               "RelativeDocumentMoniker": "GamificationEvent.Core\\Class1.cs",
@@ -51,12 +858,11 @@
               "RelativeToolTip": "GamificationEvent.Core\\Class1.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T01:07:44.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-04T01:07:44.178Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 50,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Infrastructure\\Class1.cs",
               "RelativeDocumentMoniker": "GamificationEvent.Infrastructure\\Class1.cs",
@@ -64,12 +870,11 @@
               "RelativeToolTip": "GamificationEvent.Infrastructure\\Class1.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T01:07:04.288Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-04T01:07:04.288Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 51,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\adrya\\source\\repos\\GamificationEventBackend\\GamificationEvent.Application\\Class1.cs",
               "RelativeDocumentMoniker": "GamificationEvent.Application\\Class1.cs",
@@ -77,8 +882,7 @@
               "RelativeToolTip": "GamificationEvent.Application\\Class1.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T01:05:58.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-04T01:05:58.742Z"
             }
           ]
         }

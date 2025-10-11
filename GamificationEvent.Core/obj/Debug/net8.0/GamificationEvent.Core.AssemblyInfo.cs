@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GamificationEvent.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+430b52a5f51c0d6c194819d4353159029960dcd6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+501c21fa518840d35021f438ba76fb1d68290f6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("GamificationEvent.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GamificationEvent.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
