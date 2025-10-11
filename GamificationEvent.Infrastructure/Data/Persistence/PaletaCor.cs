@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
 
-public partial class Paletum
+public partial class PaletaCor
 {
     public Guid Id { get; set; }
 

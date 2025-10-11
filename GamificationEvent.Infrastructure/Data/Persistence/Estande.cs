@@ -27,9 +27,9 @@ public partial class Estande
 
     public DateTime DataFim { get; set; }
 
-    public TimeSpan HorarioInicio { get; set; }
+    public TimeOnly HorarioInicio { get; set; }
 
-    public TimeSpan HorarioFim { get; set; }
+    public TimeOnly HorarioFim { get; set; }
 
     public string? Brindes { get; set; }
 

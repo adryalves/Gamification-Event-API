@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
 
@@ -55,7 +56,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<PalestranteSubEvento> PalestranteSubEventos { get; set; }
 
-    public virtual DbSet<Paletum> Paleta { get; set; }
+    public virtual DbSet<PaletaCor> PaletaCors { get; set; }
 
     public virtual DbSet<Participante> Participantes { get; set; }
 
@@ -111,10 +112,30 @@ public partial class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Server=localhost;Port=3306;Database=gamification_events_DB;Uid=root;Pwd=alves0919;");
+        => optionsBuilder.UseMySql("server=localhost;port=3306;database=gamification_events_DB;uid=root;pwd=alves0919", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.33-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            foreach (var property in entityType.ClrType.GetProperties())
+            {
+                if (property.PropertyType.IsEnum)
+                {
+                    modelBuilder.Entity(entityType.Name)
+                        .Property(property.Name)
+                        .HasConversion<string>();
+                }
+            }
+        }
+
+        modelBuilder
+            .UseCollation("utf8mb4_0900_ai_ci")
+            .HasCharSet("utf8mb4");
+
         modelBuilder.Entity<Badge>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -245,10 +266,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("data_hora");
             entity.Property(e => e.IdParticipante1).HasColumnName("id_participante_1");
             entity.Property(e => e.IdParticipante2).HasColumnName("id_participante_2");
-            entity.Property(e => e.Status)
-                .HasDefaultValueSql("'pendente'")
-                .HasColumnType("enum('pendente','aceita','rejeitada')")
-                .HasColumnName("status");
+            entity.Property(e => e.StatusConexao)
+                .HasDefaultValueSql("'Pendente'")
+                .HasColumnType("enum('Pendente','Aceita','Rejeitada')")
+                .HasColumnName("status_conexao");
 
             entity.HasOne(d => d.IdParticipante1Navigation).WithMany(p => p.ConexaoIdParticipante1Navigations)
                 .HasForeignKey(d => d.IdParticipante1)
@@ -337,7 +358,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("regra");
             entity.Property(e => e.TipoDesafio)
-                .HasColumnType("enum('networking','checkin_estande','checkin_sub_evento','pesquisa','quiz')")
+                .HasColumnType("enum('Networking','Checkin_estande','Checkin_sub_evento','Pesquisa','Quiz')")
                 .HasColumnName("tipo_desafio");
 
             entity.HasOne(d => d.IdEventoNavigation).WithMany(p => p.Desafios)
@@ -362,10 +383,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("data_hora_conclusao");
             entity.Property(e => e.IdDesafio).HasColumnName("id_desafio");
             entity.Property(e => e.IdParticipante).HasColumnName("id_participante");
-            entity.Property(e => e.Status)
-                .HasDefaultValueSql("'aberto'")
-                .HasColumnType("enum('aberto','completo')")
-                .HasColumnName("status");
+            entity.Property(e => e.StatusDesafio)
+                .HasDefaultValueSql("'Aberto'")
+                .HasColumnType("enum('Aberto','Completo')")
+                .HasColumnName("status_desafio");
 
             entity.HasOne(d => d.IdDesafioNavigation).WithMany(p => p.DesafioParticipantes)
                 .HasForeignKey(d => d.IdDesafio)
@@ -494,7 +515,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(11)
                 .HasColumnName("cpf");
             entity.Property(e => e.Cargo)
-                .HasColumnType("enum('admin','membro')")
+                .HasColumnType("enum('Admin','Membro')")
                 .HasColumnName("cargo");
             entity.Property(e => e.IdEvento).HasColumnName("id_evento");
             entity.Property(e => e.Nome)
@@ -527,9 +548,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.TextoComentario)
                 .HasColumnType("text")
                 .HasColumnName("texto_comentario");
-            entity.Property(e => e.Tipo)
-                .HasColumnType("enum('like','comentario')")
-                .HasColumnName("tipo");
+            entity.Property(e => e.TipoInteracao)
+                .HasColumnType("enum('Like','Comentario')")
+                .HasColumnName("tipo_interacao");
 
             entity.HasOne(d => d.IdParticipanteNavigation).WithMany(p => p.InteracaoPublicacaos)
                 .HasForeignKey(d => d.IdParticipante)
@@ -602,10 +623,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("data_hora");
             entity.Property(e => e.IdConversa).HasColumnName("id_conversa");
             entity.Property(e => e.IdParticipanteRemetente).HasColumnName("id_participante_remetente");
-            entity.Property(e => e.Status)
-                .HasDefaultValueSql("'enviada'")
-                .HasColumnType("enum('enviada','lida')")
-                .HasColumnName("status");
+            entity.Property(e => e.StatusMensagem)
+                .HasDefaultValueSql("'Enviada'")
+                .HasColumnType("enum('Enviada','Lida')")
+                .HasColumnName("status_mensagem");
             entity.Property(e => e.Texto)
                 .HasColumnType("text")
                 .HasColumnName("texto");
@@ -681,9 +702,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.IdEvento, "FK_palestrante_evento");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.DataNascimento)
-                .HasColumnType("date")
-                .HasColumnName("data_nascimento");
+            entity.Property(e => e.DataNascimento).HasColumnName("data_nascimento");
             entity.Property(e => e.Deletado).HasColumnName("deletado");
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
@@ -733,11 +752,11 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_palestrante_sub_evento_sub_evento");
         });
 
-        modelBuilder.Entity<Paletum>(entity =>
+        modelBuilder.Entity<PaletaCor>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("paleta");
+            entity.ToTable("paleta_cor");
 
             entity.HasIndex(e => e.IdCor1, "FK_paleta_cor_1");
 
@@ -757,22 +776,22 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("nome");
 
-            entity.HasOne(d => d.IdCor1Navigation).WithMany(p => p.PaletumIdCor1Navigations)
+            entity.HasOne(d => d.IdCor1Navigation).WithMany(p => p.PaletaCorIdCor1Navigations)
                 .HasForeignKey(d => d.IdCor1)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_paleta_cor_1");
 
-            entity.HasOne(d => d.IdCor2Navigation).WithMany(p => p.PaletumIdCor2Navigations)
+            entity.HasOne(d => d.IdCor2Navigation).WithMany(p => p.PaletaCorIdCor2Navigations)
                 .HasForeignKey(d => d.IdCor2)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_paleta_cor_2");
 
-            entity.HasOne(d => d.IdCor3Navigation).WithMany(p => p.PaletumIdCor3Navigations)
+            entity.HasOne(d => d.IdCor3Navigation).WithMany(p => p.PaletaCorIdCor3Navigations)
                 .HasForeignKey(d => d.IdCor3)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_paleta_cor_3");
 
-            entity.HasOne(d => d.IdCor4Navigation).WithMany(p => p.PaletumIdCor4Navigations)
+            entity.HasOne(d => d.IdCor4Navigation).WithMany(p => p.PaletaCorIdCor4Navigations)
                 .HasForeignKey(d => d.IdCor4)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_paleta_cor_4");
@@ -790,7 +809,7 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cargo)
-                .HasColumnType("enum('admin','membro')")
+                .HasColumnType("enum('Admin','Membro')")
                 .HasColumnName("cargo");
             entity.Property(e => e.DataHoraCriacao)
                 .HasColumnType("datetime")
@@ -851,10 +870,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("data_hora_visualizacao");
             entity.Property(e => e.IdNotificacao).HasColumnName("id_notificacao");
             entity.Property(e => e.IdParticipante).HasColumnName("id_participante");
-            entity.Property(e => e.Status)
-                .HasDefaultValueSql("'nao_lida'")
-                .HasColumnType("enum('nao_lida','lida')")
-                .HasColumnName("status");
+            entity.Property(e => e.StatusNotificacao)
+                .HasDefaultValueSql("'Nao_lida'")
+                .HasColumnType("enum('Nao_lida','Lida')")
+                .HasColumnName("status_notificacao");
 
             entity.HasOne(d => d.IdNotificacaoNavigation).WithMany(p => p.ParticipanteNotificacaos)
                 .HasForeignKey(d => d.IdNotificacao)
@@ -1008,8 +1027,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.IdParticipante).HasColumnName("id_participante");
             entity.Property(e => e.IdPassaporte).HasColumnName("id_passaporte");
             entity.Property(e => e.Status)
-                .HasDefaultValueSql("'incompleto'")
-                .HasColumnType("enum('incompleto','completo')")
+                .HasDefaultValueSql("'Incompleto'")
+                .HasColumnType("enum('Incompleto','Completo')")
                 .HasColumnName("status");
 
             entity.HasOne(d => d.IdParticipanteNavigation).WithMany(p => p.PassaporteParticipantes)
@@ -1039,10 +1058,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("data_hora_conclusao");
             entity.Property(e => e.IdParticipante).HasColumnName("id_participante");
             entity.Property(e => e.IdPassaporteItem).HasColumnName("id_passaporte_item");
-            entity.Property(e => e.Status)
-                .HasDefaultValueSql("'nao_concluido'")
-                .HasColumnType("enum('nao_concluido','concluido')")
-                .HasColumnName("status");
+            entity.Property(e => e.StatusItem)
+                .HasDefaultValueSql("'Nao_concluido'")
+                .HasColumnType("enum('Nao_concluido','Concluido')")
+                .HasColumnName("status_item");
 
             entity.HasOne(d => d.IdParticipanteNavigation).WithMany(p => p.PassaporteParticipanteItems)
                 .HasForeignKey(d => d.IdParticipante)
@@ -1140,7 +1159,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("texto_pergunta");
             entity.Property(e => e.TipoPergunta)
-                .HasColumnType("enum('multipla_escolha','dissertativa')")
+                .HasColumnType("enum('Multipla_escolha','Dissertativa')")
                 .HasColumnName("tipo_pergunta");
 
             entity.HasOne(d => d.IdPesquisaNavigation).WithMany(p => p.PerguntaPesquisas)
@@ -1538,7 +1557,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("local_sub_evento");
             entity.Property(e => e.Modalidade)
-                .HasColumnType("enum('online','presencial')")
+                .HasColumnType("enum('Online','Presencial')")
                 .HasColumnName("modalidade");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
@@ -1571,9 +1590,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Cpf)
                 .HasMaxLength(11)
                 .HasColumnName("cpf");
-            entity.Property(e => e.DataDeNascimento)
-                .HasColumnType("date")
-                .HasColumnName("data_de_nascimento");
+            entity.Property(e => e.DataDeNascimento).HasColumnName("data_de_nascimento");
             entity.Property(e => e.DataHoraCriacao)
                 .HasColumnType("datetime")
                 .HasColumnName("data_hora_criacao");

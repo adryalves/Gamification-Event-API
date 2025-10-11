@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -13,7 +14,7 @@ public partial class Mensagem
 
     public string Texto { get; set; } = null!;
 
-    public string Status { get; set; } = null!;
+    public Status_Mensagem StatusMensagem { get; set; } 
 
     public DateTime DataHora { get; set; }
 

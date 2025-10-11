@@ -13,7 +13,7 @@ public partial class ParticipanteQuizRespostum
 
     public Guid IdQuizAlternativa { get; set; }
 
-    public TimeSpan HoraResposta { get; set; }
+    public TimeOnly HoraResposta { get; set; }
 
     public virtual Participante IdParticipanteNavigation { get; set; } = null!;
 

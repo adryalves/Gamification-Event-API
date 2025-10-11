@@ -11,11 +11,11 @@ public partial class Cor
 
     public string? Nome { get; set; }
 
-    public virtual ICollection<Paletum> PaletumIdCor1Navigations { get; set; } = new List<Paletum>();
+    public virtual ICollection<PaletaCor> PaletaCorIdCor1Navigations { get; set; } = new List<PaletaCor>();
 
-    public virtual ICollection<Paletum> PaletumIdCor2Navigations { get; set; } = new List<Paletum>();
+    public virtual ICollection<PaletaCor> PaletaCorIdCor2Navigations { get; set; } = new List<PaletaCor>();
 
-    public virtual ICollection<Paletum> PaletumIdCor3Navigations { get; set; } = new List<Paletum>();
+    public virtual ICollection<PaletaCor> PaletaCorIdCor3Navigations { get; set; } = new List<PaletaCor>();
 
-    public virtual ICollection<Paletum> PaletumIdCor4Navigations { get; set; } = new List<Paletum>();
+    public virtual ICollection<PaletaCor> PaletaCorIdCor4Navigations { get; set; } = new List<PaletaCor>();
 }

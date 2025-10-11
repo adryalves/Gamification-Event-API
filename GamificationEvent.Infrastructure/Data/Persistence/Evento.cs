@@ -31,7 +31,7 @@ public partial class Evento
 
     public virtual ICollection<Estande> Estandes { get; set; } = new List<Estande>();
 
-    public virtual Paletum IdPaletaNavigation { get; set; } = null!;
+    public virtual PaletaCor IdPaletaNavigation { get; set; } = null!;
 
     public virtual ICollection<Inscrito> Inscritos { get; set; } = new List<Inscrito>();
 

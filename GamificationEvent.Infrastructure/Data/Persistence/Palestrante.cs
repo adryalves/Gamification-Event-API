@@ -17,7 +17,7 @@ public partial class Palestrante
 
     public string? Profissao { get; set; }
 
-    public DateTime? DataNascimento { get; set; }
+    public DateOnly? DataNascimento { get; set; }
 
     public string? Linkedin { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -11,7 +12,7 @@ public partial class InteracaoPublicacao
 
     public Guid IdParticipante { get; set; }
 
-    public string Tipo { get; set; } = null!;
+    public Tipo_Interacao TipoInteracao { get; set; } 
 
     public string? TextoComentario { get; set; }
 

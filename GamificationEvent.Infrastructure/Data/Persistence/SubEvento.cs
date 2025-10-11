@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -21,13 +22,13 @@ public partial class SubEvento
 
     public string? Categoria { get; set; }
 
-    public string Modalidade { get; set; } = null!;
+    public Modalidade Modalidade { get; set; } 
 
     public DateTime DataSubEvento { get; set; }
 
-    public TimeSpan HorarioInicio { get; set; }
+    public TimeOnly HorarioInicio { get; set; }
 
-    public TimeSpan? HorarioFim { get; set; }
+    public TimeOnly? HorarioFim { get; set; }
 
     public string? CodigoCheckin { get; set; }
 

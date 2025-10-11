@@ -19,9 +19,9 @@ public partial class Quiz
 
     public DateTime DataQuiz { get; set; }
 
-    public TimeSpan HoraInicio { get; set; }
+    public TimeOnly HoraInicio { get; set; }
 
-    public TimeSpan HoraFim { get; set; }
+    public TimeOnly HoraFim { get; set; }
 
     public bool Deletado { get; set; }
 

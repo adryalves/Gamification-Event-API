@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -11,7 +12,7 @@ public partial class Participante
 
     public Guid IdUsuario { get; set; }
 
-    public string Cargo { get; set; } = null!;
+    public Cargo Cargo { get; set; } 
 
     public int Pontuacao { get; set; }
 

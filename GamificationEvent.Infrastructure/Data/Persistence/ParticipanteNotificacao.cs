@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -11,7 +12,7 @@ public partial class ParticipanteNotificacao
 
     public Guid IdNotificacao { get; set; }
 
-    public string Status { get; set; } = null!;
+    public Status_Notificacao StatusNotificacao { get; set; } 
 
     public DateTime? DataHoraVisualizacao { get; set; }
 

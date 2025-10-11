@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -11,7 +12,7 @@ public partial class PerguntaPesquisa
 
     public string TextoPergunta { get; set; } = null!;
 
-    public string TipoPergunta { get; set; } = null!;
+    public Tipo_Pergunta TipoPergunta { get; set; } 
 
     public bool Deletado { get; set; }
 

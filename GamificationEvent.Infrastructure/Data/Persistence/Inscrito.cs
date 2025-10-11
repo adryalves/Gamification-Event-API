@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -11,7 +12,7 @@ public partial class Inscrito
 
     public string Nome { get; set; } = null!;
 
-    public string Cargo { get; set; } = null!;
+    public Cargo Cargo { get; set; }
 
     public virtual Evento IdEventoNavigation { get; set; } = null!;
 }

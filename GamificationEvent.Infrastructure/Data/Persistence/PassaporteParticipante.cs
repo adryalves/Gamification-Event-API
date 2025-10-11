@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -11,7 +12,7 @@ public partial class PassaporteParticipante
 
     public Guid IdParticipante { get; set; }
 
-    public string Status { get; set; } = null!;
+    public Status Status { get; set; } 
 
     public DateTime? DataHoraConclusao { get; set; }
 

@@ -17,7 +17,7 @@ public partial class Usuario
 
     public string? Telefone { get; set; }
 
-    public DateTime? DataDeNascimento { get; set; }
+    public DateOnly? DataDeNascimento { get; set; }
 
     public string? Foto { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamificationEvent.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -17,7 +18,7 @@ public partial class Desafio
 
     public int Pontuacao { get; set; }
 
-    public string TipoDesafio { get; set; } = null!;
+    public Tipo_Desafio TipoDesafio { get; set; } 
 
     public int QuantidadeDesafio { get; set; }
 
