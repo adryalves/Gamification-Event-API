@@ -1,4 +1,5 @@
 ﻿using GamificationEvent.API.DTOs;
+using GamificationEvent.Application.Mappings;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Entidades;
 using Microsoft.AspNetCore.Mvc;
@@ -30,32 +31,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                DateOnly dataDeNascimentoConvertida = new DateOnly();
-
-                if (usuarioDTO.DataDeNascimento != null)
-                {
-                    dataDeNascimentoConvertida = DateOnly.ParseExact(
-                    usuarioDTO.DataDeNascimento,
-                    "dd/MM/yyyy",
-                    CultureInfo.InvariantCulture
-                                );
-                }
-                var usuario = new Usuario
-                {
-                    Nome = usuarioDTO.Nome,
-                    Email = usuarioDTO.Email,
-                    Cpf = usuarioDTO.Cpf,
-                    Telefone = usuarioDTO.Telefone,
-                    DataDeNascimento = dataDeNascimentoConvertida,
-                    Foto = usuarioDTO.Foto,
-                    DataHoraCriacao = DateTime.UtcNow,
-                    Deletado = false,
-                    RedesSociais = usuarioDTO.RedesSociais.Select(r => new UsuarioRedeSocial
-                    {
-                        Plataforma = r.Plataforma,
-                        Url = r.Url
-                    }).ToList()
-                };
+                var usuario = usuarioDTO.ConverterUsuarioCore();
 
                 var novoUsuario = await _cadastrarUsuarioUseCase.CadastrarUsuario(usuario, usuarioDTO.Senha);
 
@@ -84,27 +60,8 @@ namespace GamificationEvent.API.Controllers
 
                 foreach (var usuario in usuarios)
                 {
-                    var usuarioResponse = new UsuarioResponseDTO
-                    {
-                        Id = usuario.Id,
-                        Nome = usuario.Nome,
-                        Email = usuario.Email,
-                        Cpf = usuario.Cpf,
-                        Telefone = usuario.Telefone,
-                        DataDeNascimento = usuario.DataDeNascimento?.ToString("dd/MM/yyyy"),
-                        Foto = usuario.Foto,
-                        DataHoraCriacao = usuario.DataHoraCriacao,
-                        Deletado = usuario.Deletado,
-                        RedesSociais = usuario.RedesSociais
-
-                    .Select(redeSocial => new RedeSocialDTO
-                    {
-                        Plataforma = redeSocial.Plataforma,
-                        Url = redeSocial.Url
-                    })
-                    .ToList()
-                    };
-
+                    var usuarioResponse = usuario.ConverterUsuarioResponse();
+                    
                     usuariosResponse.Add(usuarioResponse);
 
                 }
