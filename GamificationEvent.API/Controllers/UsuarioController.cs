@@ -51,7 +51,7 @@ namespace GamificationEvent.API.Controllers
 
                 var usuarios = await _getUsuariosUseCase.GetUsuarios();
 
-                if (usuarios == null)
+                if (usuarios == null || usuarios.Count == 0)
                 {
                     return NotFound("Não há usuários");
                 }
@@ -86,26 +86,7 @@ namespace GamificationEvent.API.Controllers
                     return NotFound("Usuário não encontrado");
                 }
 
-                var usuarioResponse = new UsuarioResponseDTO
-                {
-                    Id = usuario.Id,
-                    Nome = usuario.Nome,
-                    Email = usuario.Email,
-                    Cpf = usuario.Cpf,
-                    Telefone = usuario.Telefone,
-                    DataDeNascimento = usuario.DataDeNascimento?.ToString("dd/MM/yyyy"),
-                    Foto = usuario.Foto,
-                    DataHoraCriacao = usuario.DataHoraCriacao,
-                    Deletado = usuario.Deletado,
-                    RedesSociais = usuario.RedesSociais
-
-                .Select(redeSocial => new RedeSocialDTO
-                {
-                    Plataforma = redeSocial.Plataforma,
-                    Url = redeSocial.Url
-                })
-                .ToList()
-                };
+                var usuarioResponse = usuario.ConverterUsuarioResponse();
 
                 return Ok(usuarioResponse);
             }
@@ -121,6 +102,9 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
+                if (id == null || id == Guid.Empty)
+                    return BadRequest("Insira um id válido");
+
                 var deleção = await _deletarUsuarioUseCase.DeletarUsuario(id);
                 if (!deleção)
                 {
@@ -140,31 +124,9 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                DateOnly dataDeNascimentoConvertida = new DateOnly();
 
-                if (usuarioDTO.DataDeNascimento != null)
-                {
-                    dataDeNascimentoConvertida = DateOnly.ParseExact(
-                    usuarioDTO.DataDeNascimento,
-                    "dd/MM/yyyy",
-                    CultureInfo.InvariantCulture
-                                );
-                }
-
-                var usuario = new Usuario
-                {
-                    Id = id,
-                    Nome = usuarioDTO.Nome,
-                    Email = usuarioDTO.Email,
-                    Cpf = usuarioDTO.Cpf,
-                    Telefone = usuarioDTO.Telefone,
-                    DataDeNascimento = dataDeNascimentoConvertida,
-                    RedesSociais = usuarioDTO.RedesSociais.Select(r => new UsuarioRedeSocial
-                    {
-                        Plataforma = r.Plataforma,
-                        Url = r.Url
-                    }).ToList()
-                };
+                var usuario = usuarioDTO.ConverterUpdateParaCore();
+                usuario.Id = id;
 
                 await _atualizarUsuarioUseCase.AtualizarUsuario(usuario);
                 return Ok("Usuario atualizado");

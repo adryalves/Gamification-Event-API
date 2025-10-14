@@ -1,3 +1,4 @@
+using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Infrastructure.Data.Persistence;
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Repository
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IPaletaCorRepository, PaletaCorRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -34,6 +36,15 @@ builder.Services.AddScoped<GetUsuariosUseCase>();
 builder.Services.AddScoped<GetUsuarioPorIdUseCase>();
 builder.Services.AddScoped<DeletarUsuarioUseCase>();
 builder.Services.AddScoped<AtualizarUsuarioUseCase>();
+
+builder.Services.AddScoped<AtualizarPaletaUseCase>();
+builder.Services.AddScoped<CadastrarCorUseCase>();
+builder.Services.AddScoped<CadastrarPaletaUseCase>();
+builder.Services.AddScoped<DeletarPaletaUseCase>();
+builder.Services.AddScoped<GetCoresUseCase>();
+builder.Services.AddScoped<GetCorPorIdUseCase>();
+builder.Services.AddScoped<GetPaletaPorIdUseCase>();
+builder.Services.AddScoped<GetPaletasUseCase>();
 
 builder.Services.AddControllers();
 
