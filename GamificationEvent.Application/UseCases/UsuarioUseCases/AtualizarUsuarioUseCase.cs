@@ -36,20 +36,8 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             if(cpfExiste && usuarioExistente.Cpf != usuario.Cpf)
                 throw new Exception("Esse email já existe para outro usuário");
 
-            usuarioExistente.Nome = usuario.Nome;
-            usuarioExistente.Cpf = usuario.Cpf;
-            usuarioExistente.Email = usuario.Email;
-            usuarioExistente.DataDeNascimento = usuario.DataDeNascimento;
-            usuarioExistente.Telefone = usuario.Telefone;
-            // ainda não decidi a lógica da foto então se fosse aq teria que add
 
-            usuarioExistente.RedesSociais = usuario.RedesSociais.Select(r => new UsuarioRedeSocial
-            {
-                Plataforma = r.Plataforma,
-                Url = r.Url
-            }).ToList();
-
-          return await _usuarioRepository.AtualizarUsuario(usuarioExistente);
+          return await _usuarioRepository.AtualizarUsuario(usuario);
         }
     }
 }
