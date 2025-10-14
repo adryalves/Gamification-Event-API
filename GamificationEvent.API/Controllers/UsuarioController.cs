@@ -32,7 +32,6 @@ namespace GamificationEvent.API.Controllers
             try
             {
                 var usuario = usuarioDTO.ConverterUsuarioCore();
-
                 var novoUsuario = await _cadastrarUsuarioUseCase.CadastrarUsuario(usuario, usuarioDTO.Senha);
 
                 return Ok(novoUsuario.Id);
