@@ -37,6 +37,7 @@ builder.Services.AddScoped<GetUsuarioPorIdUseCase>();
 builder.Services.AddScoped<DeletarUsuarioUseCase>();
 builder.Services.AddScoped<AtualizarUsuarioUseCase>();
 
+builder.Services.AddScoped<AtualizarCorUseCase>();
 builder.Services.AddScoped<AtualizarPaletaUseCase>();
 builder.Services.AddScoped<CadastrarCorUseCase>();
 builder.Services.AddScoped<CadastrarPaletaUseCase>();

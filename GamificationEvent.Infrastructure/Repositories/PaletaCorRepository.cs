@@ -73,6 +73,27 @@ namespace GamificationEvent.Infrastructure.Repositories
             return corCore;
         }
 
+        public async Task AtualizarCor(CoreCor cor)
+        {
+            var corEF = await _context.Cors
+             .FirstOrDefaultAsync(c => c.Id == cor.Id);
+
+            if(corEF == null)
+                throw new Exception("Cor não encontrado.");
+
+            corEF.HexCodigo = cor.HexCodigo;
+            corEF.Nome = cor.Nome;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> CorJaExiste(string hexCod)
+        {
+            var cor = await _context.Cors.FirstOrDefaultAsync(x => x.HexCodigo == hexCod);
+
+            return cor != null;
+        }
+
         public async Task<CorePaleta> AdicionarPaleta(CorePaleta paleta)
         {
             var paletaDB = new InfraPaleta
@@ -140,7 +161,7 @@ namespace GamificationEvent.Infrastructure.Repositories
               .FirstOrDefaultAsync(p => p.Id == paleta.Id && paleta.Deletado == false);
 
             if (paletaEF == null)
-                throw new Exception("Usuário não encontrado.");
+                throw new Exception("Paleta não encontrado.");
 
             paletaEF.Nome = paleta.Nome;
             paletaEF.IdCor1 = paleta.IdCor1;

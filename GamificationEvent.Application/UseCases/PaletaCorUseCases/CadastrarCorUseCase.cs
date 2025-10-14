@@ -19,7 +19,10 @@ namespace GamificationEvent.Application.UseCases.PaletaCorUseCases
 
         public async Task<Cor> CadastrarCor(Cor cor)
         {
-          
+          if(await _paletaCorRepository.CorJaExiste(cor.HexCodigo))
+            {
+                throw new InvalidOperationException("Cor já existe");
+            }
             cor.Id = Guid.NewGuid();
 
           return  await _paletaCorRepository.AdicionarCor(cor);

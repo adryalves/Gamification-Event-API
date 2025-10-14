@@ -13,6 +13,7 @@ namespace GamificationEvent.API.Controllers
     {
         private readonly AtualizarPaletaUseCase _atualizarPaletaUseCase;
         private readonly CadastrarCorUseCase _cadastrarCorUseCase;
+        private readonly AtualizarCorUseCase _atualizarCorUseCase;
         private readonly CadastrarPaletaUseCase _cadastrarPaletaUseCase;
         private readonly DeletarPaletaUseCase _deletarPaletaUseCase;
         private readonly GetCoresUseCase _getCoresUseCase;
@@ -20,7 +21,7 @@ namespace GamificationEvent.API.Controllers
         private readonly GetPaletaPorIdUseCase _getPaletaPorIdUseCase;
         private readonly GetPaletasUseCase _getPaletasUseCase;
 
-        public PaletaCorController(AtualizarPaletaUseCase atualizarPaletaUseCase, CadastrarCorUseCase cadastrarCorUseCase, CadastrarPaletaUseCase cadastrarPaletaUseCase, DeletarPaletaUseCase deletarPaletaUseCase, GetCoresUseCase getCoresUseCase, GetCorPorIdUseCase getCorPorIdUseCase, GetPaletaPorIdUseCase getPaletaPorIdUseCase, GetPaletasUseCase getPaletasUseCase)
+        public PaletaCorController(AtualizarPaletaUseCase atualizarPaletaUseCase, CadastrarCorUseCase cadastrarCorUseCase, CadastrarPaletaUseCase cadastrarPaletaUseCase, DeletarPaletaUseCase deletarPaletaUseCase, GetCoresUseCase getCoresUseCase, GetCorPorIdUseCase getCorPorIdUseCase, GetPaletaPorIdUseCase getPaletaPorIdUseCase, GetPaletasUseCase getPaletasUseCase, AtualizarCorUseCase atualizarCorUseCase)
         {
             _atualizarPaletaUseCase = atualizarPaletaUseCase;
             _cadastrarCorUseCase = cadastrarCorUseCase;
@@ -30,6 +31,7 @@ namespace GamificationEvent.API.Controllers
             _getCorPorIdUseCase = getCorPorIdUseCase;
             _getPaletaPorIdUseCase = getPaletaPorIdUseCase;
             _getPaletasUseCase = getPaletasUseCase;
+            _atualizarCorUseCase = atualizarCorUseCase;
         }
 
         [HttpPost("CadastrarCor")]
@@ -109,6 +111,28 @@ namespace GamificationEvent.API.Controllers
             {
                 return BadRequest(new { erro = ex.Message });
             }
+        }
+
+        [HttpPut("AtualizarCor")]
+        public async Task<IActionResult> AtualizarCor(Guid id, CorRequestDTO corDTO)
+        {
+            try
+            {
+                if (id == null || id == Guid.Empty)
+                    return BadRequest("Insira uma valor válido");
+
+                var cor = corDTO.ConverterCorCore();
+                cor.Id = id;
+                await _atualizarCorUseCase.AtualizarCor(cor);
+
+                return Ok("Cor atualizada");
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
+
         }
 
         [HttpPost("CadastrarPaleta")]
@@ -200,7 +224,7 @@ namespace GamificationEvent.API.Controllers
                 paleta.Id = id;
 
                 await _atualizarPaletaUseCase.AtualizarPaleta(paleta);
-                return Ok(paleta);
+                return Ok("Paleta atualizada");
 
             }
 

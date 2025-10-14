@@ -25,6 +25,16 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             {
                 throw new Exception("Usuário não encontrado.");
             }
+           
+            var emailExiste = await _usuarioRepository.EmailExiste(usuario.Email);
+            var cpfExiste = await _usuarioRepository.CpfExiste(usuario.Cpf);
+
+            if(emailExiste && (usuarioExistente.Email != usuario.Email))
+                throw new Exception("Esse email já existe para outro usuário");
+            
+
+            if(cpfExiste && usuarioExistente.Cpf != usuario.Cpf)
+                throw new Exception("Esse email já existe para outro usuário");
 
             usuarioExistente.Nome = usuario.Nome;
             usuarioExistente.Cpf = usuario.Cpf;
