@@ -143,7 +143,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             return true;
         }
 
-        public async Task AtualizarUsuario(CoreUsuario usuario)
+        public async Task<bool> AtualizarUsuario(CoreUsuario usuario)
         {
             var usuarioEF = await _context.Usuarios
                .Include(u => u.UsuarioRedeSocials)
@@ -169,7 +169,12 @@ namespace GamificationEvent.Infrastructure.Repositories
                 Url = rs.Url
             }).ToList();
 
-            await _context.SaveChangesAsync();
+         var linhasAfetadas = await _context.SaveChangesAsync();
+
+            if (linhasAfetadas > 0)
+                return true;
+
+            return false;
         }
     }
 }

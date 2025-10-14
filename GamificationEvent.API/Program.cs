@@ -1,3 +1,4 @@
+using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Repository
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IPaletaCorRepository, PaletaCorRepository>();
+builder.Services.AddScoped<IEventoRepository, EventoRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -46,6 +48,12 @@ builder.Services.AddScoped<GetCoresUseCase>();
 builder.Services.AddScoped<GetCorPorIdUseCase>();
 builder.Services.AddScoped<GetPaletaPorIdUseCase>();
 builder.Services.AddScoped<GetPaletasUseCase>();
+
+builder.Services.AddScoped<AtualizarEventoUseCase>();
+builder.Services.AddScoped<CadastrarEventoUseCase>();
+builder.Services.AddScoped<DeletarEventoUseCase>();
+builder.Services.AddScoped<GetEventoPorIdUseCase>();
+builder.Services.AddScoped<GetEventosUseCase>();
 
 builder.Services.AddControllers();
 

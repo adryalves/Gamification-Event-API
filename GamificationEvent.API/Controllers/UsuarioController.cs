@@ -128,7 +128,11 @@ namespace GamificationEvent.API.Controllers
                 var usuario = usuarioDTO.ConverterUpdateParaCore();
                 usuario.Id = id;
 
-                await _atualizarUsuarioUseCase.AtualizarUsuario(usuario);
+               var sucesso = await _atualizarUsuarioUseCase.AtualizarUsuario(usuario);
+
+                if (!sucesso)
+                    return BadRequest("Algo deu errado na atualização");
+
                 return Ok("Usuario atualizado");
             }
 

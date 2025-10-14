@@ -15,6 +15,6 @@ namespace GamificationEvent.Core.Interfaces
         Task<List<Usuario>> GetUsuarios();
         Task<Usuario> GetUsuarioPorId(Guid id);
         Task<bool> DeletarUsuario(Guid id);
-        Task AtualizarUsuario(Usuario usuario);
+        Task<bool> AtualizarUsuario(Usuario usuario);
     }
 }

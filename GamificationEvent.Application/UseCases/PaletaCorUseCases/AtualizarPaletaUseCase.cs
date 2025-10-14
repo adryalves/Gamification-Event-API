@@ -17,7 +17,7 @@ namespace GamificationEvent.Application.UseCases.PaletaCorUseCases
             _paletaCorRepository = paletaCorRepository;
         }
 
-        public async Task AtualizarPaleta(PaletaCor paleta)
+        public async Task<bool> AtualizarPaleta(PaletaCor paleta)
         {
             var paletaExistente = await _paletaCorRepository.GetPaletaPorId(paleta.Id);
             if (paletaExistente == null)
@@ -25,13 +25,7 @@ namespace GamificationEvent.Application.UseCases.PaletaCorUseCases
                 throw new Exception("Paleta não encontrado.");
             }
 
-            paletaExistente.Nome = paleta.Nome;
-            paletaExistente.IdCor1 = paleta.IdCor1;
-            paletaExistente.IdCor2 = paleta.IdCor2;
-            paletaExistente.IdCor3 = paleta.IdCor3;
-            paletaExistente.IdCor4 = paleta.IdCor4;
-
-            await _paletaCorRepository.AtualizarPaleta(paleta);
+          return await _paletaCorRepository.AtualizarPaleta(paleta);
         }
     }
 }

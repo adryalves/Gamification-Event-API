@@ -123,7 +123,11 @@ namespace GamificationEvent.API.Controllers
 
                 var cor = corDTO.ConverterCorCore();
                 cor.Id = id;
-                await _atualizarCorUseCase.AtualizarCor(cor);
+                
+
+               var sucesso = await _atualizarCorUseCase.AtualizarCor(cor);
+                if (!sucesso)
+                    return BadRequest("Algo deu errado na atualização");
 
                 return Ok("Cor atualizada");
             }
@@ -222,8 +226,13 @@ namespace GamificationEvent.API.Controllers
 
                 var paleta = paletaDTO.ConverterPaletaCore();
                 paleta.Id = id;
+                paleta.Deletado = false;
 
-                await _atualizarPaletaUseCase.AtualizarPaleta(paleta);
+               var sucesso = await _atualizarPaletaUseCase.AtualizarPaleta(paleta);
+
+                if (!sucesso)
+                    return BadRequest("Algo deu errado na atualização");
+
                 return Ok("Paleta atualizada");
 
             }
@@ -238,17 +247,25 @@ namespace GamificationEvent.API.Controllers
         [HttpDelete("DeletarPaleta")]
         public async Task<IActionResult> DeletarPaleta(Guid id)
         {
-            if (id == null || id == Guid.Empty)
-                return BadRequest("Insira um id válido");
+            try {
 
-            var deleção = await _deletarPaletaUseCase.DeletarPaleta(id);
+                if (id == null || id == Guid.Empty)
+                    return BadRequest("Insira um id válido");
 
-            if (!deleção)
-            {
-                return NotFound("Paleta não encontrado para ser deletado");
+                var deleção = await _deletarPaletaUseCase.DeletarPaleta(id);
+
+                if (!deleção)
+                {
+                    return NotFound("Paleta não encontrado para ser deletado");
+                }
+
+                return Ok("Paleta deletada");
             }
-
-            return Ok("Paleta deletada");
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
         }
+
     }
 }

@@ -17,7 +17,7 @@ namespace GamificationEvent.Application.UseCases.PaletaCorUseCases
             _paletaCorRepository = paletaCorRepository;
         }
 
-        public async Task AtualizarCor(Cor cor)
+        public async Task<bool> AtualizarCor(Cor cor)
         {
             var corExistente = await _paletaCorRepository.GetCorPorid(cor.Id);
 
@@ -30,10 +30,7 @@ namespace GamificationEvent.Application.UseCases.PaletaCorUseCases
             if(hexCodJaExiste && corExistente.HexCodigo != cor.HexCodigo)
                 throw new Exception("Esse código de cor já esta cadastrado.");
 
-            corExistente.Nome = cor.Nome;
-            corExistente.HexCodigo = cor.HexCodigo;
-
-            await _paletaCorRepository.AtualizarCor(cor);
+         return await _paletaCorRepository.AtualizarCor(cor);
         }
     }
 }

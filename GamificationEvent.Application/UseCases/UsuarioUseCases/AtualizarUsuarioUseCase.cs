@@ -17,7 +17,7 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task AtualizarUsuario(Usuario usuario)
+        public async Task<bool> AtualizarUsuario(Usuario usuario)
         {
             var usuarioExistente = await _usuarioRepository.GetUsuarioPorId(usuario.Id);
 
@@ -49,7 +49,7 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
                 Url = r.Url
             }).ToList();
 
-            await _usuarioRepository.AtualizarUsuario(usuarioExistente);
+          return await _usuarioRepository.AtualizarUsuario(usuarioExistente);
         }
     }
 }

@@ -73,7 +73,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             return corCore;
         }
 
-        public async Task AtualizarCor(CoreCor cor)
+        public async Task<bool> AtualizarCor(CoreCor cor)
         {
             var corEF = await _context.Cors
              .FirstOrDefaultAsync(c => c.Id == cor.Id);
@@ -84,7 +84,12 @@ namespace GamificationEvent.Infrastructure.Repositories
             corEF.HexCodigo = cor.HexCodigo;
             corEF.Nome = cor.Nome;
 
-            await _context.SaveChangesAsync();
+          var linhasAfetadas = await _context.SaveChangesAsync();
+
+            if (linhasAfetadas > 0)
+                return true;
+
+            return false;
         }
 
         public async Task<bool> CorJaExiste(string hexCod)
@@ -155,7 +160,7 @@ namespace GamificationEvent.Infrastructure.Repositories
               
             return paleta;
         }
-        public async Task AtualizarPaleta(CorePaleta paleta)
+        public async Task<bool> AtualizarPaleta(CorePaleta paleta)
         {
             var paletaEF = await _context.PaletaCors
               .FirstOrDefaultAsync(p => p.Id == paleta.Id && paleta.Deletado == false);
@@ -169,7 +174,13 @@ namespace GamificationEvent.Infrastructure.Repositories
             paletaEF.IdCor3 = paleta.IdCor3;
             paletaEF.IdCor4 = paleta.IdCor4;
 
-            await _context.SaveChangesAsync();
+           var linhasAfetadas = await _context.SaveChangesAsync();
+
+            if (linhasAfetadas > 0)
+                return true;
+
+            return false;
+               
         }
 
         public async Task<bool> DeletarPaleta(Guid id)
@@ -183,6 +194,12 @@ namespace GamificationEvent.Infrastructure.Repositories
             paletaEF.Deletado = true;
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<bool> PaletaExiste(Guid id)
+        {
+            var paleta = await _context.PaletaCors.FirstOrDefaultAsync(x => x.Id == id && !x.Deletado);
+            return paleta != null;
         }
     }
 }
