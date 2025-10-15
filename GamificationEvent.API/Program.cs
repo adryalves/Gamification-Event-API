@@ -1,4 +1,6 @@
+using GamificationEvent.API;
 using GamificationEvent.Application.UseCases.EventoUseCases;
+using GamificationEvent.Application.UseCases.InscritoUseCases;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
@@ -6,6 +8,7 @@ using GamificationEvent.Infrastructure.Data.Persistence;
 using GamificationEvent.Infrastructure.Repositories;
 using GamificationEvent.Infrastructure.Serviços;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +30,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IPaletaCorRepository, PaletaCorRepository>();
 builder.Services.AddScoped<IEventoRepository, EventoRepository>();
+builder.Services.AddScoped<IInscritoRepository, InscritoRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -55,9 +59,18 @@ builder.Services.AddScoped<DeletarEventoUseCase>();
 builder.Services.AddScoped<GetEventoPorIdUseCase>();
 builder.Services.AddScoped<GetEventosUseCase>();
 
-builder.Services.AddControllers();
+builder.Services.AddScoped<CadastrarInscritosUseCase>();
+builder.Services.AddScoped<CadastrarInscritoUseCase>();
+builder.Services.AddScoped<DeletarInscritoUseCase>();
+builder.Services.AddScoped<GetInscritosPorIdUseCase>();
+builder.Services.AddScoped<GetInscritosUseCase>();
 
 
+
+builder.Services.AddControllers() .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+    });;
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

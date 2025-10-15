@@ -118,7 +118,7 @@ public partial class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        
+
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             foreach (var property in entityType.ClrType.GetProperties())
@@ -505,18 +505,19 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Inscrito>(entity =>
         {
-            entity.HasKey(e => e.Cpf).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("inscrito");
 
             entity.HasIndex(e => e.IdEvento, "FK_inscrito_evento");
 
-            entity.Property(e => e.Cpf)
-                .HasMaxLength(11)
-                .HasColumnName("cpf");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cargo)
                 .HasColumnType("enum('Admin','Membro')")
                 .HasColumnName("cargo");
+            entity.Property(e => e.Cpf)
+                .HasMaxLength(11)
+                .HasColumnName("cpf");
             entity.Property(e => e.IdEvento).HasColumnName("id_evento");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)

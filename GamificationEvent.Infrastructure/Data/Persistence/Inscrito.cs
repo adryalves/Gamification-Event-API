@@ -6,13 +6,15 @@ namespace GamificationEvent.Infrastructure.Data.Persistence;
 
 public partial class Inscrito
 {
+    public Guid Id { get; set; }
+
     public string Cpf { get; set; } = null!;
 
     public Guid IdEvento { get; set; }
 
     public string Nome { get; set; } = null!;
 
-    public Cargo Cargo { get; set; }
+    public Cargo Cargo { get; set; } 
 
     public virtual Evento IdEventoNavigation { get; set; } = null!;
 }
