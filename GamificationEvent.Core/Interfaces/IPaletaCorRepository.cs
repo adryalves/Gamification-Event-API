@@ -20,6 +20,7 @@ namespace GamificationEvent.Core.Interfaces
          Task<bool> AtualizarPaleta(PaletaCor paleta);
          Task<bool> DeletarPaleta(Guid id);
          Task<bool> PaletaExiste(Guid id);
+         Task<bool> PaletaPertenceAEvento(Guid idPaleta);
 
     }
 }

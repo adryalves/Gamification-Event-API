@@ -25,6 +25,11 @@ namespace GamificationEvent.Application.UseCases.PaletaCorUseCases
                 throw new Exception("Paleta não encontrado.");
             }
 
+            if (await _paletaCorRepository.PaletaPertenceAEvento(id))
+                 throw new Exception("Essa paleta não pode ser apagada pois está sendo usada por algum evento");
+
+
+
             return await _paletaCorRepository.DeletarPaleta(id);
         }
     }

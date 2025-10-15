@@ -201,5 +201,11 @@ namespace GamificationEvent.Infrastructure.Repositories
             var paleta = await _context.PaletaCors.FirstOrDefaultAsync(x => x.Id == id && !x.Deletado);
             return paleta != null;
         }
+
+        public async Task<bool> PaletaPertenceAEvento(Guid idPaleta)
+        {
+            return await _context.Eventos
+            .AnyAsync(e => e.IdPaleta == idPaleta);
+        }
     }
 }
