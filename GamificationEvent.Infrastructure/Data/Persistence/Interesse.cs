@@ -11,6 +11,8 @@ public partial class Interesse
 
     public string Nome { get; set; } = null!;
 
+    public bool Deletado { get; set; }
+
     public virtual Evento IdEventoNavigation { get; set; } = null!;
 
     public virtual ICollection<ParticipanteInteresse> ParticipanteInteresses { get; set; } = new List<ParticipanteInteresse>();

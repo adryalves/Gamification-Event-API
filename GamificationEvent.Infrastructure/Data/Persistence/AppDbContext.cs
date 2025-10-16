@@ -573,6 +573,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.IdEvento, "FK_interesses_evento");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Deletado).HasColumnName("deletado");
             entity.Property(e => e.IdEvento).HasColumnName("id_evento");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
@@ -818,6 +819,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.IdEvento).HasColumnName("id_evento");
             entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
             entity.Property(e => e.Pontuacao).HasColumnName("pontuacao");
+            entity.Property(e => e.PrimeiroParticipante).HasColumnName("primeiro_participante");
 
             entity.HasOne(d => d.IdEventoNavigation).WithMany(p => p.Participantes)
                 .HasForeignKey(d => d.IdEvento)
