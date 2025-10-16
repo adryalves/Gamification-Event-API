@@ -19,6 +19,9 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
 
         public async Task<bool> DeletarInscrito(String cpf, Guid idEvento)
         {
+            var inscrito = _inscritoRepository.JaExisteEsseInscrito(cpf, idEvento);
+            if (inscrito == null) throw new Exception("Inscrito não encontrado.");
+
             return await _inscritoRepository.DeletarInscrito(cpf, idEvento);
         }
        
