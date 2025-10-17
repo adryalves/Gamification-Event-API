@@ -3,6 +3,7 @@ using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
 using GamificationEvent.Application.UseCases.InteresseUseCases;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
+using GamificationEvent.Application.UseCases.ParticipanteUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Infrastructure.Data.Persistence;
@@ -33,6 +34,7 @@ builder.Services.AddScoped<IPaletaCorRepository, PaletaCorRepository>();
 builder.Services.AddScoped<IEventoRepository, EventoRepository>();
 builder.Services.AddScoped<IInscritoRepository, InscritoRepository>();
 builder.Services.AddScoped<IInteresseRepository, InteresseRepository>();
+builder.Services.AddScoped<IParticipanteRepository, ParticipanteRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -71,6 +73,12 @@ builder.Services.AddScoped<CadastrarInteresseUseCase>();
 builder.Services.AddScoped<DeletarInteresseUseCase>();
 builder.Services.AddScoped<GetInteressePorIdUseCase>();
 builder.Services.AddScoped<GetInteressesPorIdEventoUseCase>();
+
+builder.Services.AddScoped<AtualizarParticipanteUseCase>();
+builder.Services.AddScoped<CadastrarParticipanteUseCase>();
+builder.Services.AddScoped<GetParticipantePorIdUseCase>();
+builder.Services.AddScoped<GetParticipantesPorIdEventoUseCase>();
+
 
 builder.Services.AddControllers() .AddJsonOptions(options =>
     {

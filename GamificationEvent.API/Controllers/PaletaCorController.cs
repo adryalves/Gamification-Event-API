@@ -123,7 +123,6 @@ namespace GamificationEvent.API.Controllers
 
                 var cor = corDTO.ConverterCorCore();
                 cor.Id = id;
-                
 
                var sucesso = await _atualizarCorUseCase.AtualizarCor(cor);
                 if (!sucesso)

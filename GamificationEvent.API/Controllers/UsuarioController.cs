@@ -59,8 +59,7 @@ namespace GamificationEvent.API.Controllers
 
                 foreach (var usuario in usuarios)
                 {
-                    var usuarioResponse = usuario.ConverterUsuarioResponse();
-                    
+                    var usuarioResponse = usuario.ConverterUsuarioResponse();  
                     usuariosResponse.Add(usuarioResponse);
 
                 }
