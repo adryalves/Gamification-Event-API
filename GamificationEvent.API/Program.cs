@@ -4,6 +4,7 @@ using GamificationEvent.Application.UseCases.InscritoUseCases;
 using GamificationEvent.Application.UseCases.InteresseUseCases;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.ParticipanteUseCases;
+using GamificationEvent.Application.UseCases.RankingUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Infrastructure.Data.Persistence;
@@ -35,6 +36,7 @@ builder.Services.AddScoped<IEventoRepository, EventoRepository>();
 builder.Services.AddScoped<IInscritoRepository, InscritoRepository>();
 builder.Services.AddScoped<IInteresseRepository, InteresseRepository>();
 builder.Services.AddScoped<IParticipanteRepository, ParticipanteRepository>();
+builder.Services.AddScoped<IRankingRepository, RankingRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -78,6 +80,10 @@ builder.Services.AddScoped<AtualizarParticipanteUseCase>();
 builder.Services.AddScoped<CadastrarParticipanteUseCase>();
 builder.Services.AddScoped<GetParticipantePorIdUseCase>();
 builder.Services.AddScoped<GetParticipantesPorIdEventoUseCase>();
+
+
+builder.Services.AddScoped<GetRankingGeralPorIdEventoUseCase>();
+builder.Services.AddScoped<GetRankingPersonalizadoUseCase>();
 
 
 builder.Services.AddControllers() .AddJsonOptions(options =>

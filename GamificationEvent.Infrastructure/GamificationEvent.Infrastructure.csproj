@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GamificationEvent.Application\GamificationEvent.Application.csproj" />
     <ProjectReference Include="..\GamificationEvent.Core\GamificationEvent.Core.csproj" />
   </ItemGroup>
 
