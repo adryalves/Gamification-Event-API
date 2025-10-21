@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +20,19 @@ namespace GamificationEvent.Application.UseCases.EventoUseCases
             _paletaCorRepository = paletaCorRepository;
         }
 
-        public async Task<bool> AtualizarEvento(Evento evento)
+        public async Task<Resultado<bool>> AtualizarEvento(Evento evento)
         {
             var eventoExistente = await _eventoRepository.GetEventoPorId(evento.Id);
             if(eventoExistente == null)
-                throw new Exception("Evento não encontrado.");
+                return Resultado<bool>.Falha($"Evento com id: {evento.Id} não encontrado");
 
             var paleta = await _paletaCorRepository.GetPaletaPorId(evento.IdPaleta);
-            if (paleta == null) throw new Exception("O id da paleta não corresponde a nenhuma existente");
+            if(paleta == null)
+            return Resultado<bool>.Falha($"Paleta com id: {evento.IdPaleta} não encontrado");
 
 
-            return await _eventoRepository.AtualizarEvento(evento);
+            var resultado = await _eventoRepository.AtualizarEvento(evento);
+            return Resultado<bool>.Ok(resultado);
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,10 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
             _interesseRepository = interesseRepository;
         }
 
-        public async Task<bool> AtualizarParticipante(Participante participante)
+        public async Task<Resultado<bool>> AtualizarParticipante(Participante participante)
         {
             var participanteExistente = await _participanteRepository.GetParticipantePorId(participante.Id);
-            if (participanteExistente == null) throw new Exception("Esse participante não existe");
+            if (participanteExistente == null) return Resultado<bool>.Falha($"Participante de id {participante.Id} não encontrado.");
 
             var participanteInteresseValidos = new List<ParticipanteInteresse>();
             foreach (var interesse in participante.ParticipanteInteresses)
@@ -36,8 +37,9 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
             }
             participante.ParticipanteInteresses = participanteInteresseValidos;
            
+            var resultado = await _participanteRepository.AtualizarParticipante(participante);
+            return Resultado<bool>.Ok(resultado);
 
-            return await _participanteRepository.AtualizarParticipante(participante);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,16 +26,16 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
             _interesseRepository = interesseRepository;
         }
 
-        public async Task<Guid> CadastrarParticipante(Participante participante)
+        public async Task<Resultado<Guid>> CadastrarParticipante(Participante participante)
         {
             var evento = await _eventoRepository.GetEventoPorId(participante.IdEvento);
-            if (evento == null) throw new Exception($"O id {participante.IdEvento} não corresponde a um evento existente");
+            if (evento == null) return Resultado<Guid>.Falha($"O id {participante.IdEvento} não corresponde a um evento existente");
 
             var usuario = await _usuarioRepository.GetUsuarioPorId(participante.IdUsuario);
-            if (usuario == null) throw new Exception($"O id {participante.IdUsuario} não corresponde a um usuário válido");
+            if (usuario == null) return Resultado<Guid>.Falha($"O id {participante.IdUsuario} não corresponde a um usuário válido");
 
             var participanteExiste = await _participanteRepository.ParticipanteJaExiste(participante.IdEvento, participante.IdUsuario);
-            if (participanteExiste) throw new Exception($"Esse usuário já em um participante desse evento");
+            if (participanteExiste) return Resultado<Guid>.Falha($"Esse usuário já em um participante desse evento");
 
             // lógica para checar se ele esta inscrito
 
@@ -47,7 +48,7 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
                 {
                     var inscrição = await _inscritoRepository.JaExisteEsseInscrito(usuario.Cpf, participante.IdEvento);
 
-                    if (inscrição == null) throw new Exception("Esse participante não está inscrito");
+                    if (inscrição == null) return Resultado<Guid>.Falha("Esse participante não está inscrito");
 
                     participante.Cargo = inscrição.Cargo;
                 }
@@ -69,7 +70,9 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
             }
             participante.ParticipanteInteresses = participanteInteresseValidos;
 
-            return await _participanteRepository.AdicionarParticipante(participante);
+            var resultado = await _participanteRepository.AdicionarParticipante(participante);
+            return Resultado<Guid>.Ok(resultado);
+
 
         }
     }

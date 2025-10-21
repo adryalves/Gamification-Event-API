@@ -1,4 +1,6 @@
-﻿using GamificationEvent.Core.Interfaces;
+﻿using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +18,15 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<bool> DeletarUsuario(Guid id)
+        public async Task<Resultado<bool>> DeletarUsuario(Guid id)
         {
             var usuarioExistente = await _usuarioRepository.GetUsuarioPorId(id);
 
-            if (usuarioExistente == null)
-            {
-                throw new Exception("Usuário não encontrado.");
-            }
+            if (usuarioExistente == null) return Resultado<bool>.Falha($"Usuário de id {id} não encontrado.");
 
-            return await _usuarioRepository.DeletarUsuario(id);
+            var resultado = await _usuarioRepository.DeletarUsuario(id);
+            return Resultado<bool>.Ok(resultado);
+
         }
     }
 }

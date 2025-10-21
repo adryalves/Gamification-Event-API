@@ -149,9 +149,6 @@ namespace GamificationEvent.Infrastructure.Repositories
                .Include(u => u.UsuarioRedeSocials)
                .FirstOrDefaultAsync(u => u.Id == usuario.Id && u.Deletado == false);
 
-            if (usuarioEF == null)
-                throw new Exception("Usuário não encontrado.");
-
            
             usuarioEF.Nome = usuario.Nome;
             usuarioEF.Email = usuario.Email;

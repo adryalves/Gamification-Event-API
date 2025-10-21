@@ -2,6 +2,8 @@
 using GamificationEvent.Application.Mappings;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Resultados;
+using GamificationEvent.Infrastructure.Data.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 
@@ -34,7 +36,10 @@ namespace GamificationEvent.API.Controllers
                 var usuario = usuarioDTO.ConverterUsuarioCore();
                 var novoUsuario = await _cadastrarUsuarioUseCase.CadastrarUsuario(usuario, usuarioDTO.Senha);
 
-                return Ok(novoUsuario.Id);
+                if(novoUsuario.Sucesso) return Ok(novoUsuario.Valor.Id);
+
+
+                return BadRequest(new { Erro = novoUsuario.MensagemDeErro });
             }
             catch (Exception ex)
             {
@@ -50,20 +55,19 @@ namespace GamificationEvent.API.Controllers
 
                 var usuarios = await _getUsuariosUseCase.GetUsuarios();
 
-                if (usuarios == null || usuarios.Count == 0)
-                {
-                    return NotFound("Não há usuários");
-                }
 
                 List<UsuarioResponseDTO> usuariosResponse = new();
 
-                foreach (var usuario in usuarios)
+                foreach (var usuario in usuarios.Valor)
                 {
                     var usuarioResponse = usuario.ConverterUsuarioResponse();  
                     usuariosResponse.Add(usuarioResponse);
 
                 }
-                return Ok(usuariosResponse);
+
+                if(usuarios.Sucesso) return Ok(usuariosResponse);
+
+                return BadRequest(new { Erro = usuarios.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -78,15 +82,16 @@ namespace GamificationEvent.API.Controllers
             try
             {
                 var usuario = await _getUsuarioPorIdUseCase.GetUsuario(id);
+                if (usuario.Valor == null) return NotFound();
 
-                if (usuario == null)
+
+                if (usuario.Sucesso)
                 {
-                    return NotFound("Usuário não encontrado");
+                    var usuarioResponse = usuario.Valor.ConverterUsuarioResponse();
+                    return Ok(usuarioResponse);
                 }
 
-                var usuarioResponse = usuario.ConverterUsuarioResponse();
-
-                return Ok(usuarioResponse);
+                return BadRequest(new { Erro = usuario.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -104,12 +109,14 @@ namespace GamificationEvent.API.Controllers
                     return BadRequest("Insira um id válido");
 
                 var deleção = await _deletarUsuarioUseCase.DeletarUsuario(id);
-                if (!deleção)
-                {
-                    return NotFound("Usuário não encontrado para ser deletado");
-                }
 
-                return Ok("Uusário deletado");
+              if(deleção.Sucesso) return Ok("Uusário deletado");
+
+                if (deleção.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = deleção.MensagemDeErro });
+                
+
+                return BadRequest(new { Erro = deleção.MensagemDeErro });
             }
             catch (Exception ex)
             {
@@ -123,15 +130,18 @@ namespace GamificationEvent.API.Controllers
             try
             {
 
-                var usuario = usuarioDTO.ConverterUpdateParaCore();
-                usuario.Id = id;
+               var usuario = usuarioDTO.ConverterUpdateParaCore();
+               usuario.Id = id;
 
-               var sucesso = await _atualizarUsuarioUseCase.AtualizarUsuario(usuario);
+               var resultado = await _atualizarUsuarioUseCase.AtualizarUsuario(usuario);
 
-                if (!sucesso)
-                    return BadRequest("Algo deu errado na atualização");
+               if(resultado.Sucesso) return Ok("Usuario atualizado");
 
-                return Ok("Usuario atualizado");
+                if (resultado.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
+
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
+
             }
 
             catch (Exception ex)

@@ -1,4 +1,7 @@
-﻿using GamificationEvent.Application.UseCases.RankingUseCases;
+﻿using GamificationEvent.API.DTOs;
+using GamificationEvent.API.Mappings;
+using GamificationEvent.Application.UseCases.RankingUseCases;
+using GamificationEvent.Core.Resultados;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
@@ -24,7 +27,20 @@ namespace GamificationEvent.API.Controllers
                 if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um id válido");
 
                 var ranking = await _getRankingGeralPorIdEventoUseCase.GetRankingGeralPorIdEvento(idEvento, quantidade);
-                return Ok(ranking);
+
+
+                if (ranking.Sucesso)
+                {
+                    var rankingDTO = ranking.Valor.ConverterParaDTO();
+                    return Ok(rankingDTO);
+                }
+
+                if (ranking.MensagemDeErro!.Contains("não encontrado"))
+                {
+                    return NotFound(new { Erro = ranking.MensagemDeErro });
+                }
+
+                return BadRequest(new { Erro = ranking.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -43,7 +59,19 @@ namespace GamificationEvent.API.Controllers
 
 
                 var ranking = await _getRankingPersonalizadoUseCase.GetRankingPersonalizado(idEvento, idParticipante, quantidade);
-                return Ok(ranking);
+                             
+                if (ranking.Sucesso)
+                {
+                    var rankingDTO = ranking.Valor.ConverterParaDTO();
+                    return Ok(rankingDTO);
+                }
+
+                if (ranking.MensagemDeErro!.Contains("não encontrado"))
+                {
+                    return NotFound(new { Erro = ranking.MensagemDeErro });
+                }
+
+                return BadRequest(new { Erro = ranking.MensagemDeErro });
             }
 
             catch (Exception ex)

@@ -53,7 +53,8 @@ namespace GamificationEvent.Infrastructure.Repositories
 
         public async Task<CoreParticipante> GetParticipantePorId(Guid id)
         {
-            var participante = await _context.Participantes.Include(p => p.ParticipanteInteresses).FirstOrDefaultAsync(x => x.Id == id);
+            var participante = await _context.Participantes.Include(p => p.ParticipanteInteresses).FirstOrDefaultAsync(x => x.Id == id && !x.IdUsuarioNavigation.Deletado &&
+                      !x.IdEventoNavigation.Deletado);
 
             if (participante != null)
             {
@@ -82,7 +83,8 @@ namespace GamificationEvent.Infrastructure.Repositories
 
         public async Task<List<CoreParticipante>> GetParticipantesPorIdEvento(Guid idEvento)
         {
-            var participantes = await _context.Participantes.Include(p => p.ParticipanteInteresses).Where(x => x.IdEvento == idEvento).ToListAsync();
+            var participantes = await _context.Participantes.Include(p => p.ParticipanteInteresses).Where(x => x.IdEvento == idEvento && !x.IdUsuarioNavigation.Deletado &&
+                      !x.IdEventoNavigation.Deletado).ToListAsync();
 
             var participantesCore = new List<CoreParticipante>();
 
@@ -113,8 +115,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         public async Task<bool> AtualizarParticipante(CoreParticipante participante)
         {
             var participanteEF = await _context.Participantes.Include(p => p.ParticipanteInteresses).FirstOrDefaultAsync(x => x.Id == participante.Id);
-
-            if (participanteEF == null) throw new Exception("Participante não encontrado");
+           
 
             participanteEF.Cargo = participante.Cargo;
             participanteEF.Pontuacao = participante.Pontuacao;

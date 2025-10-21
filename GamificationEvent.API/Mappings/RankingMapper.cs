@@ -17,7 +17,6 @@ namespace GamificationEvent.API.Mappings
                 Posicao = r.Posicao
             }).ToList();
 
-
         }
     }
 }

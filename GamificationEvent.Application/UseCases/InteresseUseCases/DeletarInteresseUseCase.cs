@@ -1,4 +1,6 @@
-﻿using GamificationEvent.Core.Interfaces;
+﻿using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +18,13 @@ namespace GamificationEvent.Application.UseCases.InteresseUseCases
             _interesseRepository = interesseRepository;
         }
 
-        public async Task<bool> DeletarInteresse(Guid id)
+        public async Task<Resultado<bool>> DeletarInteresse(Guid id)
         {
             var interesse = await _interesseRepository.GetInteressePorId(id);
-            if (interesse == null) throw new Exception("Esse interesse não esta cadastrado");
+            if (interesse == null) return Resultado<bool>.Falha($"Interesse com id: {id} não encontrado para ser deletado");
 
-            return await _interesseRepository.DeletarInteresse(id);
+           var resultado = await _interesseRepository.DeletarInteresse(id);
+            return Resultado<bool>.Ok(resultado);
         }
     }
 }

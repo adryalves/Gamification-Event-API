@@ -1,6 +1,7 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Enums;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -21,14 +22,13 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
             _eventoRepository = eventoRepository;
         }
 
-        public async Task<int> CadastrarInscritos(Guid idEvento, List<Inscrito> inscritos)
+        public async Task<Resultado<int>> CadastrarInscritos(Guid idEvento, List<Inscrito> inscritos)
         {
             var evento = await _eventoRepository.GetEventoPorId(idEvento);
 
-            if(evento == null)
-            {
-                throw new Exception($"O id {idEvento} não corresponde a um evento existente");
-            }
+            if(evento == null) return Resultado<int>.Falha($"Evento com id: {idEvento} não encontrado");
+
+          
             var inscritosValidos = new List<Inscrito>();
 
             foreach (var inscrito in inscritos)
@@ -42,7 +42,9 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
                 inscrito.Id = Guid.NewGuid();
                 inscritosValidos.Add(inscrito);
             }
-            return await _inscritoRepository.AdicionarTodosOsInscrito(inscritosValidos);
+            var resultado = await _inscritoRepository.AdicionarTodosOsInscrito(inscritosValidos);
+
+            return Resultado<int>.Ok(resultado);
 
         }
     }

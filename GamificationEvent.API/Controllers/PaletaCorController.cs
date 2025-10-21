@@ -51,7 +51,11 @@ namespace GamificationEvent.API.Controllers
                 var cor = corDTO.ConverterCorCore();
                 var corCadastrada = await _cadastrarCorUseCase.CadastrarCor(cor);
 
-                return Ok(corCadastrada.Id);
+                if(corCadastrada.Sucesso) return Ok(corCadastrada.Valor.Id);
+
+
+                return BadRequest(new { Erro = corCadastrada.MensagemDeErro });
+
 
             }
             catch (Exception ex)
@@ -65,23 +69,21 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                var cores = await _getCoresUseCase.GetCores();
-
-                if (cores == null || cores.Count == 0)
-                {
-                    return NotFound("Não há cores cadastradas");
-                }
+                var cores = await _getCoresUseCase.GetCores();      
 
                 List<CorResponseDTO> coresResponse = new();
 
-                foreach (var cor in cores)
+                if (cores.Sucesso)
                 {
-                    var corResponse = cor.ConverterCorResponse();
-
-                    coresResponse.Add(corResponse);
-
+                    foreach (var cor in cores.Valor)
+                    {
+                        var corResponse = cor.ConverterCorResponse();
+                        coresResponse.Add(corResponse);
+                    }
+                    return Ok(coresResponse);
                 }
-                return Ok(coresResponse);
+
+                return BadRequest(new { Erro = cores.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -100,11 +102,15 @@ namespace GamificationEvent.API.Controllers
 
                 var cor = await _getCorPorIdUseCase.GetCorPorId(id);
 
-                if (cor == null)
-                    return NotFound("Não há uma cor com esse Id");
+                if (cor.Valor == null) return NotFound();
 
-                var corResponse = cor.ConverterCorResponse();
-                return Ok(corResponse);
+                if (cor.Sucesso)
+                {
+                    var corResponse = cor.Valor.ConverterCorResponse();
+                    return Ok(corResponse);
+                }
+
+                return BadRequest(new { Erro = cor.MensagemDeErro });
 
             }
             catch (Exception ex)
@@ -124,11 +130,14 @@ namespace GamificationEvent.API.Controllers
                 var cor = corDTO.ConverterCorCore();
                 cor.Id = id;
 
-               var sucesso = await _atualizarCorUseCase.AtualizarCor(cor);
-                if (!sucesso)
-                    return BadRequest("Algo deu errado na atualização");
+               var resultado = await _atualizarCorUseCase.AtualizarCor(cor);
+               
+                if(resultado.Sucesso) return Ok("Cor atualizada");
 
-                return Ok("Cor atualizada");
+                if (resultado.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
+
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -151,8 +160,13 @@ namespace GamificationEvent.API.Controllers
                 var paleta = paletaDTO.ConverterPaletaCore();
 
                 var paletaCadastrada = await _cadastrarPaletaUseCase.CadastrarPaletaCor(paleta);
-                return Ok(paletaCadastrada.Id);
 
+                if(paletaCadastrada.Sucesso) return Ok(paletaCadastrada.Valor.Id);
+
+                if (paletaCadastrada.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = paletaCadastrada.MensagemDeErro });
+
+                return BadRequest(new { Erro = paletaCadastrada.MensagemDeErro });
             }
             catch (Exception ex)
             {
@@ -168,19 +182,20 @@ namespace GamificationEvent.API.Controllers
             {
                 var paletas = await _getPaletasUseCase.GetPaletas();
 
-                if (paletas == null || paletas.Count == 0)
-                    return NotFound("Não há paletas cadastradas");
-
                 var paletasResponse = new List<PaletaCorResponseDTO>();
 
-                foreach (var paleta in paletas)
+                if (paletas.Sucesso)
                 {
-                    var paletaResponse = paleta.ConverterPaletaResponse();
+                    foreach (var paleta in paletas.Valor)
+                    {
+                        var paletaResponse = paleta.ConverterPaletaResponse();
+                        paletasResponse.Add(paletaResponse);
 
-                    paletasResponse.Add(paletaResponse);
-
+                    }
+                    return Ok(paletasResponse);
                 }
-                return Ok(paletasResponse);
+
+                return BadRequest(new { Erro = paletas.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -199,12 +214,15 @@ namespace GamificationEvent.API.Controllers
 
                 var paleta = await _getPaletaPorIdUseCase.GetPaletaPorId(id);
 
-                if (paleta == null)
-                    return NotFound("Não existe uma paleta com esse Id");
+                if (paleta.Valor == null) return NotFound();
 
-                var paletaResponse = paleta.ConverterPaletaResponse();
+                if (paleta.Sucesso)
+                {
+                    var paletaResponse = paleta.Valor.ConverterPaletaResponse();
+                    return Ok(paletaResponse);
+                }
 
-                return Ok(paletaResponse);
+                return BadRequest(new { Erro = paleta.MensagemDeErro });
 
             }
 
@@ -219,7 +237,6 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-
                 if (id == null || id == Guid.Empty)
                     return BadRequest("Insira um valor válido");
 
@@ -227,12 +244,14 @@ namespace GamificationEvent.API.Controllers
                 paleta.Id = id;
                 paleta.Deletado = false;
 
-               var sucesso = await _atualizarPaletaUseCase.AtualizarPaleta(paleta);
+               var resultado = await _atualizarPaletaUseCase.AtualizarPaleta(paleta);
 
-                if (!sucesso)
-                    return BadRequest("Algo deu errado na atualização");
+               if(resultado.Sucesso) return Ok("Paleta atualizada");
 
-                return Ok("Paleta atualizada");
+               if (resultado.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
+
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
 
             }
 
@@ -253,12 +272,13 @@ namespace GamificationEvent.API.Controllers
 
                 var deleção = await _deletarPaletaUseCase.DeletarPaleta(id);
 
-                if (!deleção)
-                {
-                    return NotFound("Paleta não encontrado para ser deletado");
-                }
+                if (deleção.Sucesso) return Ok("Paleta deletada");
 
-                return Ok("Paleta deletada");
+                if (deleção.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = deleção.MensagemDeErro });
+
+
+                return BadRequest(new { Erro = deleção.MensagemDeErro });
             }
             catch (Exception ex)
             {

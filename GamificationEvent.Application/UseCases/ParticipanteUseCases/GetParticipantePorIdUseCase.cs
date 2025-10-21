@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
             _participanteRepository = participanteRepository;
         }
 
-        public async Task<Participante> GetParticipantePorId(Guid id)
+        public async Task<Resultado<Participante>> GetParticipantePorId(Guid id)
         {
-            return await _participanteRepository.GetParticipantePorId(id);
+            var resultado = await _participanteRepository.GetParticipantePorId(id);
+            return Resultado<Participante>.Ok(resultado);
+
         }
     }
 }

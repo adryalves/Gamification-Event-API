@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GamificationEvent.Core.Resultados;
 
 namespace GamificationEvent.Application.UseCases.UsuarioUseCases
 {
@@ -20,18 +21,17 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             _senhaHash = senhaHash;
         }
 
-        public async Task<Usuario> CadastrarUsuario(Usuario usuario, string senha)
+        public async Task<Resultado<Usuario>> CadastrarUsuario(Usuario usuario, string senha)
         {
 
             var cpfUsuarioExiste = await _usuarioRepository.CpfExiste(usuario.Cpf);
             var emailUsuarioExiste = await _usuarioRepository.CpfExiste(usuario.Email);
 
             if (cpfUsuarioExiste)
-                throw new InvalidOperationException("CPF já cadastrados");
+                return Resultado<Usuario>.Falha("CPF já cadastrados");
 
             if (emailUsuarioExiste)
-                throw new InvalidOperationException("Email já cadastrado");
-
+                return Resultado<Usuario>.Falha("Email já cadastrado");
 
             usuario.SenhaHash = _senhaHash.CriptografarSenha(senha);
             usuario.Id = Guid.NewGuid();
@@ -42,7 +42,9 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
                 redeSocial.IdUsuario = usuario.Id;
             }
 
-            return await _usuarioRepository.AdicionarUsuario(usuario);
+            var resultado = await _usuarioRepository.AdicionarUsuario(usuario);
+            return Resultado<Usuario>.Ok(resultado);
+
 
         }
     }

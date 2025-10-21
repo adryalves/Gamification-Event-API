@@ -1,4 +1,5 @@
 ﻿using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,15 @@ namespace GamificationEvent.Application.UseCases.EventoUseCases
             _eventoRepository = eventoRepository;
         }
 
-        public async Task<bool> DeletarEvento(Guid id)
+        public async Task<Resultado<bool>> DeletarEvento(Guid id)
         {
             var evento = await _eventoRepository.GetEventoPorId(id);
-            if(evento == null) throw new Exception("Evento não encontrado.");
+            if(evento == null) return Resultado<bool>.Falha($"Evento com id: {id} não encontrado");
 
-            return await _eventoRepository.DeletarEvento(id);
+
+            var resultado =  await _eventoRepository.DeletarEvento(id);
+
+           return Resultado<bool>.Ok(resultado);
         }
     }
 }

@@ -35,7 +35,14 @@ namespace GamificationEvent.API.Controllers
                 var participante = participanteDTO.ConverterRequestParaCore();
 
                 var participanteId = await _cadastrarParticipanteUseCase.CadastrarParticipante(participante);
-                return Ok(participanteId);
+
+                if(participanteId.Sucesso) return Ok(participanteId);
+
+                if (participanteId.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = participanteId.MensagemDeErro });
+
+
+                return BadRequest(new { Erro = participanteId.MensagemDeErro });
             }
             catch (Exception ex)
             {
@@ -53,12 +60,15 @@ namespace GamificationEvent.API.Controllers
                 var participante = participanteDTO.ConverterUpdateParCore();
                 participante.Id = id;
 
-                var sucesso = await _atualizarParticipanteUseCase.AtualizarParticipante(participante);
+                var resultado = await _atualizarParticipanteUseCase.AtualizarParticipante(participante);
+        
+               if(resultado.Sucesso) return Ok("Participante atualizada");
 
-                if (!sucesso)
-                    return BadRequest("Algo deu errado na atualização");
+                if (resultado.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
 
-                return Ok("Participante atualizada");
+
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
 
             }
 
@@ -77,10 +87,18 @@ namespace GamificationEvent.API.Controllers
                     return BadRequest("Insira um id válido");
 
                 var participantes = await _getParticipantesPorIdEventoUseCase.GetParticipantesPorIdEvento(idEvento);
-                var participantesResponse = participantes.ConverterParaListaResponse();
 
-                if (participantesResponse == null || participantesResponse.Count == 0) return NotFound("Não há participantes cadastrados");
-                return Ok(participantesResponse);
+                if (participantes.Sucesso)
+                {
+                    var participantesResponse = participantes.Valor.ConverterParaListaResponse();
+                    return Ok(participantesResponse);
+                }
+
+                if (participantes.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = participantes.MensagemDeErro });
+
+
+                return BadRequest(new { Erro = participantes.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -98,10 +116,20 @@ namespace GamificationEvent.API.Controllers
                 if (id == null || id == Guid.Empty) return BadRequest("Insira um id válido");
                  
                 var participante = await _getParticipantePorIdUseCase.GetParticipantePorId(id);
-                var participanteResponse = participante.ConverterParaResponse();
 
-                if (participanteResponse == null) return NotFound("Não existe participante cadastrado");
-                return Ok(participanteResponse);
+                if (participante.Valor == null) return NotFound();
+
+                if (participante.Sucesso)
+                {
+                    var participanteResponse = participante.Valor.ConverterParaResponse();
+                    return Ok(participanteResponse);
+                }
+
+                if (participante.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = participante.MensagemDeErro });
+
+
+                return BadRequest(new { Erro = participante.MensagemDeErro });
             }
 
             catch (Exception ex)

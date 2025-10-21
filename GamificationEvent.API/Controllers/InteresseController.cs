@@ -1,6 +1,7 @@
 ﻿using GamificationEvent.API.DTOs;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.InteresseUseCases;
+using GamificationEvent.Core.Resultados;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
@@ -34,7 +35,15 @@ namespace GamificationEvent.API.Controllers
 
                 var cadastrados = await _cadastrarInteresseUseCase.CadastrarInteresses(interessesRequest.IdEvento, interesses);
 
-                return Ok($"Foram cadastrados {cadastrados} interesses");
+                if(cadastrados.Sucesso) return Ok($"Foram cadastrados {cadastrados.Valor} interesses");
+
+                if (cadastrados.MensagemDeErro!.Contains("não encontrado"))
+                {
+                    return NotFound(new { Erro = cadastrados.MensagemDeErro });
+                }
+
+                return BadRequest(new { Erro = cadastrados.MensagemDeErro });
+
             }
 
             catch (Exception ex)
@@ -50,14 +59,16 @@ namespace GamificationEvent.API.Controllers
             {
                 if (id == Guid.Empty || id == null) return BadRequest("Insira um id  válido");
 
-                var deleção = await _deletarInteresseUseCase.DeletarInteresse(id);
+                var resultado = await _deletarInteresseUseCase.DeletarInteresse(id);
 
-                if (!deleção)
+               if(resultado.Sucesso) return Ok("Interesse deletado");
+
+                if (resultado.MensagemDeErro!.Contains("não encontrado"))
                 {
-                    return NotFound("Cadastro de Interesse nesse evento não encontrado para ser deletado");
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
                 }
 
-                return Ok("Interesse deletado");
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
 
             }
 
@@ -74,10 +85,19 @@ namespace GamificationEvent.API.Controllers
             {
                 var interesses = await _getInteressesPorIdEventoUseCase.GetInteressesPorIdEvento(idEvento);
 
-                if (interesses == null || interesses.Count == 0) return NotFound("Não foram encontrados interesses para esse evento");
+                if (interesses.Sucesso)
+                {
+                    var interessesDTO = interesses.Valor.ConverterListaParaResponse();
+                    return Ok(interessesDTO);
+                }
 
-                var interessesDTO = interesses.ConverterListaParaResponse();
-                return Ok(interessesDTO);
+                if (interesses.MensagemDeErro!.Contains("não encontrado"))
+                {
+                    return NotFound(new { Erro = interesses.MensagemDeErro });
+                }
+
+                return BadRequest(new { Erro = interesses.MensagemDeErro });
+
             }
 
             catch (Exception ex)
@@ -93,11 +113,16 @@ namespace GamificationEvent.API.Controllers
             {
                 var interesse = await _getInteressePorIdUseCase.GerInteressePorId(id);
 
-                if (interesse == null) return NotFound("Esse interesse não foi encontrado");
+                if (interesse.Valor == null) return NotFound();
 
-                var interesseDTO = interesse.ConverterInteresseParaResponse();
+                if (interesse.Sucesso)
+                {
+                    var interesseDTO = interesse.Valor.ConverterInteresseParaResponse();
+                    return Ok(interesseDTO);
+                }
 
-                return Ok(interesseDTO);
+                return BadRequest(new { Erro = interesse.MensagemDeErro });
+
             }
 
             catch (Exception ex)

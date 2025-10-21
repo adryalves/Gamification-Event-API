@@ -65,10 +65,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         {
             var inscrito = await _context.Inscritos.FirstOrDefaultAsync(i => i.Cpf == cpf && i.IdEvento == idEvento);
 
-            if (inscrito == null)
-            {  
-                throw new KeyNotFoundException($"Inscrito com CPF: {cpf} no evento: {idEvento} não encontrado.");
-            }
+            if (inscrito == null) return false;
 
             _context.Inscritos.Remove(inscrito);
 

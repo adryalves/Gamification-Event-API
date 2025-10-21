@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,27 +18,25 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<bool> AtualizarUsuario(Usuario usuario)
+        public async Task<Resultado<bool>> AtualizarUsuario(Usuario usuario)
         {
             var usuarioExistente = await _usuarioRepository.GetUsuarioPorId(usuario.Id);
 
-            if(usuarioExistente == null)
-            {
-                throw new Exception("Usuário não encontrado.");
-            }
-           
+            if(usuarioExistente == null) return Resultado<bool>.Falha($"Uusario de id {usuario.Id} não encontrado.");
+
+
             var emailExiste = await _usuarioRepository.EmailExiste(usuario.Email);
             var cpfExiste = await _usuarioRepository.CpfExiste(usuario.Cpf);
 
             if(emailExiste && (usuarioExistente.Email != usuario.Email))
-                throw new Exception("Esse email já existe para outro usuário");
-            
+                return Resultado<bool>.Falha("Esse email já existe para outro usuário");            
 
             if(cpfExiste && usuarioExistente.Cpf != usuario.Cpf)
-                throw new Exception("Esse email já existe para outro usuário");
+                return Resultado<bool>.Falha("Esse cpf já existe para outro usuário");
 
+            var resultado = await _usuarioRepository.AtualizarUsuario(usuario);
+            return Resultado<bool>.Ok(resultado);
 
-          return await _usuarioRepository.AtualizarUsuario(usuario);
         }
     }
 }

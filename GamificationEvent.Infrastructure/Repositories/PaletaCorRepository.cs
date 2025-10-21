@@ -78,8 +78,8 @@ namespace GamificationEvent.Infrastructure.Repositories
             var corEF = await _context.Cors
              .FirstOrDefaultAsync(c => c.Id == cor.Id);
 
-            if(corEF == null)
-                throw new Exception("Cor não encontrado.");
+            if (corEF == null)
+                return false;
 
             corEF.HexCodigo = cor.HexCodigo;
             corEF.Nome = cor.Nome;
@@ -164,9 +164,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         {
             var paletaEF = await _context.PaletaCors
               .FirstOrDefaultAsync(p => p.Id == paleta.Id && paleta.Deletado == false);
-
-            if (paletaEF == null)
-                throw new Exception("Paleta não encontrado.");
+           
 
             paletaEF.Nome = paleta.Nome;
             paletaEF.IdCor1 = paleta.IdCor1;

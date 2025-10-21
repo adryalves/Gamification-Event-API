@@ -1,6 +1,7 @@
 ﻿using GamificationEvent.API.DTOs;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
+using GamificationEvent.Core.Resultados;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
@@ -37,11 +38,16 @@ namespace GamificationEvent.API.Controllers
                     return BadRequest("É preciso inserir um id Evento válido");
 
                 
-
                 var inscritos = inscritosDTO.ConverterListaDeTodosParaCore();
 
                 var cadastrados = await _cadastrarInscritosUseCase.CadastrarInscritos(inscritosDTO.IdEvento, inscritos);
-                return Ok($"Foram cadastrados {cadastrados} inscritos ");
+               
+                if(cadastrados.Sucesso) return Ok($"Foram cadastrados {cadastrados.Valor} inscritos ");
+
+                if (cadastrados.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = cadastrados.MensagemDeErro });
+                              
+                return BadRequest(new { Erro = cadastrados.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -51,7 +57,7 @@ namespace GamificationEvent.API.Controllers
 
         }
         [HttpPost("CadastrarUmInscritoPorEvento")]
-        public async Task<IActionResult> CadastrarTodosOsInscritos([FromQuery] InscritoDTO inscritoDTO)
+        public async Task<IActionResult> CadastrarUmInscritoPorEvento([FromQuery] InscritoDTO inscritoDTO)
         {
             try
             {
@@ -67,7 +73,15 @@ namespace GamificationEvent.API.Controllers
                 var inscrito = inscritoDTO.ConverterUmInscritoParaCore();
                 var inscritoCadastrado = await _cadastrarInscritoUseCase.CadastrarInscrito(inscrito);
 
-                return Ok($"Inscrito com o CPF {inscritoCadastrado.Cpf} cadastrado");
+  
+
+                if (inscritoCadastrado.Sucesso) return Ok($"Inscrito com o CPF {inscritoCadastrado.Valor.Cpf} cadastrado");
+
+                if (inscritoCadastrado.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = inscritoCadastrado.MensagemDeErro });
+                
+
+                return BadRequest(new { Erro = inscritoCadastrado.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -81,13 +95,16 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-
                 var inscritos = await _getInscritosUseCase.GetInscritos();
+              
+                if (inscritos.Sucesso)
+                {
+                    var inscritosDTO = inscritos.Valor.ConverterTodosOsInscritosParaResponseDTO();
+                    return Ok(inscritosDTO);
+                }
 
-                if (inscritos == null || inscritos.Count == 0) return NotFound("Não existe inscritos cadastrados");
+                return BadRequest(new { Erro = inscritos.MensagemDeErro });
 
-                var eventosDTO = inscritos.ConverterTodosOsInscritosParaResponseDTO();
-                return Ok(eventosDTO);
             }
 
             catch (Exception ex)
@@ -106,10 +123,14 @@ namespace GamificationEvent.API.Controllers
 
                 var inscritos = await _getInscritosPorIdUseCase.GetInscritosPorIdEvento(idEvento);
 
-                if (inscritos == null || inscritos.Count == 0) return NotFound("Não existe inscritos cadastrados nesse evento");
+                if (inscritos.Sucesso)
+                {
+                    var inscritosDTO = inscritos.Valor.ConverteInscritosPorEventoParaResponseDTO();
+                    return Ok(inscritosDTO);
+                }
 
-                var eventosDTO = inscritos.ConverteInscritosPorEventoParaResponseDTO();
-                return Ok(eventosDTO);
+
+                return BadRequest(new { Erro = inscritos.MensagemDeErro });
             }
 
             catch (Exception ex)
@@ -127,14 +148,15 @@ namespace GamificationEvent.API.Controllers
                 if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um id evento válido");
                 if (String.IsNullOrEmpty(Cpf)) return BadRequest("Insira um cpf válido");
 
-                var deleção = await _deletarInscritoUseCase.DeletarInscrito(Cpf, idEvento);
+                var resultado = await _deletarInscritoUseCase.DeletarInscrito(Cpf, idEvento);
 
-                if (!deleção)
-                {
-                    return NotFound("Cadastro de Inscrito nesse evento não encontrado para ser deletado");
-                }
+                if(resultado.Sucesso) return Ok("Inscrito deletado");
 
-                return Ok("Inscrito deletado");
+                if (resultado.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
+                
+
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +19,23 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
             _inscritoRepository = inscritoRepository;
             _eventoRepository = eventoRepository;
         }
-        public async Task<Inscrito> CadastrarInscrito(Inscrito inscrito)
+        public async Task<Resultado<Inscrito>> CadastrarInscrito(Inscrito inscrito)
         {
             var evento = await _eventoRepository.GetEventoPorId(inscrito.IdEvento);
             if (evento == null)
-                throw new Exception("Esse evento não existe");
-            
-  
+                return Resultado<Inscrito>.Falha($"Evento com id: {inscrito.IdEvento} não encontrado");
+
+
             var inscritoExiste = await _inscritoRepository.JaExisteEsseInscrito(inscrito.Cpf, inscrito.IdEvento);
 
             if (inscritoExiste != null)
-                throw new Exception("Esse inscrito já existe para esse evento");
+                return Resultado<Inscrito>.Falha("Esse inscrito já existe para esse evento");
+                
 
             inscrito.Id = Guid.NewGuid();
-            return await _inscritoRepository.AdicionarInscrito(inscrito);
+            var resultado = await _inscritoRepository.AdicionarInscrito(inscrito);
+
+            return Resultado<Inscrito>.Ok(resultado);
 
         }
         }

@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace GamificationEvent.Application.UseCases.PaletaCorUseCases
             _paletaCorRepository = paletaCorRepository;
         }
 
-        public async Task<List<Cor>> GetCores()
+        public async Task<Resultado<List<Cor>>> GetCores()
         {
-            return await _paletaCorRepository.GetCores();
+            var resultado = await _paletaCorRepository.GetCores();
+            return Resultado<List<Cor>>.Ok(resultado);
+
         }
     }
 }

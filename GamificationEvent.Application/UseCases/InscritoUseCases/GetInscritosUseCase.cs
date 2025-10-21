@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,12 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
             _inscritoRepository = inscritoRepository;
         }
 
-        public async Task<List<Inscrito>> GetInscritos()
+        public async Task<Resultado<List<Inscrito>>> GetInscritos()
         {
-            return await _inscritoRepository.GetInscritos();
+
+            var resultado = await _inscritoRepository.GetInscritos();
+            return Resultado<List<Inscrito>>.Ok(resultado);
+
         }
     }
 }

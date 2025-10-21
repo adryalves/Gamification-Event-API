@@ -23,6 +23,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         {
             var ranking = await _context.Participantes
                 .Where(p => p.IdEvento == idEvento &&
+                       p.Cargo == Core.Enums.Cargo.Membro &&
                       !p.IdUsuarioNavigation.Deletado &&
                       !p.IdEventoNavigation.Deletado)
                 .OrderByDescending(p => p.Pontuacao)
@@ -49,6 +50,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         {
             var ranking = await _context.Participantes
            .Where(p => p.IdEvento == idEvento &&
+                  p.Cargo == Core.Enums.Cargo.Membro &&
                   !p.IdUsuarioNavigation.Deletado &&
                   !p.IdEventoNavigation.Deletado)
            .OrderByDescending(p => p.Pontuacao)
@@ -73,6 +75,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             {
                 var TodosOsParticipantes = await _context.Participantes
                     .Where(p => p.IdEvento == idEvento &&
+                     p.Cargo == Core.Enums.Cargo.Membro &&
                     !p.IdUsuarioNavigation.Deletado &&
                     !p.IdEventoNavigation.Deletado)
                     .OrderByDescending(p => p.Pontuacao)

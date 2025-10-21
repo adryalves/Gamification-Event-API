@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<List<Usuario>> GetUsuarios()
+        public async Task<Resultado<List<Usuario>>> GetUsuarios()
         {
-          return await _usuarioRepository.GetUsuarios();
+          var resultado = await _usuarioRepository.GetUsuarios();
+            return Resultado<List<Usuario>>.Ok(resultado);
+
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using GamificationEvent.API.DTOs;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.EventoUseCases;
+using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Resultados;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
@@ -43,7 +45,9 @@ namespace GamificationEvent.API.Controllers
                 var evento = eventoDTO.ConverterParaEventoCore();
                 var novoEvento = await _cadastrarEventoUseCase.CadastrarEvento(evento);
 
-                return Ok(novoEvento.Id);
+                if(novoEvento.Sucesso) return Ok(novoEvento.Valor);
+
+                return BadRequest(new { Erro = novoEvento.MensagemDeErro });
             }
             catch (Exception ex)
             {
@@ -70,12 +74,17 @@ namespace GamificationEvent.API.Controllers
                 evento.Id = id;
                 evento.Deletado = false;
 
-                var sucesso = await _atualizarEventoUseCase.AtualizarEvento(evento);
+                var resultado = await _atualizarEventoUseCase.AtualizarEvento(evento);
 
-                if (!sucesso)
-                    return BadRequest("Algo deu errado na atualização");
+                if(resultado.Sucesso) return Ok("Evento atualizado");
 
-                return Ok("Usuario atualizado");
+                if (resultado.MensagemDeErro!.Contains("não encontrado"))
+                {
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
+                }
+              
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
+
             }
             catch (Exception ex)
             {
@@ -91,14 +100,15 @@ namespace GamificationEvent.API.Controllers
                 if (id == Guid.Empty || id == null)
                     return BadRequest("Insira um id válido");
 
-                var deleção = await _deletarEventoUseCase.DeletarEvento(id);
+                var resultado = await _deletarEventoUseCase.DeletarEvento(id);
 
-                if (!deleção)
-                {
-                    return NotFound("Evento não encontrado para ser deletado");
-                }
+                if(resultado.Sucesso) return Ok("Evento deletado");
 
-                return Ok("Evento deletado");
+                if (resultado.MensagemDeErro!.Contains("não encontrado"))
+                    return NotFound(new { Erro = resultado.MensagemDeErro });
+                
+               
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
             }
             catch (Exception ex)
             {
@@ -112,18 +122,21 @@ namespace GamificationEvent.API.Controllers
             try
             {
                 var eventos = await _getEventosUseCase.GetEventos();
-                if (eventos == null || eventos.Count == 0)
-                    return NotFound("Não há eventos cadastrados");
 
                 var eventosDTO = new List<EventoResponseDTO>();
 
-                foreach (var evento in eventos)
+                if (eventos.Sucesso)
                 {
-                    var eventoDTO = evento.ConverterParaEventoResponse();
-                    eventosDTO.Add(eventoDTO);
-                }
+                    foreach (var evento in eventos.Valor)
+                    {
+                        var eventoDTO = evento.ConverterParaEventoResponse();
+                        eventosDTO.Add(eventoDTO);
+                    }
 
-                return Ok(eventosDTO);
+                    return Ok(eventosDTO);
+                }
+       
+                return BadRequest(new { Erro = eventos.MensagemDeErro });
             }
             catch (Exception ex)
             {
@@ -138,12 +151,16 @@ namespace GamificationEvent.API.Controllers
             {
                 var evento = await _getEventoPorIdUseCase.GetEventoPorId(id);
 
-                if (evento == null)
-                    return NotFound("Não há evento com esse Id");
+                if (evento.Valor == null) return NotFound();
 
-                    var eventoDTO = evento.ConverterParaEventoResponse();
+                if (evento.Sucesso)
+                {
+                    var eventoDTO = evento.Valor.ConverterParaEventoResponse();
+                    return Ok(eventoDTO);
+                }
 
-                return Ok(eventoDTO);
+
+                return BadRequest(new { Erro = evento.MensagemDeErro });
             }
             catch (Exception ex)
             {

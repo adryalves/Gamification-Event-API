@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace GamificationEvent.Application.UseCases.EventoUseCases
             _eventoRepository = eventoRepository;
         }
 
-        public async Task<List<Evento>> GetEventos()
+        public async Task<Resultado<List<Evento>>> GetEventos()
         {
-            return await _eventoRepository.GetEventos();
+            
+            var resultado = await _eventoRepository.GetEventos();
+            return Resultado<List<Evento>>.Ok(resultado);
 
         }
     }
