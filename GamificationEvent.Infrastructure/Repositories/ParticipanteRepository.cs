@@ -116,7 +116,6 @@ namespace GamificationEvent.Infrastructure.Repositories
         {
             var participanteEF = await _context.Participantes.Include(p => p.ParticipanteInteresses).FirstOrDefaultAsync(x => x.Id == participante.Id);
 
-
             participanteEF.Cargo = participante.Cargo;
             participanteEF.Pontuacao = participante.Pontuacao;
 

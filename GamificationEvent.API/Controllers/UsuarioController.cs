@@ -38,7 +38,6 @@ namespace GamificationEvent.API.Controllers
 
                 if(novoUsuario.Sucesso) return Ok(novoUsuario.Valor.Id);
 
-
                 return BadRequest(new { Erro = novoUsuario.MensagemDeErro });
             }
             catch (Exception ex)
@@ -110,7 +109,7 @@ namespace GamificationEvent.API.Controllers
 
                 var deleção = await _deletarUsuarioUseCase.DeletarUsuario(id);
 
-              if(deleção.Sucesso) return Ok("Uusário deletado");
+               if(deleção.Sucesso) return Ok("Usuário deletado");
 
                 if (deleção.MensagemDeErro!.Contains("não encontrado"))
                     return NotFound(new { Erro = deleção.MensagemDeErro });

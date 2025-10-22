@@ -3,7 +3,9 @@ using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
 using GamificationEvent.Application.UseCases.InteresseUseCases;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
+using GamificationEvent.Application.UseCases.ParticipantePremioUseCases;
 using GamificationEvent.Application.UseCases.ParticipanteUseCases;
+using GamificationEvent.Application.UseCases.PremioUseCases;
 using GamificationEvent.Application.UseCases.RankingUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
@@ -37,6 +39,8 @@ builder.Services.AddScoped<IInscritoRepository, InscritoRepository>();
 builder.Services.AddScoped<IInteresseRepository, InteresseRepository>();
 builder.Services.AddScoped<IParticipanteRepository, ParticipanteRepository>();
 builder.Services.AddScoped<IRankingRepository, RankingRepository>();
+builder.Services.AddScoped<IPremioRepository, PremioRepository>();
+builder.Services.AddScoped<IParticipantePremioRepository, ParticipantePremioRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -85,6 +89,19 @@ builder.Services.AddScoped<GetParticipantePorCpfUseCase>();
 
 builder.Services.AddScoped<GetRankingGeralPorIdEventoUseCase>();
 builder.Services.AddScoped<GetRankingPersonalizadoUseCase>();
+
+builder.Services.AddScoped<AtualizarPremioUseCase>();
+builder.Services.AddScoped<CadastrarPremioUseCase>();
+builder.Services.AddScoped<DeletarPremioUseCase>();
+builder.Services.AddScoped<GetPremioPorIdUseCase>();
+builder.Services.AddScoped<GetPremiosPorIdEventoUseCase>();
+
+builder.Services.AddScoped<AtualizarParticipantePremioUseCase>();
+builder.Services.AddScoped<CadastrarParticipantePremioUseCase>();
+builder.Services.AddScoped<GetParticipantePremioPorIdUseCase>();
+builder.Services.AddScoped<GetParticipantePremiosPorIdEventoUseCase>();
+builder.Services.AddScoped<GetParticipantePremiosPorIdParticipanteUseCase>();
+builder.Services.AddScoped<GetParticipantesPremioPorIdPremioUseCase>();
 
 
 builder.Services.AddControllers() .AddJsonOptions(options =>
