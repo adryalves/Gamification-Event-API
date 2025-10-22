@@ -33,6 +33,7 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             if (emailUsuarioExiste)
                 return Resultado<Usuario>.Falha("Email já cadastrado");
 
+
             usuario.SenhaHash = _senhaHash.CriptografarSenha(senha);
             usuario.Id = Guid.NewGuid();
 

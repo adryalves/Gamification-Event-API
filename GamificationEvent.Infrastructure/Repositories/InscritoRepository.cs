@@ -22,7 +22,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<int> AdicionarTodosOsInscrito(List<CoreInscrito> inscritosCore)
+        public async Task<List<CoreInscrito>> AdicionarTodosOsInscrito(List<CoreInscrito> inscritosCore)
         {
             var inscritosInfra = new List<InfraInscrito>();
             foreach(var inscritoCore in inscritosCore) {
@@ -42,7 +42,18 @@ namespace GamificationEvent.Infrastructure.Repositories
             _context.Inscritos.AddRange(inscritosInfra);
             var linhasAfetadas = await _context.SaveChangesAsync();
 
-            return linhasAfetadas;
+            var inscritosCadastradosCore = inscritosInfra
+        .Select(inscritoInfra => new CoreInscrito 
+        {
+            Id = inscritoInfra.Id, 
+            Cpf = inscritoInfra.Cpf,
+            IdEvento = inscritoInfra.IdEvento,
+            Nome = inscritoInfra.Nome,
+            Cargo = inscritoInfra.Cargo, 
+        }).ToList();
+
+
+            return inscritosCadastradosCore;
         }
 
         public async Task<CoreInscrito> AdicionarInscrito(CoreInscrito inscritoCore)

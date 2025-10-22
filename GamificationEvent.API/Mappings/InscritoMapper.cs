@@ -26,20 +26,24 @@ namespace GamificationEvent.API.Mappings
             return agrupadoPorEvento;
         }
 
-        public static InscritosResponseDTO ConverteInscritosPorEventoParaResponseDTO(this List<Inscrito> inscritos)
+        public static InscritosResponseDTO ConverteInscritosPorEventoParaResponseDTO(this List<Inscrito> inscritos, Guid idEvento)
         {
-            var incritosDTO = new InscritosResponseDTO
+            if (inscritos != null && inscritos.Count != 0)
             {
-                IdEvento = inscritos.First().IdEvento,
-                Inscritos = inscritos.Select(i => new InscritoResponse
+                var incritosDTO = new InscritosResponseDTO
                 {
-                    Id = i.Id,
-                    Cpf = i.Cpf,
-                    Nome = i.Nome,
-                    Cargo = i.Cargo,
-                }).ToList()
-            };
-            return incritosDTO;
+                    IdEvento = inscritos.First().IdEvento,
+                    Inscritos = inscritos.Select(i => new InscritoResponse
+                    {
+                        Id = i.Id,
+                        Cpf = i.Cpf,
+                        Nome = i.Nome,
+                        Cargo = i.Cargo,
+                    }).ToList()
+                };
+                return incritosDTO;
+            }
+            return new InscritosResponseDTO{ IdEvento = idEvento};
         }
 
         public static List<Inscrito> ConverterListaDeTodosParaCore(this InscritosRequestDTO inscritosDTO)

@@ -110,12 +110,12 @@ namespace GamificationEvent.Infrastructure.Repositories
                 participantesCore.Add(participanteCore);
             }
             return participantesCore;
-            }
+        }
 
         public async Task<bool> AtualizarParticipante(CoreParticipante participante)
         {
             var participanteEF = await _context.Participantes.Include(p => p.ParticipanteInteresses).FirstOrDefaultAsync(x => x.Id == participante.Id);
-           
+
 
             participanteEF.Cargo = participante.Cargo;
             participanteEF.Pontuacao = participante.Pontuacao;
@@ -129,7 +129,7 @@ namespace GamificationEvent.Infrastructure.Repositories
                     IdInteresse = pi.IdInteresse,
                     IdParticipante = pi.IdParticipante,
                 }).ToList();
- 
+
             var linhasAfetadas = await _context.SaveChangesAsync();
 
             if (linhasAfetadas > 0) return true;
@@ -137,9 +137,41 @@ namespace GamificationEvent.Infrastructure.Repositories
             return false;
         }
 
-    }
+        public async Task<CoreParticipante> GetParticipantePorCpf(string cpf)
+        {
+            var participante = await _context.Participantes
+                .Include(p => p.ParticipanteInteresses)
+            .Where(p => p.IdUsuarioNavigation.Cpf == cpf && !p.IdUsuarioNavigation.Deletado)
+                    .FirstOrDefaultAsync();
+
+            if (participante != null)
+            {
+                var participanteCore = new CoreParticipante
+                {
+                    Id = participante.Id,
+                    IdEvento = participante.IdEvento,
+                    IdUsuario = participante.IdUsuario,
+                    Cargo = participante.Cargo,
+                    Pontuacao = participante.Pontuacao,
+                    PrimeiroParticipante = participante.PrimeiroParticipante,
+                    DataHoraCriacao = participante.DataHoraCriacao,
+                    ParticipanteInteresses = participante.ParticipanteInteresses
+                    .Select(x => new Core.Entidades.ParticipanteInteresse
+                    {
+                        Id = x.Id,
+                        IdInteresse = x.IdInteresse,
+                        IdParticipante = x.IdParticipante,
+                    }).ToList()
+                };
+
+                return participanteCore;
+            }
+            return null;
+
+        }
 
     }
+}
 
 
 

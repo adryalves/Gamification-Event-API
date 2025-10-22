@@ -80,6 +80,7 @@ builder.Services.AddScoped<AtualizarParticipanteUseCase>();
 builder.Services.AddScoped<CadastrarParticipanteUseCase>();
 builder.Services.AddScoped<GetParticipantePorIdUseCase>();
 builder.Services.AddScoped<GetParticipantesPorIdEventoUseCase>();
+builder.Services.AddScoped<GetParticipantePorCpfUseCase>();
 
 
 builder.Services.AddScoped<GetRankingGeralPorIdEventoUseCase>();

@@ -22,11 +22,11 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
             _eventoRepository = eventoRepository;
         }
 
-        public async Task<Resultado<int>> CadastrarInscritos(Guid idEvento, List<Inscrito> inscritos)
+        public async Task<Resultado<List<Inscrito>>> CadastrarInscritos(Guid idEvento, List<Inscrito> inscritos)
         {
             var evento = await _eventoRepository.GetEventoPorId(idEvento);
 
-            if(evento == null) return Resultado<int>.Falha($"Evento com id: {idEvento} não encontrado");
+            if(evento == null) return Resultado<List<Inscrito>>.Falha($"Evento com id: {idEvento} não encontrado");
 
           
             var inscritosValidos = new List<Inscrito>();
@@ -44,7 +44,7 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
             }
             var resultado = await _inscritoRepository.AdicionarTodosOsInscrito(inscritosValidos);
 
-            return Resultado<int>.Ok(resultado);
+            return Resultado<List<Inscrito>>.Ok(resultado);
 
         }
     }

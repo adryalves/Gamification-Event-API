@@ -17,20 +17,37 @@ namespace GamificationEvent.API.Mappings
             return interesses;
         }
 
-        public static ListaInteresseResponseDTO ConverterListaParaResponse(this List<Interesse> interesses)
+        public static ListaInteresseResponseDTO ConverterListaParaResponse(this List<Interesse> interesses, Guid idEvento)
         {
-            var ListaInteresseDTO = new ListaInteresseResponseDTO
+        
+            if (interesses != null && interesses.Count != 0)
             {
-                IdEvento = interesses.First().IdEvento,
-                InteressesDTO = interesses.Select(i => new InteresseResponseDTO
+                var ListaInteresseDTO = new ListaInteresseResponseDTO
                 {
-                    Id = i.Id,
-                    Nome = i.Nome,
-                    Deletado = i.Deletado,
-                }).ToList()
-            };
+                    IdEvento = interesses.First().IdEvento,
+                    InteressesDTO = interesses.Select(i => new InteresseResponseDTO
+                    {
+                        Id = i.Id,
+                        Nome = i.Nome,
+                        Deletado = i.Deletado,
+                    }).ToList()
+                };
+                return ListaInteresseDTO;
+            }
+            return new ListaInteresseResponseDTO { IdEvento = idEvento};
+        }
 
-            return ListaInteresseDTO;
+        public static List<InteresseResponseDTO> ConverterListaParaListaResponse(this List<Interesse> interesses)
+        {
+            var listaInteresseDTO = interesses.Select(i => new InteresseResponseDTO
+            {
+                Id = i.Id,
+                Nome = i.Nome,
+                Deletado = i.Deletado,
+            }).ToList();
+
+            return listaInteresseDTO;
+
         }
 
         public static InteresseDTO ConverterInteresseParaResponse(this Interesse interesse)

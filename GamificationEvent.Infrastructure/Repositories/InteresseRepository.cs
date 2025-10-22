@@ -20,7 +20,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<int> AdicionarInteresses(List<CoreInteresse> interesses)
+        public async Task<List<CoreInteresse>> AdicionarInteresses(List<CoreInteresse> interesses)
         {
             var infraInteresses = new List<InfraInteresse>();
 
@@ -41,7 +41,19 @@ namespace GamificationEvent.Infrastructure.Repositories
 
             var linhasAfetadas = await _context.SaveChangesAsync();
 
-            return linhasAfetadas;
+            var interessesCadastradosCore = infraInteresses
+        .Select(infraInteresse => new CoreInteresse
+        {
+            Id = infraInteresse.Id,
+            IdEvento = infraInteresse.IdEvento,
+            Nome = infraInteresse.Nome,
+            Deletado = infraInteresse.Deletado,
+
+        })
+        .ToList();
+
+
+            return interessesCadastradosCore;
         }
 
         public async Task<bool> DeletarInteresse(Guid id)

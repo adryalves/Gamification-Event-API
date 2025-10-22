@@ -14,5 +14,6 @@ namespace GamificationEvent.Core.Interfaces
         Task<Participante> GetParticipantePorId(Guid id);
         Task<List<Participante>> GetParticipantesPorIdEvento(Guid idEvento);
         Task<bool> AtualizarParticipante(Participante participante);
+        Task<Participante> GetParticipantePorCpf(string cpf);
     }
 }

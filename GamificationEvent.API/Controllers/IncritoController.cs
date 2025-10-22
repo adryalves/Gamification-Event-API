@@ -41,8 +41,12 @@ namespace GamificationEvent.API.Controllers
                 var inscritos = inscritosDTO.ConverterListaDeTodosParaCore();
 
                 var cadastrados = await _cadastrarInscritosUseCase.CadastrarInscritos(inscritosDTO.IdEvento, inscritos);
-               
-                if(cadastrados.Sucesso) return Ok($"Foram cadastrados {cadastrados.Valor} inscritos ");
+
+                if (cadastrados.Sucesso)
+                {
+                    var inscritosCadastrados = cadastrados.Valor.ConverterTodosOsInscritosParaResponseDTO();
+                    return Ok(inscritosCadastrados);
+                }
 
                 if (cadastrados.MensagemDeErro!.Contains("não encontrado"))
                     return NotFound(new { Erro = cadastrados.MensagemDeErro });
@@ -125,7 +129,7 @@ namespace GamificationEvent.API.Controllers
 
                 if (inscritos.Sucesso)
                 {
-                    var inscritosDTO = inscritos.Valor.ConverteInscritosPorEventoParaResponseDTO();
+                    var inscritosDTO = inscritos.Valor.ConverteInscritosPorEventoParaResponseDTO(idEvento);
                     return Ok(inscritosDTO);
                 }
 

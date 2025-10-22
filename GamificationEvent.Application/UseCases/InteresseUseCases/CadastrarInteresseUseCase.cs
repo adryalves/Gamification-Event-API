@@ -20,11 +20,11 @@ namespace GamificationEvent.Application.UseCases.InteresseUseCases
             _eventoRepository = eventoRepository;
         }
 
-        public async Task<Resultado<int>> CadastrarInteresses(Guid idEvento, List<Interesse> interesses)
+        public async Task<Resultado<List<Interesse>>> CadastrarInteresses(Guid idEvento, List<Interesse> interesses)
         {
             var evento = await _eventoRepository.GetEventoPorId(idEvento);
 
-            if (evento == null) return Resultado<int>.Falha($"Evento com id: {idEvento} não encontrado");
+            if (evento == null) return Resultado<List<Interesse>>.Falha($"Evento com id: {idEvento} não encontrado");
 
             var interessesValidos = new List<Interesse>();
 
@@ -39,7 +39,7 @@ namespace GamificationEvent.Application.UseCases.InteresseUseCases
             }
 
             var resultado = await _interesseRepository.AdicionarInteresses(interessesValidos);
-            return Resultado<int>.Ok(resultado);
+            return Resultado<List<Interesse>>.Ok(resultado);
 
         }
     }

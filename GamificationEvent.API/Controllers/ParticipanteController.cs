@@ -13,13 +13,15 @@ namespace GamificationEvent.API.Controllers
         private readonly CadastrarParticipanteUseCase _cadastrarParticipanteUseCase;
         private readonly GetParticipantePorIdUseCase _getParticipantePorIdUseCase;
         private readonly GetParticipantesPorIdEventoUseCase _getParticipantesPorIdEventoUseCase;
+        private readonly GetParticipantePorCpfUseCase _getParticipantePorCpfUseCase;
 
-        public ParticipanteController(AtualizarParticipanteUseCase atualizarParticipanteUseCase, CadastrarParticipanteUseCase cadastrarParticipanteUseCase, GetParticipantePorIdUseCase getParticipantePorIdUseCase, GetParticipantesPorIdEventoUseCase getParticipantesPorIdEventoUseCase)
+        public ParticipanteController(AtualizarParticipanteUseCase atualizarParticipanteUseCase, CadastrarParticipanteUseCase cadastrarParticipanteUseCase, GetParticipantePorIdUseCase getParticipantePorIdUseCase, GetParticipantesPorIdEventoUseCase getParticipantesPorIdEventoUseCase, GetParticipantePorCpfUseCase getParticipantePorCpfUseCase)
         {
             _atualizarParticipanteUseCase = atualizarParticipanteUseCase;
             _cadastrarParticipanteUseCase = cadastrarParticipanteUseCase;
             _getParticipantePorIdUseCase = getParticipantePorIdUseCase;
             _getParticipantesPorIdEventoUseCase = getParticipantesPorIdEventoUseCase;
+            _getParticipantePorCpfUseCase = getParticipantePorCpfUseCase;
         }
         [HttpPost("CadastrarParticipante")]
         public async Task<IActionResult> CadastrarParticipante(ParticipanteRequestDTO participanteDTO)
@@ -125,9 +127,31 @@ namespace GamificationEvent.API.Controllers
                     return Ok(participanteResponse);
                 }
 
-                if (participante.MensagemDeErro!.Contains("não encontrado"))
-                    return NotFound(new { Erro = participante.MensagemDeErro });
+                return BadRequest(new { Erro = participante.MensagemDeErro });
+            }
 
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
+        }
+
+        [HttpGet("GetParticipantePorCpf")]
+        public async Task<IActionResult> GetParticipantePorCpf([FromQuery] string cpf)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(cpf)) return BadRequest("Insira um cpf válido");
+
+                var participante = await _getParticipantePorCpfUseCase.GetParticipantePorCpf(cpf);
+
+                if (participante.Valor == null) return NotFound();
+
+                if (participante.Sucesso)
+                {
+                    var participanteResponse = participante.Valor.ConverterParaResponse();
+                    return Ok(participanteResponse);
+                }
 
                 return BadRequest(new { Erro = participante.MensagemDeErro });
             }

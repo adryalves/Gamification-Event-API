@@ -35,7 +35,11 @@ namespace GamificationEvent.API.Controllers
 
                 var cadastrados = await _cadastrarInteresseUseCase.CadastrarInteresses(interessesRequest.IdEvento, interesses);
 
-                if(cadastrados.Sucesso) return Ok($"Foram cadastrados {cadastrados.Valor} interesses");
+                if (cadastrados.Sucesso)
+                {
+                    var interessesDTO = cadastrados.Valor.ConverterListaParaListaResponse();
+                    return Ok(interessesDTO);
+                }
 
                 if (cadastrados.MensagemDeErro!.Contains("não encontrado"))
                 {
@@ -87,7 +91,7 @@ namespace GamificationEvent.API.Controllers
 
                 if (interesses.Sucesso)
                 {
-                    var interessesDTO = interesses.Valor.ConverterListaParaResponse();
+                    var interessesDTO = interesses.Valor.ConverterListaParaResponse(idEvento);
                     return Ok(interessesDTO);
                 }
 

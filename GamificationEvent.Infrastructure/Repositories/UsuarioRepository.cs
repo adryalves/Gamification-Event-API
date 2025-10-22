@@ -173,5 +173,6 @@ namespace GamificationEvent.Infrastructure.Repositories
 
             return false;
         }
+
     }
 }

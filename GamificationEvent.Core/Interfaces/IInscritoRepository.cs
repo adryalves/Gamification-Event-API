@@ -9,9 +9,9 @@ namespace GamificationEvent.Core.Interfaces
 {
     public interface IInscritoRepository
     {
-         Task<int> AdicionarTodosOsInscrito(List<Inscrito> inscritosCore);
+         Task<List<Inscrito>> AdicionarTodosOsInscrito(List<Inscrito> inscritosCore);
          Task<Inscrito> AdicionarInscrito(Inscrito inscritoCore);
-        Task<bool> DeletarInscrito(string cpf, Guid idEvento);
+         Task<bool> DeletarInscrito(string cpf, Guid idEvento);
          Task<List<Inscrito>> GetInscritos();
          Task<List<Inscrito>> GetInscritosPorIdEvento(Guid idEvento);
          Task<Inscrito> JaExisteEsseInscrito(string cpf, Guid idEvento);
