@@ -21,7 +21,6 @@ namespace GamificationEvent.Application.UseCases.PremioUseCases
         public async Task<Resultado<bool>> AtualizarPremio(Guid id, Premio premio)
         {
             var premioExistente = await _premioRepository.GetPremioPorid(id);
-
             if(premioExistente == null) return Resultado<bool>.Falha($"Premio não encontrado");
 
             premio.Id = id;

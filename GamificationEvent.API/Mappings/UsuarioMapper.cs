@@ -22,8 +22,7 @@ namespace GamificationEvent.Application.Mappings
                 Email = usuarioDTO.Email,
                 Cpf = usuarioDTO.Cpf,
                 Telefone = usuarioDTO.Telefone,
-                DataDeNascimento = usuarioDTO.DataDeNascimento.HasValue? DateOnly.FromDateTime(usuarioDTO.DataDeNascimento.Value)
-                : (DateOnly?)null,
+                DataDeNascimento = usuarioDTO.DataDeNascimento,
                 Foto = usuarioDTO.Foto,
                 DataHoraCriacao = DateTime.UtcNow,
                 Deletado = false,
@@ -67,8 +66,7 @@ namespace GamificationEvent.Application.Mappings
                 Email = usuarioDTO.Email,
                 Cpf = usuarioDTO.Cpf,
                 Telefone = usuarioDTO.Telefone,
-                DataDeNascimento = usuarioDTO.DataDeNascimento.HasValue ? DateOnly.FromDateTime(usuarioDTO.DataDeNascimento.Value)
-                : (DateOnly?)null,
+                DataDeNascimento = usuarioDTO.DataDeNascimento,
                 RedesSociais = usuarioDTO.RedesSociais.Select(r => new UsuarioRedeSocial
                 {
                     Plataforma = r.Plataforma,

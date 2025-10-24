@@ -2,11 +2,13 @@ using GamificationEvent.API;
 using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
 using GamificationEvent.Application.UseCases.InteresseUseCases;
+using GamificationEvent.Application.UseCases.PalestranteUseCases;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.ParticipantePremioUseCases;
 using GamificationEvent.Application.UseCases.ParticipanteUseCases;
 using GamificationEvent.Application.UseCases.PremioUseCases;
 using GamificationEvent.Application.UseCases.RankingUseCases;
+using GamificationEvent.Application.UseCases.SubEventoUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Infrastructure.Data.Persistence;
@@ -41,6 +43,8 @@ builder.Services.AddScoped<IParticipanteRepository, ParticipanteRepository>();
 builder.Services.AddScoped<IRankingRepository, RankingRepository>();
 builder.Services.AddScoped<IPremioRepository, PremioRepository>();
 builder.Services.AddScoped<IParticipantePremioRepository, ParticipantePremioRepository>();
+builder.Services.AddScoped<IPalestranteRepository, PalestranteRepository>();
+builder.Services.AddScoped<ISubEventoRepository, SubEventoRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -102,6 +106,21 @@ builder.Services.AddScoped<GetParticipantePremioPorIdUseCase>();
 builder.Services.AddScoped<GetParticipantePremiosPorIdEventoUseCase>();
 builder.Services.AddScoped<GetParticipantePremiosPorIdParticipanteUseCase>();
 builder.Services.AddScoped<GetParticipantesPremioPorIdPremioUseCase>();
+
+builder.Services.AddScoped<AtualizarPalestranteUseCase>();
+builder.Services.AddScoped<CadastrarPalestranteUseCase>();
+builder.Services.AddScoped<DeletarPalestranteUseCase>();
+builder.Services.AddScoped<GetPalestrantePorIdUseCase>();
+builder.Services.AddScoped<GetPalestrantesPorIdEventoUseCase>();
+builder.Services.AddScoped<GetPalestrantesPorIdSubEventoUseCase>();
+
+builder.Services.AddScoped<AdicionarPerguntaProSubEventoUseCase>();
+builder.Services.AddScoped<AtualizarSubEventoUseCase>();
+builder.Services.AddScoped<CadastrarSubEventoUseCase>();
+builder.Services.AddScoped<DeletarSubEventoUseCase>();
+builder.Services.AddScoped<GetPerguntasPorIdSubEventoUseCase>();
+builder.Services.AddScoped<GetSubEventoPorIdUseCase>();
+builder.Services.AddScoped<GetSubEventosPorIdEventoUseCase>();
 
 
 builder.Services.AddControllers() .AddJsonOptions(options =>

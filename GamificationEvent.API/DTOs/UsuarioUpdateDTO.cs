@@ -13,7 +13,7 @@ namespace GamificationEvent.API.DTOs
             [Required]
             public string Cpf { get; set; } = null!;
             public string? Telefone { get; set; }
-            public DateTime? DataDeNascimento { get; set; } = null!;
+            public DateOnly? DataDeNascimento { get; set; } 
             public string? Foto { get; set; }
 
             public List<RedeSocialDTO> RedesSociais { get; set; } = new();
