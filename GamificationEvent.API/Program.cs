@@ -1,4 +1,5 @@
 using GamificationEvent.API;
+using GamificationEvent.Application.UseCases.DesafioUseCases;
 using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
 using GamificationEvent.Application.UseCases.InteresseUseCases;
@@ -45,6 +46,7 @@ builder.Services.AddScoped<IPremioRepository, PremioRepository>();
 builder.Services.AddScoped<IParticipantePremioRepository, ParticipantePremioRepository>();
 builder.Services.AddScoped<IPalestranteRepository, PalestranteRepository>();
 builder.Services.AddScoped<ISubEventoRepository, SubEventoRepository>();
+builder.Services.AddScoped<IDesafioRepository, DesafioRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -122,6 +124,11 @@ builder.Services.AddScoped<GetPerguntasPorIdSubEventoUseCase>();
 builder.Services.AddScoped<GetSubEventoPorIdUseCase>();
 builder.Services.AddScoped<GetSubEventosPorIdEventoUseCase>();
 
+builder.Services.AddScoped<AtualizarDesafioUseCase>();
+builder.Services.AddScoped<CadastrarDesafioUseCase>();
+builder.Services.AddScoped<DeletarDesafioUseCase>();
+builder.Services.AddScoped<GetDesafioPorIdUseCase>();
+builder.Services.AddScoped<GetDesafiosPorIdEventoUseCase>();
 
 builder.Services.AddControllers() .AddJsonOptions(options =>
     {

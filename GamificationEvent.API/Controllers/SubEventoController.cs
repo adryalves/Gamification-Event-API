@@ -175,7 +175,6 @@ namespace GamificationEvent.API.Controllers
 
                 var subEventos = await _getSubEventosPorIdEventoUseCase.GetSubEventosPorIdEvento(idEvento);
 
-
                 if (subEventos.Sucesso)
                 {
                     var subEventosDTO = subEventos.Valor.ConverterParaSubEventoListaResponse();
