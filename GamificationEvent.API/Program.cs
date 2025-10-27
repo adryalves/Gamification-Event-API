@@ -29,7 +29,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(
         connectionString,
-        ServerVersion.AutoDetect(connectionString), 
+        ServerVersion.AutoDetect(connectionString),
         b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)
     );
 });
@@ -130,10 +130,10 @@ builder.Services.AddScoped<DeletarDesafioUseCase>();
 builder.Services.AddScoped<GetDesafioPorIdUseCase>();
 builder.Services.AddScoped<GetDesafiosPorIdEventoUseCase>();
 
-builder.Services.AddControllers() .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
-    });
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+});
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
