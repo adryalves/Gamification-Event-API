@@ -142,17 +142,26 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
+// Habilita Swagger tanto em dev quanto em produção (Render)
+app.UseSwagger();
+app.UseSwaggerUI();
+
+// HTTPS redirection pode causar conflito em Render (não há certificado interno)
+// Então, só use se estiver local
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseHttpsRedirection();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+app.MapGet("/", () => Results.Ok("API GamificationEvent está rodando"));
 
 app.Run();
