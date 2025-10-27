@@ -1,4 +1,4 @@
-using GamificationEvent.API;
+ï»¿using GamificationEvent.API;
 using GamificationEvent.Application.UseCases.DesafioUseCases;
 using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
@@ -14,7 +14,7 @@ using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Infrastructure.Data.Persistence;
 using GamificationEvent.Infrastructure.Repositories;
-using GamificationEvent.Infrastructure.Serviços;
+using GamificationEvent.Infrastructure.ServiÃ§os;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
@@ -48,7 +48,7 @@ builder.Services.AddScoped<IPalestranteRepository, PalestranteRepository>();
 builder.Services.AddScoped<ISubEventoRepository, SubEventoRepository>();
 builder.Services.AddScoped<IDesafioRepository, DesafioRepository>();
 
-// Serviços Infra
+// ServiÃ§os Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
 
 
