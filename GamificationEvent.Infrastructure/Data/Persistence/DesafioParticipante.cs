@@ -12,7 +12,9 @@ public partial class DesafioParticipante
 
     public Guid IdDesafio { get; set; }
 
-    public Status_Desafio StatusDesafio { get; set; } 
+    public Status_Desafio StatusDesafio { get; set; }
+
+    public int QuantidadeRealizada { get; set; }
 
     public DateTime? DataHoraConclusao { get; set; }
 

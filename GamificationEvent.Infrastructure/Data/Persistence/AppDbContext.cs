@@ -383,6 +383,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("data_hora_conclusao");
             entity.Property(e => e.IdDesafio).HasColumnName("id_desafio");
             entity.Property(e => e.IdParticipante).HasColumnName("id_participante");
+            entity.Property(e => e.QuantidadeRealizada).HasColumnName("quantidade_realizada");
             entity.Property(e => e.StatusDesafio)
                 .HasDefaultValueSql("'Aberto'")
                 .HasColumnType("enum('Aberto','Completo')")

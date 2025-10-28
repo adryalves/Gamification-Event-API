@@ -38,7 +38,7 @@ namespace GamificationEvent.API.Controllers
 
                 var participanteId = await _cadastrarParticipanteUseCase.CadastrarParticipante(participante);
 
-                if(participanteId.Sucesso) return Ok(participanteId.Sucesso);
+                if(participanteId.Sucesso) return Ok(participanteId.Valor);
 
                 if (participanteId.MensagemDeErro!.Contains("não encontrado"))
                     return NotFound(new { Erro = participanteId.MensagemDeErro });

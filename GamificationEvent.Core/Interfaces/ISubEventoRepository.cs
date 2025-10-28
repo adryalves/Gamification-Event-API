@@ -17,5 +17,6 @@ namespace GamificationEvent.Core.Interfaces
          Task<SubEvento> GetSubEventoPorId(Guid id);
          Task<List<PerguntasSubEvento>> GetPerguntasPorIdSubEvento(Guid idSubEvento);
          Task<bool> PalestranteJaEstaNesseSubEvento(Guid idSubEvento, Guid idPalestrante);
+         Task<SubEvento> CodigoSubEventoValido(string codigoCheckIn);
     }
 }

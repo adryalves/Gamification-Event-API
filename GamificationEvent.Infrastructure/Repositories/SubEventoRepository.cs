@@ -199,6 +199,33 @@ namespace GamificationEvent.Infrastructure.Repositories
             return existe != null;
         }
 
+        public async Task<CoreSubEvento> CodigoSubEventoValido(string codigoCheckIn)
+        {
+            var subEvento = await _context.SubEventos
+                .Include(x => x.IdEventoNavigation)
+                .FirstOrDefaultAsync(x => x.CodigoCheckin == codigoCheckIn && !x.Deletado && !x.IdEventoNavigation.Deletado);
+
+            if (subEvento == null) return null;
+
+            return new CoreSubEvento
+            {
+                Id = subEvento.Id,
+                IdEvento = subEvento.IdEvento,
+                IdPontoMapa = subEvento.IdPontoMapa,
+                Nome = subEvento.Nome,
+                LocalSubEvento = subEvento.LocalSubEvento,
+                Assunto = subEvento.Assunto,
+                Tipo = subEvento.Tipo,
+                Categoria = subEvento.Categoria,
+                Modalidade = subEvento.Modalidade,
+                DataSubEvento = subEvento.DataSubEvento,
+                HorarioInicio = subEvento.HorarioInicio,
+                HorarioFim = subEvento.HorarioFim,
+                CodigoCheckin = subEvento.CodigoCheckin,
+            };
+
+        }
+
     }
     }
 

@@ -15,7 +15,14 @@ namespace GamificationEvent.Core.Interfaces
         Task<bool> DeletarDesafio(Guid id);
         Task<Desafio> GetDesafioPorId(Guid id);
         Task<List<Desafio>> GetDesafiosPorIdEvento(Guid idEvento);
-        Task<Desafio> DesafioJaCadastradoNesseEvento(Guid idEvento, Tipo_Desafio tipoDesafio, int quantidade);
+        Task<Desafio> DesafioJaCadastradoNesseEvento(Guid idEvento, Tipo_Desafio tipoDesafio);
+        Task<Guid> CadastrarDesafioParticipante(DesafioParticipante desafioPart);
+        Task<DesafioParticipante> ParticipanteEstaParticipandoDoDesafio(Guid idDesafio, Guid idParticipante);
+        Task<bool> AtualizarDesafioParticipante(Guid id, int quantidade, Status_Desafio? status_Desafio = null);
+        Task<List<DesafioParticipante>> GetDesafiosParticipantePorIdParticipante(Guid idParticipante);
+
+
+
 
     }
 }

@@ -24,8 +24,6 @@ namespace GamificationEvent.API.DTOs
 
             public TimeOnly? HorarioFim { get; set; }
 
-            public string? CodigoCheckin { get; set; }
-
             public List<PalestrantesSubEventoDTO> Palestrantes { get; set; } = new();
         }
     }

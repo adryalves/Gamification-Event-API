@@ -168,6 +168,17 @@ namespace GamificationEvent.Infrastructure.Repositories
             return null;
 
         }
+        public async Task<bool> AtualizarPontuacao(Guid idParticipante, int pontuacao)
+        {
+            var participante = await _context.Participantes.FirstOrDefaultAsync(x => x.Id == idParticipante && !x.IdUsuarioNavigation.Deletado &&
+            !x.IdEventoNavigation.Deletado);
+            if (participante == null) return false;
+
+            participante.Pontuacao += pontuacao;
+            await _context.SaveChangesAsync();
+            return true;
+
+        }
 
     }
 }

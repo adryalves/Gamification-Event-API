@@ -1,4 +1,5 @@
 using GamificationEvent.API;
+using GamificationEvent.Application.UseCases.CheckInSubEventoCases;
 using GamificationEvent.Application.UseCases.DesafioUseCases;
 using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
@@ -47,9 +48,11 @@ builder.Services.AddScoped<IParticipantePremioRepository, ParticipantePremioRepo
 builder.Services.AddScoped<IPalestranteRepository, PalestranteRepository>();
 builder.Services.AddScoped<ISubEventoRepository, SubEventoRepository>();
 builder.Services.AddScoped<IDesafioRepository, DesafioRepository>();
+builder.Services.AddScoped<ICheckInSubEventoRepository, CheckInSubEventoRepository>();
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
+builder.Services.AddScoped<IQrCode, QrCode>();
 
 
 // UseCase
@@ -129,6 +132,13 @@ builder.Services.AddScoped<CadastrarDesafioUseCase>();
 builder.Services.AddScoped<DeletarDesafioUseCase>();
 builder.Services.AddScoped<GetDesafioPorIdUseCase>();
 builder.Services.AddScoped<GetDesafiosPorIdEventoUseCase>();
+builder.Services.AddScoped<GetDesafiosParticipantePorIdParticipanteUseCase>();
+
+builder.Services.AddScoped<CadastrarCheckInSubEventoUseCase>();
+builder.Services.AddScoped<GerarQrCodeUseCaseSubEvento>();
+builder.Services.AddScoped<GetCheckInsSubEventoPorIdParticipanteUseCase>();
+builder.Services.AddScoped<GetCheckInsSubEventoPorIdSubEventoUseCase>();
+builder.Services.AddScoped<GetCheckInSubEventoPorIdUseCase>();
 
 builder.Services.AddControllers() .AddJsonOptions(options =>
     {

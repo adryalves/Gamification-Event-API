@@ -45,6 +45,11 @@ namespace GamificationEvent.Application.UseCases.SubEventoUseCases
             }
             subEvento.Palestrantes = palestrantesValidos;
 
+            // criação automatica do código
+
+            subEvento.CodigoCheckin = $"EVT{subEvento.IdEvento.ToString().Substring(0, 3).ToUpper()}-CHK-{Guid.NewGuid().ToString().Substring(0, 10).ToUpper()}";
+
+
             var resultado = await _subEventoRepository.AdicionarSubEvento(subEvento);
             return Resultado<Guid>.Ok(resultado);
             
