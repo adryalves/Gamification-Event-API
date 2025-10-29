@@ -26,7 +26,7 @@ namespace GamificationEvent.API.Controllers
             _getDesafiosPorIdEventoUseCase = getDesafiosPorIdEventoUseCase;
         }
 
-        [HttpPost("CadastrarDesafio")]
+        [HttpPost("CadastrarDesafios")]
         public async Task<IActionResult> CadastrarDesafio(DesafioRequestDTO desafioDTO)
         {
             try { 
