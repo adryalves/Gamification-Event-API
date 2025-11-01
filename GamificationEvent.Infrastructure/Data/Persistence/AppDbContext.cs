@@ -66,7 +66,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<ParticipantePremio> ParticipantePremios { get; set; }
 
-    public virtual DbSet<ParticipanteQuizRespostum> ParticipanteQuizResposta { get; set; }
+    public virtual DbSet<ParticipanteQuizResposta> ParticipanteQuizResposta { get; set; }
 
     public virtual DbSet<Passaporte> Passaportes { get; set; }
 
@@ -100,7 +100,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<QuizParticipante> QuizParticipantes { get; set; }
 
-    public virtual DbSet<QuizPerguntum> QuizPergunta { get; set; }
+    public virtual DbSet<QuizPergunta> QuizPergunta { get; set; }
 
     public virtual DbSet<RespostaParticipantePerguntum> RespostaParticipantePergunta { get; set; }
 
@@ -921,7 +921,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_participante_premio_premio");
         });
 
-        modelBuilder.Entity<ParticipanteQuizRespostum>(entity =>
+        modelBuilder.Entity<ParticipanteQuizResposta>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -1466,7 +1466,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_quiz_participante_quiz");
         });
 
-        modelBuilder.Entity<QuizPerguntum>(entity =>
+        modelBuilder.Entity<QuizPergunta>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 

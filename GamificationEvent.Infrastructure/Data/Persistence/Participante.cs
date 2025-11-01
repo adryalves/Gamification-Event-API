@@ -50,7 +50,7 @@ public partial class Participante
 
     public virtual ICollection<ParticipantePremio> ParticipantePremios { get; set; } = new List<ParticipantePremio>();
 
-    public virtual ICollection<ParticipanteQuizRespostum> ParticipanteQuizResposta { get; set; } = new List<ParticipanteQuizRespostum>();
+    public virtual ICollection<ParticipanteQuizResposta> ParticipanteQuizResposta { get; set; } = new List<ParticipanteQuizResposta>();
 
     public virtual ICollection<PassaporteParticipanteItem> PassaporteParticipanteItems { get; set; } = new List<PassaporteParticipanteItem>();
 

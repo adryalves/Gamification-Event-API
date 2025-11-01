@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
 
-public partial class QuizPerguntum
+public partial class QuizPergunta
 {
     public Guid Id { get; set; }
 
@@ -15,7 +15,7 @@ public partial class QuizPerguntum
 
     public virtual Quiz IdQuizNavigation { get; set; } = null!;
 
-    public virtual ICollection<ParticipanteQuizRespostum> ParticipanteQuizResposta { get; set; } = new List<ParticipanteQuizRespostum>();
+    public virtual ICollection<ParticipanteQuizResposta> ParticipanteQuizResposta { get; set; } = new List<ParticipanteQuizResposta>();
 
     public virtual ICollection<QuizAlternativa> QuizAlternativas { get; set; } = new List<QuizAlternativa>();
 }

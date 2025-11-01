@@ -9,6 +9,7 @@ using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.ParticipantePremioUseCases;
 using GamificationEvent.Application.UseCases.ParticipanteUseCases;
 using GamificationEvent.Application.UseCases.PremioUseCases;
+using GamificationEvent.Application.UseCases.QuizUseCases;
 using GamificationEvent.Application.UseCases.RankingUseCases;
 using GamificationEvent.Application.UseCases.SubEventoUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
@@ -49,6 +50,8 @@ builder.Services.AddScoped<IPalestranteRepository, PalestranteRepository>();
 builder.Services.AddScoped<ISubEventoRepository, SubEventoRepository>();
 builder.Services.AddScoped<IDesafioRepository, DesafioRepository>();
 builder.Services.AddScoped<ICheckInSubEventoRepository, CheckInSubEventoRepository>();
+builder.Services.AddScoped<IQuizRepository, QuizRepository>();
+
 
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
@@ -139,6 +142,21 @@ builder.Services.AddScoped<GerarQrCodeUseCaseSubEvento>();
 builder.Services.AddScoped<GetCheckInsSubEventoPorIdParticipanteUseCase>();
 builder.Services.AddScoped<GetCheckInsSubEventoPorIdSubEventoUseCase>();
 builder.Services.AddScoped<GetCheckInSubEventoPorIdUseCase>();
+
+
+builder.Services.AddScoped<AdicionarAlternativasQuizUseCase>();
+builder.Services.AddScoped<AdicionarPerguntaQuizUseCase>();
+builder.Services.AddScoped<AtualizarQuizPerguntaUseCase>();
+builder.Services.AddScoped<AtualizarQuizUseCase>();
+builder.Services.AddScoped<CadastrarQuizUseCase>();
+builder.Services.AddScoped<DeletarAlternativaQuizUseCase>();
+builder.Services.AddScoped<DeletarPerguntaQuizUseCase>();
+builder.Services.AddScoped<DeletarQuizUseCase>();
+builder.Services.AddScoped<GetQuizPorIdUseCase>();
+builder.Services.AddScoped<GetQuizzesPorIdEventoUseCase>();
+builder.Services.AddScoped<GetTodasAsPerguntasPorIdQuizUseCase>();
+
+
 
 builder.Services.AddControllers() .AddJsonOptions(options =>
     {

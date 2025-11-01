@@ -33,5 +33,5 @@ public partial class Quiz
 
     public virtual ICollection<QuizParticipante> QuizParticipantes { get; set; } = new List<QuizParticipante>();
 
-    public virtual ICollection<QuizPerguntum> QuizPergunta { get; set; } = new List<QuizPerguntum>();
+    public virtual ICollection<QuizPergunta> QuizPergunta { get; set; } = new List<QuizPergunta>();
 }
