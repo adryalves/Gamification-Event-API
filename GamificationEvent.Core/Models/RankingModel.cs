@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GamificationEvent.Core.Entidades
+namespace GamificationEvent.Core.Models
 {
-    public class Ranking
+    public class RankingModel
     {
         public int Posicao { get; set; }
         public Guid IdParticipante { get; set; }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GamificationEvent.Core.Resultados;
+using System.Text.RegularExpressions;
 
 namespace GamificationEvent.Application.UseCases.UsuarioUseCases
 {
@@ -24,8 +25,14 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
         public async Task<Resultado<Usuario>> CadastrarUsuario(Usuario usuario, string senha)
         {
 
-            var cpfUsuarioExiste = await _usuarioRepository.CpfExiste(usuario.Cpf);
-            var emailUsuarioExiste = await _usuarioRepository.CpfExiste(usuario.Email);
+            string padraoRegex = @"\D"; 
+
+            string cpfValido = Regex.Replace(usuario.Cpf, padraoRegex, "");
+
+            var cpfUsuarioExiste = await _usuarioRepository.CpfExiste(cpfValido);
+            var emailUsuarioExiste = await _usuarioRepository.EmailExiste(usuario.Email);
+
+            usuario.Cpf = cpfValido;
 
             if (cpfUsuarioExiste)
                 return Resultado<Usuario>.Falha("CPF já cadastrados");

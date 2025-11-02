@@ -1,5 +1,5 @@
-﻿using GamificationEvent.Core.Entidades;
-using GamificationEvent.Core.Interfaces;
+﻿using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Models;
 using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
@@ -22,17 +22,17 @@ namespace GamificationEvent.Application.UseCases.RankingUseCases
             _eventoRepository = eventoRepository;
         }
 
-        public async Task<Resultado<List<Ranking>>> GetRankingPersonalizado(Guid idEvento, Guid idParticipante, int quantidade)
+        public async Task<Resultado<List<RankingModel>>> GetRankingPersonalizado(Guid idEvento, Guid idParticipante, int quantidade)
         {
             var evento = await _eventoRepository.GetEventoPorId(idEvento);
-            if (evento == null) return Resultado<List<Ranking>>.Falha($"Esse evento não foi encontrado.");
+            if (evento == null) return Resultado<List<RankingModel>>.Falha($"Esse evento não foi encontrado.");
 
 
             var participante = await _participanteRepository.GetParticipantePorId(idParticipante);
-            if (participante == null) return Resultado<List<Ranking>>.Falha($"Esse participante não foi encontrado");
+            if (participante == null) return Resultado<List<RankingModel>>.Falha($"Esse participante não foi encontrado");
 
             var resultado = await _rankingRepository.GetRankingPersonalizado(idEvento, idParticipante, quantidade);
-            return Resultado<List<Ranking>>.Ok(resultado);
+            return Resultado<List<RankingModel>>.Ok(resultado);
 
         }
     }

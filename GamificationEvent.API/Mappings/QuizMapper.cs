@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.API.DTOs.Quiz;
 using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Models;
 
 
 namespace GamificationEvent.API.Mappings
@@ -85,7 +86,7 @@ namespace GamificationEvent.API.Mappings
             return quizzes.Select(d => d.ConverterQuizParaResponse()).ToList();
         }
 
-        public static QuizPerguntasEAlternativasResponseDTO ConverterListaPerguntasEAlternativasComRespostaResponse(this QuizPerguntasEAlternativas perguntas)
+        public static QuizPerguntasEAlternativasResponseDTO ConverterListaPerguntasEAlternativasComRespostaResponse(this QuizPerguntasEAlternativasModel perguntas)
         {
             return new QuizPerguntasEAlternativasResponseDTO
             {
@@ -107,7 +108,7 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
-        public static QuizPerguntasEAlternativasResponseDTO ConverterListaPerguntasEAlternativasResponse(this QuizPerguntasEAlternativas perguntas)
+        public static QuizPerguntasEAlternativasResponseDTO ConverterListaPerguntasEAlternativasResponse(this QuizPerguntasEAlternativasModel perguntas)
         {
             return new QuizPerguntasEAlternativasResponseDTO
             {

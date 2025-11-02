@@ -1,4 +1,5 @@
 ﻿using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace GamificationEvent.Core.Interfaces
         Task<Guid> AdicionarPergunta(QuizPergunta pergunta);
         Task<List<QuizAlternativa>> AdicionarAlternativas(List<QuizAlternativa> alternativas);
         Task<List<Quiz>> GetQuizzesPorIdEvento(Guid idEvento);
-        Task<QuizPerguntasEAlternativas> GetTodasAsPerguntasPorIdQuiz(Guid idQuiz);
+        Task<QuizPerguntasEAlternativasModel> GetTodasAsPerguntasPorIdQuiz(Guid idQuiz);
         Task<bool> AtualizarQuiz(Guid id, Quiz quiz);
         Task<bool> DeletarQuiz(Guid id);
         Task<bool> AtualizarPergunta(Guid idPergunta, QuizPergunta pergunta);

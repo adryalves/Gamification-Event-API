@@ -30,8 +30,8 @@ namespace GamificationEvent.API.Controllers
             {
                 if (participanteDTO == null) return BadRequest("Insira dados");
 
-                if (participanteDTO.IdEvento == Guid.Empty || participanteDTO.IdEvento == null ||
-                    participanteDTO.IdUsuario == Guid.Empty || participanteDTO.IdUsuario == null)
+                if (participanteDTO.IdEvento == Guid.Empty ||
+                    participanteDTO.IdUsuario == Guid.Empty)
                     return BadRequest("Insira Ids válidos");
 
                 var participante = participanteDTO.ConverterRequestParaCore();
@@ -53,11 +53,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarParticipante")]
-        public async Task<IActionResult> AtualizarParticipante(Guid id, [FromBody] ParticipanteUpdateDTO participanteDTO)
+        public async Task<IActionResult> AtualizarParticipante([FromRoute] Guid id, [FromBody] ParticipanteUpdateDTO participanteDTO)
         {
             try
             {
-                if (id == null || id == Guid.Empty) return BadRequest("Insira um id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido");
 
                 var participante = participanteDTO.ConverterUpdateParCore();
                 participante.Id = id;
@@ -81,11 +81,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantesPorIdEvento")]
-        public async Task<IActionResult> GetParticipantesPorIdEvento(Guid idEvento)
+        public async Task<IActionResult> GetParticipantesPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {
-                if (idEvento == Guid.Empty || idEvento == null)
+                if (idEvento == Guid.Empty)
                     return BadRequest("Insira um id válido");
 
                 var participantes = await _getParticipantesPorIdEventoUseCase.GetParticipantesPorIdEvento(idEvento);
@@ -111,11 +111,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantePorId")]
-        public async Task<IActionResult> GetParticipantePorId(Guid id)
+        public async Task<IActionResult> GetParticipantePorId([FromQuery]Guid id)
         {
             try
             {
-                if (id == null || id == Guid.Empty) return BadRequest("Insira um id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido");
                  
                 var participante = await _getParticipantePorIdUseCase.GetParticipantePorId(id);
 

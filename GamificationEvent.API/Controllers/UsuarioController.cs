@@ -76,10 +76,12 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetUsuarioPorId")]
-        public async Task<IActionResult> GetUsuarioPorId(Guid id)
+        public async Task<IActionResult> GetUsuarioPorId([FromQuery] Guid id)
         {
             try
             {
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
+
                 var usuario = await _getUsuarioPorIdUseCase.GetUsuario(id);
                 if (usuario.Valor == null) return NotFound();
 
@@ -100,11 +102,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarUsuario")]
-        public async Task<IActionResult> DeletarUsuarioPorId(Guid id)
+        public async Task<IActionResult> DeletarUsuarioPorId([FromRoute] Guid id)
         {
             try
             {
-                if (id == null || id == Guid.Empty)
+                if (id == Guid.Empty)
                     return BadRequest("Insira um id válido");
 
                 var deleção = await _deletarUsuarioUseCase.DeletarUsuario(id);
@@ -124,12 +126,14 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarUsuario")]
-        public async Task<IActionResult> AtualizarUsuarioPorId(Guid id, [FromBody] UsuarioUpdateDTO usuarioDTO)
+        public async Task<IActionResult> AtualizarUsuarioPorId([FromRoute]Guid id, [FromBody] UsuarioUpdateDTO usuarioDTO)
         {
             try
             {
+                if (id == Guid.Empty)
+                    return BadRequest("Insira um id válido");
 
-               var usuario = usuarioDTO.ConverterUpdateParaCore();
+                var usuario = usuarioDTO.ConverterUpdateParaCore();
                usuario.Id = id;
 
                var resultado = await _atualizarUsuarioUseCase.AtualizarUsuario(usuario);

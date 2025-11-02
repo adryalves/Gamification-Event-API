@@ -1,11 +1,11 @@
 ﻿using GamificationEvent.API.DTOs.Ranking;
-using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Models;
 
 namespace GamificationEvent.API.Mappings
 {
     public static class RankingMapper
     {
-        public static List<RankingDTO> ConverterParaDTO(this List<Ranking> rankings)
+        public static List<RankingDTO> ConverterParaDTO(this List<RankingModel> rankings)
         {
             return rankings.Select(r => new RankingDTO
             {

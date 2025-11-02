@@ -72,7 +72,7 @@ namespace GamificationEvent.API.Controllers
 
         
         [HttpGet("GetParticipantesQuizPorIdQuiz")]
-        public async Task<IActionResult> GetParticipantesQuizPorIdQuiz(Guid idQuiz)
+        public async Task<IActionResult> GetParticipantesQuizPorIdQuiz([FromQuery]Guid idQuiz)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizzesPorIdParticipante")]
-        public async Task<IActionResult> GetQuizzesPorIdParticipante(Guid idParticipante)
+        public async Task<IActionResult> GetQuizzesPorIdParticipante([FromQuery]Guid idParticipante)
         {
             try
             {

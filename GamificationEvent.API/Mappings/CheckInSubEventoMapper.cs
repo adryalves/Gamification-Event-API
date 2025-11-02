@@ -1,12 +1,13 @@
 ﻿using GamificationEvent.API.DTOs.SubEvento;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Models;
 
 namespace GamificationEvent.API.Mappings
 {
     public static class CheckInSubEventoMapper
     {
-        public static QrCodeSubEventoResponseDTO ConverterQrCodeParaCore(this QrCodeSubEvento qrCodeSubEvento)
+        public static QrCodeSubEventoResponseDTO ConverterQrCodeParaCore(this QrCodeSubEventoModel qrCodeSubEvento)
         {
             return new QrCodeSubEventoResponseDTO
             {

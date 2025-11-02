@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GamificationEvent.Core.Entidades
+namespace GamificationEvent.Core.Models
 {
-    public class QuizPerguntasEAlternativas
+    public class QuizPerguntasEAlternativasModel
     {
-        public Guid IdQuiz {  get; set; }
-        public List<QuizPerguntaCompleta> Perguntas { get; set; } = new List<QuizPerguntaCompleta>();   
+        public Guid IdQuiz { get; set; }
+        public List<QuizPerguntaCompletaModel> Perguntas { get; set; } = new List<QuizPerguntaCompletaModel>();
 
     }
 
-    public class QuizPerguntaCompleta
+    public class QuizPerguntaCompletaModel
     {
         public Guid Id { get; set; }
 
@@ -21,10 +21,10 @@ namespace GamificationEvent.Core.Entidades
 
         public bool Deletado { get; set; }
 
-        public List<QuizAlternativasCompletas> PerguntaAlternativas { get; set; } = new List<QuizAlternativasCompletas>();
+        public List<QuizAlternativasCompletasModel> PerguntaAlternativas { get; set; } = new List<QuizAlternativasCompletasModel>();
     }
 
-    public class QuizAlternativasCompletas
+    public class QuizAlternativasCompletasModel
     {
         public Guid Id { get; set; }
 

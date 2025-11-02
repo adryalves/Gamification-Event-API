@@ -50,7 +50,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarDesafio")]
-        public async Task<IActionResult> AtualizarDesafio(Guid id, DesafioUpdateDTO desafioDTO)
+        public async Task<IActionResult> AtualizarDesafio([FromRoute] Guid id, DesafioUpdateDTO desafioDTO)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarDesafio")]
-        public async Task<IActionResult> DeletarDesafio(Guid id)
+        public async Task<IActionResult> DeletarDesafio([FromRoute] Guid id)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetDesafioPorId")]
-        public async Task<IActionResult> GetDesafioPorId(Guid id)
+        public async Task<IActionResult> GetDesafioPorId([FromQuery]Guid id)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetDesafiosPorIdEvento")]
-        public async Task<IActionResult> GetDesafiosPorIdEvento(Guid idEvento)
+        public async Task<IActionResult> GetDesafiosPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {
@@ -140,7 +140,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetDesafiosParticipantePorIdParticipante")]
-        public async Task<IActionResult> GetDesafiosParticipantePorIdParticipante(Guid idParticipante)
+        public async Task<IActionResult> GetDesafiosParticipantePorIdParticipante([FromQuery] Guid idParticipante)
         {
             try
             {

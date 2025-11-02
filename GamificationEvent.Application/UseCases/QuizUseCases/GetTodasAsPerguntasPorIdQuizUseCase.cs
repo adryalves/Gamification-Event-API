@@ -1,5 +1,5 @@
-﻿using GamificationEvent.Core.Entidades;
-using GamificationEvent.Core.Interfaces;
+﻿using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Models;
 using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
@@ -18,14 +18,14 @@ namespace GamificationEvent.Application.UseCases.QuizUseCases
             _quizRepository = quizRepository;
         }
 
-        public async Task<Resultado<QuizPerguntasEAlternativas>> GetTodasAsPerguntasPorIdQuiz(Guid idQuiz)
+        public async Task<Resultado<QuizPerguntasEAlternativasModel>> GetTodasAsPerguntasPorIdQuiz(Guid idQuiz)
         {
             var quiz = await _quizRepository.GetQuizPorId(idQuiz);
-            if (quiz == null) return Resultado<QuizPerguntasEAlternativas>.Falha("Não foi encontrado um Quiz referente a esse Id");
+            if (quiz == null) return Resultado<QuizPerguntasEAlternativasModel>.Falha("Não foi encontrado um Quiz referente a esse Id");
 
             var resultado = await _quizRepository.GetTodasAsPerguntasPorIdQuiz(idQuiz);
 
-            return Resultado<QuizPerguntasEAlternativas>.Ok(resultado);
+            return Resultado<QuizPerguntasEAlternativasModel>.Ok(resultado);
 
         }
     }

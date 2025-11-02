@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GamificationEvent.Application.UseCases.InscritoUseCases
@@ -25,14 +26,18 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
             if (evento == null)
                 return Resultado<Inscrito>.Falha($"Evento com id: {inscrito.IdEvento} não encontrado");
 
+            string padraoRegex = @"\D";
+            string cpfValido = Regex.Replace(inscrito.Cpf, padraoRegex, "");
 
-            var inscritoExiste = await _inscritoRepository.JaExisteEsseInscrito(inscrito.Cpf, inscrito.IdEvento);
+            var inscritoExiste = await _inscritoRepository.JaExisteEsseInscrito(cpfValido, inscrito.IdEvento);
 
             if (inscritoExiste != null)
                 return Resultado<Inscrito>.Falha("Esse inscrito já existe para esse evento");
                 
 
             inscrito.Id = Guid.NewGuid();
+            inscrito.Cpf = cpfValido;
+
             var resultado = await _inscritoRepository.AdicionarInscrito(inscrito);
 
             return Resultado<Inscrito>.Ok(resultado);

@@ -11,9 +11,9 @@ using InfraPergunta = GamificationEvent.Infrastructure.Data.Persistence.QuizPerg
 using CoreAlternativa = GamificationEvent.Core.Entidades.QuizAlternativa;
 using InfraAlternativa = GamificationEvent.Infrastructure.Data.Persistence.QuizAlternativa;
 using Microsoft.EntityFrameworkCore;
-using GamificationEvent.Core.Entidades;
 using SkiaSharp;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Models;
 
 namespace GamificationEvent.Infrastructure.Repositories
 {
@@ -108,26 +108,26 @@ namespace GamificationEvent.Infrastructure.Repositories
             }).ToList();
         }
 
-    public async Task<QuizPerguntasEAlternativas> GetTodasAsPerguntasPorIdQuiz(Guid idQuiz)
+    public async Task<QuizPerguntasEAlternativasModel> GetTodasAsPerguntasPorIdQuiz(Guid idQuiz)
     {
         var resultado = await _context.Quizzes
     .Where(q => q.Id == idQuiz
                 && !q.Deletado
                 && !q.IdEventoNavigation.Deletado
                 && (q.IdSubEventoNavigation == null || !q.IdSubEventoNavigation.Deletado))
-    .Select(q => new QuizPerguntasEAlternativas
+    .Select(q => new QuizPerguntasEAlternativasModel
     {
         IdQuiz = q.Id,
         Perguntas = q.QuizPergunta
             .Where(p => !p.Deletado)
-            .Select(p => new QuizPerguntaCompleta
+            .Select(p => new QuizPerguntaCompletaModel
             {
                 Id = p.Id,
                 Enunciado = p.Enunciado,
                 Deletado = p.Deletado,
                 PerguntaAlternativas = p.QuizAlternativas
                     .Where(a => !a.Deletado)
-                    .Select(a => new QuizAlternativasCompletas
+                    .Select(a => new QuizAlternativasCompletasModel
                     {
                         Id = a.Id,
                         Resposta = a.Resposta,

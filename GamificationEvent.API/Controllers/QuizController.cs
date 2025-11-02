@@ -41,7 +41,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (quizDto.IdEvento == null || quizDto.IdEvento == Guid.Empty) return BadRequest("Insira um Id Evento válido");
+                if (quizDto.IdEvento == Guid.Empty) return BadRequest("Insira um Id Evento válido");
 
                 var quiz = quizDto.ConverterQuizParaCore();
 
@@ -63,7 +63,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (perguntaDTO.IdQuiz == null || perguntaDTO.IdQuiz == Guid.Empty) return BadRequest("Insira um Id Quiz válido");
+                if (perguntaDTO.IdQuiz == Guid.Empty) return BadRequest("Insira um Id Quiz válido");
 
                 var pergunta = perguntaDTO.ConverterQuizPerguntaParaCore();
 
@@ -84,7 +84,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (alternativasDTO.IdPerguntaQuiz == Guid.Empty || alternativasDTO.IdPerguntaQuiz == null) return BadRequest("Insirs um Id válido");
+                if (alternativasDTO.IdPerguntaQuiz == Guid.Empty) return BadRequest("Insirs um Id válido");
 
                 var alternativas = alternativasDTO.ConverterAlternativasParaCore();
 
@@ -101,11 +101,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarQuiz")]
-        public async Task<IActionResult> DeletarQuiz(Guid id)
+        public async Task<IActionResult> DeletarQuiz([FromRoute]Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um Id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var resultado = await _deletarQuizUseCase.DeletarQuiz(id);
 
@@ -123,11 +123,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarPergunta")]
-        public async Task<IActionResult> DeletarPergunta(Guid id)
+        public async Task<IActionResult> DeletarPergunta([FromRoute] Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um Id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var resultado = await _deletarPerguntaQuizUseCase.DeletarPerguntaQuiz(id);
 
@@ -145,11 +145,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarAlternativa")]
-        public async Task<IActionResult> DeletarAlternativa(Guid id)
+        public async Task<IActionResult> DeletarAlternativa([FromRoute] Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um Id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var resultado = await _deletarAlternativaQuizUseCase.DeletarAlternativaQuiz(id);
 
@@ -167,11 +167,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizPorId")]
-        public async Task<IActionResult> GetQuizPorId(Guid id)
+        public async Task<IActionResult> GetQuizPorId([FromQuery]Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um Id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
                 var quiz = await _getQuizPorIdUseCase.GetQuizPorId(id);
 
                 if (quiz.Valor == null) return NotFound("Quiz não encontrado");
@@ -191,11 +191,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizzesPorIdEvento")]
-        public async Task<IActionResult> GetQuizzesPorIdEvento(Guid idEvento)
+        public async Task<IActionResult> GetQuizzesPorIdEvento([FromQuery]Guid idEvento)
         {
             try
             {
-                if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um Id válido");
+                if (idEvento == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var quizzes = await _getQuizzesPorIdEventoUseCase.GetQuizzesPorIdEvento(idEvento);
 
@@ -214,11 +214,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetTodasAsPerguntasComRespostaPorIdQuiz")]
-        public async Task<IActionResult> GetTodasAsPerguntasComRespostaPorIdQuiz(Guid idQuiz)
+        public async Task<IActionResult> GetTodasAsPerguntasComRespostaPorIdQuiz([FromQuery]Guid idQuiz)
         {
             try
             {
-                if (idQuiz == Guid.Empty || idQuiz == null) return BadRequest("Insira um Id válido");
+                if (idQuiz == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var perguntas = await _getTodasAsPerguntasPorIdQuizUseCase.GetTodasAsPerguntasPorIdQuiz(idQuiz);
 
@@ -236,11 +236,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetTodasAsPerguntasPorIdQuiz")]
-        public async Task<IActionResult> GetTodasAsPerguntasPorIdQuiz(Guid idQuiz)
+        public async Task<IActionResult> GetTodasAsPerguntasPorIdQuiz([FromQuery]Guid idQuiz)
         {
             try
             {
-                if (idQuiz == Guid.Empty || idQuiz == null) return BadRequest("Insira um Id válido");
+                if (idQuiz == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var perguntas = await _getTodasAsPerguntasPorIdQuizUseCase.GetTodasAsPerguntasPorIdQuiz(idQuiz);
 
@@ -258,11 +258,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarQuiz")]
-        public async Task<IActionResult> AtualizarQuiz(Guid id, QuizUpdateDTO quizDTO)
+        public async Task<IActionResult> AtualizarQuiz([FromRoute]Guid id, QuizUpdateDTO quizDTO)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um Id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var quiz = quizDTO.ConverterQuizUpdateParaCore();
                 var resultado = await _atualizarQuizUseCase.AtualizarQuiz(id, quiz);
@@ -281,11 +281,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarQuizPergunta")]
-        public async Task<IActionResult> AtualizarQuizPergunta(Guid id, QuizPerguntaUpdateDTO perguntaDTO)
+        public async Task<IActionResult> AtualizarQuizPergunta([FromRoute]Guid id, QuizPerguntaUpdateDTO perguntaDTO)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um Id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var pergunta = perguntaDTO.ConverterQuizPerguntaUpdateParaCore();
                 var resultado = await _atualizarQuizPerguntaUseCase.AtualizarQuizPergunta(id, pergunta);

@@ -29,7 +29,7 @@ namespace GamificationEvent.API.Controllers
             try
             {
                 if (interessesRequest == null || interessesRequest.InteressesDTO == null) return BadRequest("Insira valores válidos");
-                if (interessesRequest.IdEvento == null || interessesRequest.IdEvento == Guid.Empty) return BadRequest("Insira uma Id evento válido");
+                if (interessesRequest.IdEvento == Guid.Empty) return BadRequest("Insira uma Id evento válido");
 
                 var interesses = interessesRequest.ConverterListaParaCore();
 
@@ -57,11 +57,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarInteresse")]
-        public async Task<IActionResult> DeletarInteresse(Guid id)
+        public async Task<IActionResult> DeletarInteresse([FromRoute] Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id  válido");
+                if (id == Guid.Empty) return BadRequest("Insira um id  válido");
 
                 var resultado = await _deletarInteresseUseCase.DeletarInteresse(id);
 
@@ -83,10 +83,12 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetInteressesPorIdEvento")]
-        public async Task<IActionResult> GetInteressesPorIdEvento(Guid idEvento)
+        public async Task<IActionResult> GetInteressesPorIdEvento([FromQuery]Guid idEvento)
         {
             try
             {
+                if (idEvento == Guid.Empty) return BadRequest("Insira um idEvento válido");
+
                 var interesses = await _getInteressesPorIdEventoUseCase.GetInteressesPorIdEvento(idEvento);
 
                 if (interesses.Sucesso)
@@ -111,13 +113,15 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetInteressePorId")]
-        public async Task<IActionResult> GetInteressePorId(Guid id)
+        public async Task<IActionResult> GetInteressePorId([FromQuery] Guid id)
         {
             try
             {
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
+
                 var interesse = await _getInteressePorIdUseCase.GerInteressePorId(id);
 
-                if (interesse.Valor == null) return NotFound();
+                if (interesse.Valor == null) return NotFound("Não foi encontrado um interesse válido com esse Id");
 
                 if (interesse.Sucesso)
                 {

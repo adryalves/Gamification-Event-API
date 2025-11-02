@@ -1,10 +1,13 @@
-﻿namespace GamificationEvent.API.DTOs.Premio
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GamificationEvent.API.DTOs.Premio
 {
     public class PremioUpdateDTO
     {
 
         public Guid? IdPatrocinador { get; set; }
 
+        [Required]
         public string Nome { get; set; } = null!;
 
         public string? Descricao { get; set; }

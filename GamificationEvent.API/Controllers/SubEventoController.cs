@@ -35,7 +35,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (subEventoDTO.IdEvento == null || subEventoDTO.IdEvento == Guid.Empty) return BadRequest("Insira um id válido");
+                if (subEventoDTO.IdEvento == Guid.Empty) return BadRequest("Insira um id válido");
 
                 var subEvento = subEventoDTO.ConverterSubEventoRequestParaCore();
 
@@ -74,11 +74,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarSubEvento")]
-        public async Task<IActionResult> AtualizarSubEvento(Guid id, SubEventoUpdateDTO subEventoDTO)
+        public async Task<IActionResult> AtualizarSubEvento([FromRoute]Guid id, SubEventoUpdateDTO subEventoDTO)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id válido para atualização");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido para atualização");
 
                 var subEvento = subEventoDTO.ConverterSubEventoUpdateParaCore();
                 var resultado = await _atualizarSubEventoUseCase.AtualizarSubEvento(id, subEvento);
@@ -97,11 +97,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarSubEvento")]
-        public async Task<IActionResult> DeletarSubEvento(Guid id)
+        public async Task<IActionResult> DeletarSubEvento([FromRoute]Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id válido para deleção");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido para deleção");
                 var resultado = await _deletarSubEventoUseCase.DeletarSubEvento(id);
 
                 if (resultado.Sucesso) return Ok("SubEvento deletado");
@@ -118,11 +118,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPerguntasPorIdSubEvento")]
-        public async Task<IActionResult> GetPerguntasPorIdSubEvento(Guid idSubEvento)
+        public async Task<IActionResult> GetPerguntasPorIdSubEvento([FromQuery]Guid idSubEvento)
         {
             try
             {
-                if (idSubEvento == Guid.Empty || idSubEvento == null) return BadRequest("Insira um id válido");
+                if (idSubEvento == Guid.Empty) return BadRequest("Insira um id válido");
 
                 var perguntas = await _getPerguntasPorIdSubEventoUseCase.GetPerguntasPorIdSubEvento(idSubEvento);
 
@@ -141,11 +141,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetSubEventoPorId")]
-        public async Task<IActionResult> GetSubEventoPorId(Guid id)
+        public async Task<IActionResult> GetSubEventoPorId([FromQuery] Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido");
 
                 var subEvento = await _getSubEventoPorIdUseCase.GetSubEventoPorId(id);
 
@@ -167,11 +167,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetSubEventosPorIdEvento")]
-        public async Task<IActionResult> GetSubEventosPorIdEvento(Guid idEvento)
+        public async Task<IActionResult> GetSubEventosPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {
-                if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um id válido para deleção");
+                if (idEvento == Guid.Empty) return BadRequest("Insira um id válido para deleção");
 
                 var subEventos = await _getSubEventosPorIdEventoUseCase.GetSubEventosPorIdEvento(idEvento);
 

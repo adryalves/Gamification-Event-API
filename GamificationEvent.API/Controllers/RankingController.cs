@@ -20,11 +20,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetRankingGeralPorIdEvento")]
-        public async Task<IActionResult> GetRankingGeralPorIdEvento(Guid idEvento, [FromQuery] int quantidade = 10)
+        public async Task<IActionResult> GetRankingGeralPorIdEvento([FromQuery] Guid idEvento, [FromQuery] int quantidade = 10)
         {
             try
             {
-                if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um id válido");
+                if (idEvento == Guid.Empty) return BadRequest("Insira um id válido");
 
                 var ranking = await _getRankingGeralPorIdEventoUseCase.GetRankingGeralPorIdEvento(idEvento, quantidade);
 
@@ -50,12 +50,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetRakingPersonalizado")]
-        public async Task<IActionResult> GetRankingPersonalizado(Guid idEvento, Guid idParticipante, [FromQuery] int quantidade = 10)
+        public async Task<IActionResult> GetRankingPersonalizado([FromQuery] Guid idEvento, [FromQuery]Guid idParticipante, [FromQuery] int quantidade = 10)
         {
             try
             {
-                if (idEvento == Guid.Empty || idEvento == null
-                    || idParticipante == null || idParticipante == Guid.Empty) return BadRequest("Insira ids válido");
+                if (idEvento == Guid.Empty || idParticipante == Guid.Empty) return BadRequest("Insira ids válido");
 
 
                 var ranking = await _getRankingPersonalizadoUseCase.GetRankingPersonalizado(idEvento, idParticipante, quantidade);

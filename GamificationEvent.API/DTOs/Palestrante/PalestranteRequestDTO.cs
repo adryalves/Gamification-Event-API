@@ -1,11 +1,16 @@
-﻿namespace GamificationEvent.API.DTOs.Palestrante
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GamificationEvent.API.DTOs.Palestrante
 {
     public class PalestranteRequestDTO
     {
+        [Required]
         public Guid IdEvento { get; set; }
 
+        [Required(AllowEmptyStrings = false)]
         public string Nome { get; set; } = null!;
 
+ 
         public string? Email { get; set; }
 
         public string? Telefone { get; set; }

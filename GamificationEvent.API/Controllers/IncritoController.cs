@@ -66,9 +66,7 @@ namespace GamificationEvent.API.Controllers
             try
             {
 
-                if (inscritoDTO == null) return BadRequest("Insira valores válidos");
-
-                if (inscritoDTO.IdEvento == Guid.Empty || inscritoDTO.IdEvento == null) return BadRequest("Insira um id Evento válido");
+                if (inscritoDTO.IdEvento == Guid.Empty) return BadRequest("Insira um id Evento válido");
 
                 if (String.IsNullOrEmpty(inscritoDTO.Cpf) || String.IsNullOrEmpty(inscritoDTO.Nome) || inscritoDTO.Cargo == null)
                 {
@@ -144,15 +142,15 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarInscrito")]
-        public async Task<IActionResult> DeletarInscrito(String Cpf, Guid idEvento)
+        public async Task<IActionResult> DeletarInscrito([FromQuery] InscritoDeleteDTO inscrito)
         {
 
             try {
 
-                if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um id evento válido");
-                if (String.IsNullOrEmpty(Cpf)) return BadRequest("Insira um cpf válido");
+                if (inscrito.IdEvento == Guid.Empty ) return BadRequest("Insira um id evento válido");
+                if (String.IsNullOrEmpty(inscrito.Cpf)) return BadRequest("Insira um cpf válido");
 
-                var resultado = await _deletarInscritoUseCase.DeletarInscrito(Cpf, idEvento);
+                var resultado = await _deletarInscritoUseCase.DeletarInscrito(inscrito.Cpf, inscrito.IdEvento);
 
                 if(resultado.Sucesso) return Ok("Inscrito deletado");
 

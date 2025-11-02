@@ -26,13 +26,13 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GerarQrCodeSubEvento")]
-        public async Task<IActionResult> GerarQrCode(Guid idSubEvento)
+        public async Task<IActionResult> GerarQrCode([FromQuery] Guid idSubEvento)
         {
             try
             {
-                if (idSubEvento == null || idSubEvento == Guid.Empty) return BadRequest("Insira um código válido");
+                if (idSubEvento == Guid.Empty) return BadRequest("Insira um código válido");
 
-                var resultado = await _gerarQrCodeUseCaseSubEvento.GerarQrCodeDoSubEvento(idSubEvento);
+                var resultado = await _gerarQrCodeUseCaseSubEvento.GerarQrCodeDoSubEvento((Guid)idSubEvento);
 
                 if(resultado.Sucesso)
                 {
@@ -52,13 +52,13 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPost("FazerCheckInSubEvento")]
-        public async Task<IActionResult> FazerCheckInSubEvento(string codigo, Guid idParticipante)
+        public async Task<IActionResult> FazerCheckInSubEvento([FromQuery] string? codigo, [FromQuery] Guid? idParticipante)
         {
             try
             {
-                if (String.IsNullOrEmpty(codigo) || idParticipante == null || idParticipante == Guid.Empty) return BadRequest("Insira valores válidos");
+                if (String.IsNullOrEmpty(codigo)  || idParticipante == Guid.Empty || idParticipante == null) return BadRequest("Insira valores válidos");
 
-                var checkIn = await _cadastrarCheckInSubEventoUseCase.CadastrarCheckInSubEvento(codigo, idParticipante);
+                var checkIn = await _cadastrarCheckInSubEventoUseCase.CadastrarCheckInSubEvento(codigo, (Guid)idParticipante);
 
                 if (checkIn.Sucesso) return Ok(checkIn.Valor);
 
@@ -73,13 +73,13 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCheckInSubEventoPorId")]
-        public async Task<IActionResult> GetCheckInSubEventoPorId(Guid id)
+        public async Task<IActionResult> GetCheckInSubEventoPorId([FromQuery] Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido");
 
-                var checkIn = await _getCheckInSubEventoPorIdUseCase.GetCheckInSubEventoPorId(id);
+                var checkIn = await _getCheckInSubEventoPorIdUseCase.GetCheckInSubEventoPorId((Guid)id);
 
                 if (checkIn.Valor == null) return NotFound("CheckIn não encontrado");
 
@@ -99,13 +99,13 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCheckInsPorIdParticipante")]
-        public async Task<IActionResult> GetCheckInsPorIdParticipante(Guid idParticipante)
+        public async Task<IActionResult> GetCheckInsPorIdParticipante([FromQuery] Guid idParticipante)
         {
             try
             {
-                if (idParticipante == Guid.Empty || idParticipante == null) return BadRequest("Insira uma Id Válido");
+                if (idParticipante == Guid.Empty) return BadRequest("Insira uma Id Válido");
 
-                var checkIns = await _getCheckInsSubEventoPorIdParticipanteUseCase.GetCheckInsSubEventoPorIdParticipante(idParticipante);
+                var checkIns = await _getCheckInsSubEventoPorIdParticipanteUseCase.GetCheckInsSubEventoPorIdParticipante((Guid)idParticipante);
 
                 if (checkIns.Sucesso)
                 {
@@ -122,13 +122,13 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCheckInsPorIdSubEvento")]
-        public async Task<IActionResult> GetCheckInsPorIdSubEvento(Guid idSubEvento)
+        public async Task<IActionResult> GetCheckInsPorIdSubEvento([FromQuery] Guid idSubEvento)
         {
             try
             {
-                if (idSubEvento == Guid.Empty || idSubEvento == null) return BadRequest("Insira uma Id Válido");
+                if (idSubEvento == Guid.Empty) return BadRequest("Insira uma Id Válido");
 
-                var checkIns = await _getCheckInsSubEventoPorIdSubEventoUseCase.GetCheckInsSubEventoPorIdSubEvento(idSubEvento);
+                var checkIns = await _getCheckInsSubEventoPorIdSubEventoUseCase.GetCheckInsSubEventoPorIdSubEvento((Guid)idSubEvento);
 
                 if (checkIns.Sucesso)
                 {

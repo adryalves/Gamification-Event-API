@@ -31,8 +31,8 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (participantePremioDTO.IdParticipante == null || participantePremioDTO.IdParticipante == Guid.Empty
-                    || participantePremioDTO.IdPremio == null || participantePremioDTO.IdPremio == Guid.Empty) return BadRequest("Preencha com Ids válidos");
+                if ( participantePremioDTO.IdParticipante == Guid.Empty
+                    || participantePremioDTO.IdPremio == Guid.Empty) return BadRequest("Preencha com Ids válidos");
 
                 var participantePremio = participantePremioDTO.ConverterDeRequestParaCore();
 
@@ -50,11 +50,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarParticipantePremio")]
-        public async Task<IActionResult> AtualizarParticipantePremio(Guid id, ParticipantePremioUpdateDTO participantePremioDTO)
+        public async Task<IActionResult> AtualizarParticipantePremio([FromRoute]Guid id, ParticipantePremioUpdateDTO participantePremioDTO)
         {
             try
             {
-                if(id == null ||id == Guid.Empty) return BadRequest("Insira um Id Válido");
+                if(id == Guid.Empty) return BadRequest("Insira um Id Válido");
 
                 var participantePremio = participantePremioDTO.ConverterDeUpdateParaCore();
 
@@ -75,11 +75,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantePremiosPorIdEvento")]
-        public async Task<IActionResult> GetParticipantePremiosPorIdEvento(Guid idEvento)
+        public async Task<IActionResult> GetParticipantePremiosPorIdEvento([FromQuery]Guid idEvento)
         {
             try
             {
-                if (idEvento == null || idEvento == Guid.Empty) return BadRequest("Insira um Id Válido");
+                if (idEvento == Guid.Empty) return BadRequest("Insira um Id Válido");
 
                 var participantePremios = await _getParticipantePremiosPorIdEventoUseCase.GetParticipantePremioPorIdEvento(idEvento);
 
@@ -99,11 +99,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantePremiosPorIdParticipante")]
-        public async Task<IActionResult> GetParticipantePremiosPorIdParticipante(Guid idParticipante)
+        public async Task<IActionResult> GetParticipantePremiosPorIdParticipante([FromQuery] Guid idParticipante)
         {
             try
             {
-                if (idParticipante == null || idParticipante == Guid.Empty) return BadRequest("Insira um Id Válido");
+                if (idParticipante == Guid.Empty) return BadRequest("Insira um Id Válido");
 
                 var participantePremios = await _getParticipantePremiosPorIdParticipanteUseCase.GetParticipantePremiosPorIdParticipante(idParticipante);
 
@@ -123,11 +123,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantesPremioPorIdPremio")]
-        public async Task<IActionResult> GetParticipantesPremioPorIdPremio(Guid idPremio)
+        public async Task<IActionResult> GetParticipantesPremioPorIdPremio([FromQuery] Guid idPremio)
         {
             try
             {
-                if (idPremio == null || idPremio == Guid.Empty) return BadRequest("Insira um Id Válido");
+                if (idPremio == Guid.Empty) return BadRequest("Insira um Id Válido");
 
                 var participantesPremio = await _getParticipantesPremioPorIdPremioUseCase.GetParticipantesPremioPorIdPremio(idPremio);
 
@@ -147,11 +147,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantePremioPorId")]
-        public async Task<IActionResult> GetParticipantePremioPorId(Guid id)
+        public async Task<IActionResult> GetParticipantePremioPorId([FromQuery] Guid id)
         {
             try
             {
-                if (id == null || id == Guid.Empty) return BadRequest("Insira um Id Válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id Válido");
 
                 var participantePremio = await _getParticipantePremioPorIdUseCase.GetParticipantePremioPorId(id);
 

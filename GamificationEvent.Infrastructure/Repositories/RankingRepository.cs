@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Models;
 
 namespace GamificationEvent.Infrastructure.Repositories
 {
@@ -19,7 +19,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Ranking>> GetRankingGeralPorIdEvento(Guid idEvento, int quantidade)
+        public async Task<List<RankingModel>> GetRankingGeralPorIdEvento(Guid idEvento, int quantidade)
         {
             var ranking = await _context.Participantes
                 .Where(p => p.IdEvento == idEvento &&
@@ -27,7 +27,7 @@ namespace GamificationEvent.Infrastructure.Repositories
                       !p.IdUsuarioNavigation.Deletado &&
                       !p.IdEventoNavigation.Deletado)
                 .OrderByDescending(p => p.Pontuacao)
-                .Select(p => new Ranking
+                .Select(p => new RankingModel
                 {
                     IdParticipante = p.Id,
                     Foto = p.IdUsuarioNavigation.Foto,
@@ -46,7 +46,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             return ranking;
         }
 
-        public async Task<List<Ranking>> GetRankingPersonalizado(Guid idEvento, Guid idParticipante, int quantidade)
+        public async Task<List<RankingModel>> GetRankingPersonalizado(Guid idEvento, Guid idParticipante, int quantidade)
         {
             var ranking = await _context.Participantes
            .Where(p => p.IdEvento == idEvento &&
@@ -54,7 +54,7 @@ namespace GamificationEvent.Infrastructure.Repositories
                   !p.IdUsuarioNavigation.Deletado &&
                   !p.IdEventoNavigation.Deletado)
            .OrderByDescending(p => p.Pontuacao)
-           .Select(p => new Ranking
+           .Select(p => new RankingModel
            {
                IdParticipante = p.Id,
                Nome = p.IdUsuarioNavigation.Nome,
@@ -79,7 +79,7 @@ namespace GamificationEvent.Infrastructure.Repositories
                     !p.IdUsuarioNavigation.Deletado &&
                     !p.IdEventoNavigation.Deletado)
                     .OrderByDescending(p => p.Pontuacao)
-                    .Select(p => new Ranking
+                    .Select(p => new RankingModel
                     {
                         IdParticipante = p.Id,
                         Nome = p.IdUsuarioNavigation.Nome,
@@ -90,7 +90,7 @@ namespace GamificationEvent.Infrastructure.Repositories
                     .ToListAsync();
 
                 var participante = TodosOsParticipantes
-                    .Select((r, index) => new Ranking
+                    .Select((r, index) => new RankingModel
                     {
                         IdParticipante = r.IdParticipante,
                         Nome = r.Nome,

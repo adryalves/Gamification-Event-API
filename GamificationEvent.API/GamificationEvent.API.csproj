@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GamificationEvent.Application\GamificationEvent.Application.csproj" />
+    <ProjectReference Include="..\GamificationEvent.Core\GamificationEvent.Core.csproj" />
     <ProjectReference Include="..\GamificationEvent.Infrastructure\GamificationEvent.Infrastructure.csproj" />
   </ItemGroup>
 

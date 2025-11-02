@@ -1,5 +1,5 @@
-﻿using GamificationEvent.Core.Entidades;
-using GamificationEvent.Core.Interfaces;
+﻿using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Models;
 using GamificationEvent.Core.Resultados;
 using System;
 using System.Collections.Generic;
@@ -20,19 +20,19 @@ namespace GamificationEvent.Application.UseCases.CheckInSubEventoCases
             _qrCode = qrCode;
         }
 
-        public async Task<Resultado<QrCodeSubEvento>> GerarQrCodeDoSubEvento(Guid idSubEvento)
+        public async Task<Resultado<QrCodeSubEventoModel>> GerarQrCodeDoSubEvento(Guid idSubEvento)
         {
             var subEvento = await _subEventoRepository.GetSubEventoPorId(idSubEvento);
 
-            if (subEvento == null) return Resultado<QrCodeSubEvento>.Falha("O Id não corresponde a um Id SubEvento válido");
+            if (subEvento == null) return Resultado<QrCodeSubEventoModel>.Falha("O Id não corresponde a um Id SubEvento válido");
 
             var qrCode = _qrCode.GerarQRCode(subEvento.CodigoCheckin);
 
-            if (String.IsNullOrEmpty(qrCode)) return Resultado<QrCodeSubEvento>.Falha("Ocorreu algum erro inesperado");
+            if (String.IsNullOrEmpty(qrCode)) return Resultado<QrCodeSubEventoModel>.Falha("Ocorreu algum erro inesperado");
 
-            var resultado = new QrCodeSubEvento(idSubEvento,subEvento.CodigoCheckin,qrCode);
+            var resultado = new QrCodeSubEventoModel(idSubEvento,subEvento.CodigoCheckin,qrCode);
 
-            return Resultado<QrCodeSubEvento>.Ok(resultado);
+            return Resultado<QrCodeSubEventoModel>.Ok(resultado);
 
             }
         }

@@ -1,8 +1,10 @@
-﻿namespace GamificationEvent.API.DTOs.Palestrante
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GamificationEvent.API.DTOs.Palestrante
 {
     public class PalestranteUpdateDTO
     {
-
+        [Required(AllowEmptyStrings = false)]
         public string Nome { get; set; } = null!;
 
         public string? Email { get; set; }
