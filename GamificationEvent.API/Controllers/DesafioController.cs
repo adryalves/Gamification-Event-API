@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Desafio;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.DesafioUseCases;
 using GamificationEvent.Core.Entidades;

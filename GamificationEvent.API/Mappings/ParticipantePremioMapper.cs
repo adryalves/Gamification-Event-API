@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.ParticipantePremio;
 using GamificationEvent.Core.Entidades;
 
 namespace GamificationEvent.API.Mappings

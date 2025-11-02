@@ -252,5 +252,25 @@ namespace GamificationEvent.Infrastructure.Repositories
                 Deletado = pergunta.Deletado
             };
         }
+
+        public async Task<CoreAlternativa> GetAlternativaPoId(Guid idAlternativa)
+        {
+            var alternativaExistente = await _context.QuizAlternativas.FirstOrDefaultAsync(x => x.Id == idAlternativa
+            && !x.Deletado && !x.IdQuizPerguntaNavigation.Deletado && !x.IdQuizPerguntaNavigation.IdQuizNavigation.Deletado
+            && !x.IdQuizPerguntaNavigation.IdQuizNavigation.IdEventoNavigation.Deletado &&
+            (x.IdQuizPerguntaNavigation.IdQuizNavigation.IdSubEvento == null || !x.IdQuizPerguntaNavigation.IdQuizNavigation.IdSubEventoNavigation.Deletado));
+
+            if (alternativaExistente == null) return null;
+
+            return new CoreAlternativa
+            {
+                Id = alternativaExistente.Id,
+                IdQuizPergunta = alternativaExistente.IdQuizPergunta,
+                Resposta = alternativaExistente.Resposta,
+                ECorreta = alternativaExistente.ECorreta,
+                Deletado = alternativaExistente.Deletado
+            };
+        }
+
     }
 }

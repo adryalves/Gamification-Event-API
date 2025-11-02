@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Interesse;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.InteresseUseCases;
 using GamificationEvent.Core.Resultados;

@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.SubEvento;
 using GamificationEvent.Core.Entidades;
 
 

@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Quiz;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.QuizUseCases;
 using Microsoft.AspNetCore.Mvc;

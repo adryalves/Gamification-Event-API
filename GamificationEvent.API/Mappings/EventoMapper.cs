@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Evento;
 using GamificationEvent.Core.Entidades;
 using System.Runtime.CompilerServices;
 

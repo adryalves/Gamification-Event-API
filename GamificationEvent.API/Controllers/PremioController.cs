@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Premio;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.PremioUseCases;
 using Microsoft.AspNetCore.Mvc;

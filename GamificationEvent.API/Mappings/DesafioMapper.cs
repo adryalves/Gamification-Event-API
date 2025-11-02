@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Desafio;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Enums;
 

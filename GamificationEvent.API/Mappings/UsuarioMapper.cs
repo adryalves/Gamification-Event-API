@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Usuario;
 using GamificationEvent.Core.Entidades;
 using System;
 using System.Collections.Generic;

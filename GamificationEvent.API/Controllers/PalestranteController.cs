@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Palestrante;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.PalestranteUseCases;
 using GamificationEvent.Core.Entidades;
