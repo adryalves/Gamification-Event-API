@@ -44,7 +44,7 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
                 participante.PrimeiroParticipante = false;
             }
 
-                if (!(bool)participante.PrimeiroParticipante)
+                if (!(bool)participante.PrimeiroParticipante && participante.Cargo == Core.Enums.Cargo.Membro)
                 {
                     var inscrição = await _inscritoRepository.JaExisteEsseInscrito(usuario.Cpf, participante.IdEvento);
 
