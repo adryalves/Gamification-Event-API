@@ -14,8 +14,6 @@ namespace GamificationEvent.Application.Mappings
     {
         public static Usuario ConverterUsuarioCore(this UsuarioRequestDTO usuarioDTO)
         {
-
-
             return new Usuario
             {
                 Nome = usuarioDTO.Nome,

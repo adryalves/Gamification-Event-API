@@ -80,11 +80,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPost("CadastrarAlternativasPerguntaQuiz")]
-        public async Task<IActionResult> CadastrarAlternativasPerguntaQuiz(AlternativasPerguntasQuizDTO alternativasDTO)
+        public async Task<IActionResult> CadastrarAlternativasPerguntaQuiz(AlternativasPerguntaQuizRequestDTO alternativasDTO)
         {
             try
             {
-                if (alternativasDTO.IdPerguntaQuiz == Guid.Empty) return BadRequest("Insirs um Id válido");
+                if (alternativasDTO.IdPerguntaQuiz == Guid.Empty) return BadRequest("Insira um Id Pergunta válido");
 
                 var alternativas = alternativasDTO.ConverterAlternativasParaCore();
 

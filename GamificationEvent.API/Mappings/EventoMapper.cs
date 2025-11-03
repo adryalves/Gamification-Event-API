@@ -21,6 +21,22 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
+        public static Evento ConverterUpdateParaEventoCore(this EventoUpdateDTO eventoDTO)
+        {
+            return new Evento
+            {
+                IdPaleta = eventoDTO.IdPaleta,
+                Titulo = eventoDTO.Titulo,
+                Descricao = eventoDTO.Descricao,
+                Objetivo = eventoDTO.Objetivo,
+                Categoria = eventoDTO.Categoria,
+                PublicoAlvo = eventoDTO.PublicoAlvo,
+                DataInicio = eventoDTO.DataInicio,
+                DataFinal = eventoDTO.DataFinal,
+            };
+        }
+
+
         public static EventoResponseDTO ConverterParaEventoResponse(this Evento evento)
         {
             return new EventoResponseDTO

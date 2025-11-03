@@ -14,6 +14,17 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
+
+        public static Cor ConverterUpdateCorCore(this CorUpdateDTO corRequestDTO)
+        {
+            return new Cor
+            {
+                HexCodigo = corRequestDTO.HexCodigo,
+                Nome = corRequestDTO.Nome
+            };
+        }
+
+
         public static CorResponseDTO ConverterCorResponse(this Cor cor)
         {
             return new CorResponseDTO

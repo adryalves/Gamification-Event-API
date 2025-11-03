@@ -120,14 +120,14 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarCor/{id}")]
-        public async Task<IActionResult> AtualizarCor([FromRoute]Guid id, CorRequestDTO corDTO)
+        public async Task<IActionResult> AtualizarCor([FromRoute]Guid id, CorUpdateDTO corDTO)
         {
             try
             {
                 if (id == Guid.Empty)
                     return BadRequest("Insira uma valor válido");
 
-                var cor = corDTO.ConverterCorCore();
+                var cor = corDTO.ConverterUpdateCorCore();
                 cor.Id = id;
 
                var resultado = await _atualizarCorUseCase.AtualizarCor(cor);
@@ -233,14 +233,14 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarPaleta/{id}")]
-        public async Task<IActionResult> AtualizarPaleta([FromRoute]Guid id, [FromBody] PaletaCorRequestDTO paletaDTO)
+        public async Task<IActionResult> AtualizarPaleta([FromRoute]Guid id, [FromBody] PaletaCorUpdateDTO paletaDTO)
         {
             try
             {
                 if (id == Guid.Empty)
                     return BadRequest("Insira um valor válido");
 
-                var paleta = paletaDTO.ConverterPaletaCore();
+                var paleta = paletaDTO.ConverterUpdatePaletaCore();
                 paleta.Id = id;
                 paleta.Deletado = false;
 

@@ -56,7 +56,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarEvento/{id}")]
-        public async Task<IActionResult> AtualizarEvento([FromRoute]Guid id, [FromBody] EventoRequestDTO eventoDTO)
+        public async Task<IActionResult> AtualizarEvento([FromRoute]Guid id, [FromBody] EventoUpdateDTO eventoDTO)
         {
             try {
 
@@ -70,7 +70,7 @@ namespace GamificationEvent.API.Controllers
 
                 }
 
-                var evento = eventoDTO.ConverterParaEventoCore();
+                var evento = eventoDTO.ConverterUpdateParaEventoCore();
                 evento.Id = id;
                 evento.Deletado = false;
 

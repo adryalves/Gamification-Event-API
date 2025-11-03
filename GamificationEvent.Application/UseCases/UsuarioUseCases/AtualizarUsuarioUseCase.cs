@@ -34,7 +34,7 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             if(emailExiste && (usuarioExistente.Email != usuario.Email))
                 return Resultado<bool>.Falha("Esse email já existe para outro usuário");            
 
-            if(cpfExiste && usuarioExistente.Cpf != usuario.Cpf)
+            if(cpfExiste && usuarioExistente.Cpf != cpfValido)
                 return Resultado<bool>.Falha("Esse cpf já existe para outro usuário");
 
             usuario.Cpf = cpfValido;

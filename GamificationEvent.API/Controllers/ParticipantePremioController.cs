@@ -155,7 +155,7 @@ namespace GamificationEvent.API.Controllers
 
                 var participantePremio = await _getParticipantePremioPorIdUseCase.GetParticipantePremioPorId(id);
 
-                if (participantePremio == null) return NotFound("Não foi encontrado um Participante Premio com esse Id");
+                if (participantePremio.Valor == null) return NotFound("Não foi encontrado um Participante Premio com esse Id");
 
                 if (participantePremio.Sucesso)
                 {

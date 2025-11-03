@@ -1,6 +1,6 @@
 ﻿namespace GamificationEvent.API.DTOs.Quiz
 {
-    public class AlternativasPerguntasQuizDTO
+    public class AlternativasPerguntaQuizRequestDTO
     {
         public Guid IdPerguntaQuiz { get; set; }
         public List<AlternativaQuizDTO> AlternativaQuizDTOs { get; set; } = new List<AlternativaQuizDTO>();

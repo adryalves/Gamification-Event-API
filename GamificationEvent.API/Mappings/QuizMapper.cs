@@ -31,7 +31,7 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
-        public static List<QuizAlternativa> ConverterAlternativasParaCore(this AlternativasPerguntasQuizDTO alternativasDTO)
+        public static List<QuizAlternativa> ConverterAlternativasParaCore(this AlternativasPerguntaQuizRequestDTO alternativasDTO)
         {
             return alternativasDTO.AlternativaQuizDTOs.Select(x => new QuizAlternativa
             {
