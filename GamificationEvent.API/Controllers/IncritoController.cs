@@ -116,12 +116,12 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetInscritosPorIdEvento")]
-        public async Task<IActionResult> GetInscritosPorEvento(Guid idEvento)
+        public async Task<IActionResult> GetInscritosPorEvento([FromQuery]Guid idEvento)
         {
             try
             {
 
-                if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um id evento válido");
+                if (idEvento == Guid.Empty) return BadRequest("Insira um id evento válido");
 
                 var inscritos = await _getInscritosPorIdUseCase.GetInscritosPorIdEvento(idEvento);
 

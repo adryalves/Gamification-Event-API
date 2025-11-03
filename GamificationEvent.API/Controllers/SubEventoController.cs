@@ -73,7 +73,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarSubEvento")]
+        [HttpPut("AtualizarSubEvento/{id}")]
         public async Task<IActionResult> AtualizarSubEvento([FromRoute]Guid id, SubEventoUpdateDTO subEventoDTO)
         {
             try
@@ -96,7 +96,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarSubEvento")]
+        [HttpDelete("DeletarSubEvento/{id}")]
         public async Task<IActionResult> DeletarSubEvento([FromRoute]Guid id)
         {
             try

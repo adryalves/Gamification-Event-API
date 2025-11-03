@@ -119,12 +119,12 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarCor")]
+        [HttpPut("AtualizarCor/{id}")]
         public async Task<IActionResult> AtualizarCor([FromRoute]Guid id, CorRequestDTO corDTO)
         {
             try
             {
-                if (id == null || id == Guid.Empty)
+                if (id == Guid.Empty)
                     return BadRequest("Insira uma valor válido");
 
                 var cor = corDTO.ConverterCorCore();
@@ -232,7 +232,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarPaleta")]
+        [HttpPut("AtualizarPaleta/{id}")]
         public async Task<IActionResult> AtualizarPaleta([FromRoute]Guid id, [FromBody] PaletaCorRequestDTO paletaDTO)
         {
             try
@@ -262,7 +262,7 @@ namespace GamificationEvent.API.Controllers
 
         }
 
-        [HttpDelete("DeletarPaleta")]
+        [HttpDelete("DeletarPaleta/{id}")]
         public async Task<IActionResult> DeletarPaleta([FromRoute]Guid id)
         {
             try {

@@ -32,6 +32,8 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             var cpfUsuarioExiste = await _usuarioRepository.CpfExiste(cpfValido);
             var emailUsuarioExiste = await _usuarioRepository.EmailExiste(usuario.Email);
 
+            var usuarioExistenteEDeletado = await _usuarioRepository.CpfJaFoiCadastradoEDeletado(cpfValido);
+
             usuario.Cpf = cpfValido;
 
             if (cpfUsuarioExiste)
@@ -42,6 +44,23 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
 
 
             usuario.SenhaHash = _senhaHash.CriptografarSenha(senha);
+
+            if (usuarioExistenteEDeletado != null)
+            {
+                usuarioExistenteEDeletado.Deletado = false;
+                usuarioExistenteEDeletado.Nome = usuario.Nome;
+                usuarioExistenteEDeletado.Email = usuario.Email;
+                usuarioExistenteEDeletado.Telefone = usuario.Telefone;
+                usuarioExistenteEDeletado.DataDeNascimento = usuario.DataDeNascimento;
+                usuarioExistenteEDeletado.Foto = usuario.Foto;
+                usuarioExistenteEDeletado.SenhaHash = usuario.SenhaHash;
+                usuarioExistenteEDeletado.RedesSociais = usuario.RedesSociais;
+
+                await _usuarioRepository.AtualizarUsuario(usuarioExistenteEDeletado);
+                return Resultado<Usuario>.Ok(usuarioExistenteEDeletado);
+            }
+
+
             usuario.Id = Guid.NewGuid();
 
             foreach(var redeSocial in usuario.RedesSociais)

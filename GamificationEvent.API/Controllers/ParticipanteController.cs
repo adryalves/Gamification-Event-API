@@ -52,7 +52,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarParticipante")]
+        [HttpPut("AtualizarParticipante/{id}")]
         public async Task<IActionResult> AtualizarParticipante([FromRoute] Guid id, [FromBody] ParticipanteUpdateDTO participanteDTO)
         {
             try

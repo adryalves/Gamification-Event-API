@@ -16,5 +16,7 @@ namespace GamificationEvent.Core.Interfaces
         Task<Usuario> GetUsuarioPorId(Guid id);
         Task<bool> DeletarUsuario(Guid id);
         Task<bool> AtualizarUsuario(Usuario usuario);
+        Task<Usuario> CpfJaFoiCadastradoEDeletado(string cpf);
+
     }
 }

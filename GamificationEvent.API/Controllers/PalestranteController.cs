@@ -52,7 +52,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarPalestrante")]
+        [HttpPut("AtualizarPalestrante/{idPalestrante}")]
         public async Task<IActionResult> AtualizarPalestrante([FromRoute]Guid idPalestrante, PalestranteUpdateDTO palestranteDTO )
         {
             try
@@ -76,7 +76,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarPalestrante")]
+        [HttpDelete("DeletarPalestrante/{id}")]
         public async Task<IActionResult> DeletarPalestrante([FromRoute]Guid id)
         {
             try

@@ -101,7 +101,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarUsuario")]
+        [HttpDelete("DeletarUsuario/{id}")]
         public async Task<IActionResult> DeletarUsuarioPorId([FromRoute] Guid id)
         {
             try
@@ -125,7 +125,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarUsuario")]
+        [HttpPut("AtualizarUsuario/{id}")]
         public async Task<IActionResult> AtualizarUsuarioPorId([FromRoute]Guid id, [FromBody] UsuarioUpdateDTO usuarioDTO)
         {
             try

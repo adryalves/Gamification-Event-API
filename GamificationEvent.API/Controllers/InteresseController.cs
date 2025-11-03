@@ -56,7 +56,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarInteresse")]
+        [HttpDelete("DeletarInteresse/{id}")]
         public async Task<IActionResult> DeletarInteresse([FromRoute] Guid id)
         {
             try

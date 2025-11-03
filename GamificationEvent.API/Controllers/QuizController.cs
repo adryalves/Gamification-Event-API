@@ -100,7 +100,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarQuiz")]
+        [HttpDelete("DeletarQuiz/{id}")]
         public async Task<IActionResult> DeletarQuiz([FromRoute]Guid id)
         {
             try
@@ -122,7 +122,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarPergunta")]
+        [HttpDelete("DeletarPergunta/{id}")]
         public async Task<IActionResult> DeletarPergunta([FromRoute] Guid id)
         {
             try
@@ -144,7 +144,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarAlternativa")]
+        [HttpDelete("DeletarAlternativa/{id}")]
         public async Task<IActionResult> DeletarAlternativa([FromRoute] Guid id)
         {
             try
@@ -257,7 +257,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarQuiz")]
+        [HttpPut("AtualizarQuiz/{id}")]
         public async Task<IActionResult> AtualizarQuiz([FromRoute]Guid id, QuizUpdateDTO quizDTO)
         {
             try
@@ -280,7 +280,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarQuizPergunta")]
+        [HttpPut("AtualizarQuizPergunta/{id}")]
         public async Task<IActionResult> AtualizarQuizPergunta([FromRoute]Guid id, QuizPerguntaUpdateDTO perguntaDTO)
         {
             try

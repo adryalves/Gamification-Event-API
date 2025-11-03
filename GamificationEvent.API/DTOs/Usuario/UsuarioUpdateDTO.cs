@@ -10,6 +10,7 @@ namespace GamificationEvent.API.DTOs.Usuario
         public string Nome { get; set; } = null!;
 
         [Required]
+        [EmailAddress]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Formato de e-mail inválido.")]
         public string Email { get; set; } = null!;
  

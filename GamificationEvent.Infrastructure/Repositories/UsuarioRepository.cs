@@ -4,6 +4,7 @@ using CoreUsuario = GamificationEvent.Core.Entidades.Usuario;
 using InfraUsuario = GamificationEvent.Infrastructure.Data.Persistence.Usuario;
 using Microsoft.EntityFrameworkCore;
 using GamificationEvent.Core.Entidades;
+using static QRCoder.PayloadGenerator;
 
 namespace GamificationEvent.Infrastructure.Repositories
 {
@@ -57,6 +58,38 @@ namespace GamificationEvent.Infrastructure.Repositories
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email && !x.Deletado);
             return usuario != null;
         }
+
+        public async Task<CoreUsuario> CpfJaFoiCadastradoEDeletado(string cpf)
+        {
+            var usuario = await _context.Usuarios.Include(u => u.UsuarioRedeSocials).FirstOrDefaultAsync(x => x.Cpf == cpf);
+
+            if (usuario == null) return null;
+
+            return new CoreUsuario {
+
+             
+                 Id = usuario.Id,
+                 Nome = usuario.Nome,
+                 Email = usuario.Email,
+                 Cpf = usuario.Cpf,
+                 SenhaHash = usuario.SenhaHash,
+                 Telefone = usuario.Telefone,
+                 DataDeNascimento = usuario.DataDeNascimento,
+                 Foto = usuario.Foto,
+                 DataHoraCriacao = usuario.DataHoraCriacao,
+                 Deletado = usuario.Deletado,
+                 RedesSociais = usuario.UsuarioRedeSocials
+
+                .Select(redeSocialEF => new Core.Entidades.UsuarioRedeSocial
+                {
+                    Id = redeSocialEF.Id,
+                    Plataforma = redeSocialEF.Plataforma,
+                    Url = redeSocialEF.Url
+                })
+                .ToList()
+             };
+        }
+
 
         public async Task<List<CoreUsuario>> GetUsuarios()
         {
@@ -147,8 +180,9 @@ namespace GamificationEvent.Infrastructure.Repositories
         {
             var usuarioEF = await _context.Usuarios
                .Include(u => u.UsuarioRedeSocials)
-               .FirstOrDefaultAsync(u => u.Id == usuario.Id && u.Deletado == false);
+               .FirstOrDefaultAsync(u => u.Id == usuario.Id); // so n esta checando o deletado por conta da lógica de reativar conta, porém antes de chegar aqui o método de atualizar mesmo checa se é um usuario válido, logo há não ser que seja pra reativar conta, um usuario que tenha o atributo deletado como true não vai chegar aqui pra atualizar
 
+            if (usuarioEF == null) return false;
            
             usuarioEF.Nome = usuario.Nome;
             usuarioEF.Email = usuario.Email;
@@ -157,6 +191,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             usuarioEF.DataDeNascimento = usuario.DataDeNascimento;
             usuarioEF.Foto = usuario.Foto;
 
+            usuarioEF.Deletado = usuarioEF.Deletado; // no geral, eu nao to deixando atualizar esse campo pra manter a logica de deleçao so no metodo de deletar, esse está aqui apenas pra lógica de reativar usuario
           
             _context.UsuarioRedeSocials.RemoveRange(usuarioEF.UsuarioRedeSocials);
             usuarioEF.UsuarioRedeSocials = usuario.RedesSociais.Select(rs => new Data.Persistence.UsuarioRedeSocial

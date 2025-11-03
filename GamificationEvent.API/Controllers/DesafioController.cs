@@ -49,7 +49,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarDesafio")]
+        [HttpPut("AtualizarDesafio/{id}")]
         public async Task<IActionResult> AtualizarDesafio([FromRoute] Guid id, DesafioUpdateDTO desafioDTO)
         {
             try
@@ -72,7 +72,7 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarDesafio")]
+        [HttpDelete("DeletarDesafio/{id}")]
         public async Task<IActionResult> DeletarDesafio([FromRoute] Guid id)
         {
             try
@@ -144,7 +144,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (idParticipante == null || idParticipante == Guid.Empty) return BadRequest("Insira um id válido");
+                if (idParticipante == Guid.Empty) return BadRequest("Insira um id válido");
 
                 var desafioPart = await _getDesafiosParticipantePorIdParticipanteUseCase.GetDesafiosPaticipantePorIdParticipante(idParticipante);
 
