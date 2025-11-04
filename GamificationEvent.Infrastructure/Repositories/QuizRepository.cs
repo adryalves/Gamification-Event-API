@@ -253,9 +253,9 @@ namespace GamificationEvent.Infrastructure.Repositories
             };
         }
 
-        public async Task<CoreAlternativa> GetAlternativaPoId(Guid idAlternativa)
+        public async Task<CoreAlternativa> GetAlternativaPoId(Guid idAlternativa, Guid idQuizPergunta)
         {
-            var alternativaExistente = await _context.QuizAlternativas.FirstOrDefaultAsync(x => x.Id == idAlternativa
+            var alternativaExistente = await _context.QuizAlternativas.FirstOrDefaultAsync(x => x.Id == idAlternativa && x.IdQuizPergunta == idQuizPergunta
             && !x.Deletado && !x.IdQuizPerguntaNavigation.Deletado && !x.IdQuizPerguntaNavigation.IdQuizNavigation.Deletado
             && !x.IdQuizPerguntaNavigation.IdQuizNavigation.IdEventoNavigation.Deletado &&
             (x.IdQuizPerguntaNavigation.IdQuizNavigation.IdSubEvento == null || !x.IdQuizPerguntaNavigation.IdQuizNavigation.IdSubEventoNavigation.Deletado));

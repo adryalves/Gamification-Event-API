@@ -203,7 +203,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         public async Task<bool> PaletaPertenceAEvento(Guid idPaleta)
         {
             return await _context.Eventos
-            .AnyAsync(e => e.IdPaleta == idPaleta);
+            .AnyAsync(e => e.IdPaleta == idPaleta && !e.Deletado);
         }
     }
 }

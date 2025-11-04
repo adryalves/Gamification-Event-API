@@ -10,7 +10,8 @@ namespace GamificationEvent.API.DTOs.Palestrante
         [Required(AllowEmptyStrings = false)]
         public string Nome { get; set; } = null!;
 
- 
+        [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Formato de e-mail inválido.")]
         public string? Email { get; set; }
 
         public string? Telefone { get; set; }

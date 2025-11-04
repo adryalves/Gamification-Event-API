@@ -23,13 +23,14 @@ namespace GamificationEvent.Application.UseCases.QuizParticipanteUseCases
             _participanteRepository = participanteRepository;
         }
 
-        public async Task<Resultado<QuizParticipanteResultadoModel>> GetResultadoPaeticipanteQuiz(Guid idQuiz, Guid idParticipante)
+        public async Task<Resultado<QuizParticipanteResultadoModel>> GetResultadoParticipanteQuiz(Guid idQuiz, Guid idParticipante)
         {
             var quiz = await _quizRepository.GetQuizPorId(idQuiz);
             if (quiz == null) return Resultado<QuizParticipanteResultadoModel>.Falha("Não foi encontrado um Quiz referente a esse Id");
 
             var participante = await _participanteRepository.GetParticipantePorId(idParticipante);
             if (participante == null) return Resultado<QuizParticipanteResultadoModel>.Falha($"Esse id de participante não corresponde a nenhum participante válido");
+
 
             var resultado = await _quizParticipanteRepository.GetResultadoParticipanteQuiz(idQuiz, idParticipante);
             return Resultado<QuizParticipanteResultadoModel>.Ok(resultado);

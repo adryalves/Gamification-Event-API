@@ -22,7 +22,7 @@ namespace GamificationEvent.Core.Interfaces
         Task<bool> DeletarAlternativa(Guid idAlternativa);
         Task<Quiz> GetQuizPorId(Guid id);
         Task<QuizPergunta> GetPerguntaPorId(Guid idPergunta);
-        Task<QuizAlternativa> GetAlternativaPoId(Guid idAlternativa);
+        Task<QuizAlternativa> GetAlternativaPoId(Guid idAlternativa, Guid idQuizPergunta);
 
 
     }

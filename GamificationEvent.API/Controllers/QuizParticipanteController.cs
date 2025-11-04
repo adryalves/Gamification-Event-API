@@ -124,7 +124,7 @@ namespace GamificationEvent.API.Controllers
             {
                 if (idParticipante == Guid.Empty || IdQuiz == Guid.Empty) return BadRequest("Insira Id válido");
 
-                var resultado = await _getResultadoParticipanteQuizUseCase.GetResultadoPaeticipanteQuiz(IdQuiz, idParticipante);
+                var resultado = await _getResultadoParticipanteQuizUseCase.GetResultadoParticipanteQuiz(IdQuiz, idParticipante);
 
                 if (resultado.Valor == null) return NotFound("Não foi encontrado um resultado referente a esse quiz e esse participante");
 

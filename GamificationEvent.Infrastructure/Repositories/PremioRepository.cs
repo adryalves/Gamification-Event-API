@@ -61,7 +61,7 @@ namespace GamificationEvent.Infrastructure.Repositories
 
         public async Task<CorePremio> GetPremioPorid(Guid id)
         {
-            var premioInfra = await _context.Premios.FirstOrDefaultAsync(p => p.Id == id && !p.Deletado);
+            var premioInfra = await _context.Premios.FirstOrDefaultAsync(p => p.Id == id && !p.Deletado && !p.IdEventoNavigation.Deletado);
 
             if (premioInfra != null)
             {
@@ -83,7 +83,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         }
         public async Task<bool> AtualizarPremio(CorePremio premio)
         {
-            var premioInfra = await _context.Premios.FirstOrDefaultAsync(p => p.Id == premio.Id && !p.Deletado);
+            var premioInfra = await _context.Premios.FirstOrDefaultAsync(p => p.Id == premio.Id && !p.Deletado && !p.IdEventoNavigation.Deletado);
 
             premioInfra.IdPatrocinador = premio.IdPatrocinador;
             premioInfra.Nome = premio.Nome;
@@ -97,7 +97,7 @@ namespace GamificationEvent.Infrastructure.Repositories
 
         public async Task<bool> DeletarPremio(Guid id)
         {
-            var premioInfra = await _context.Premios.FirstOrDefaultAsync(p => p.Id == id && !p.Deletado);
+            var premioInfra = await _context.Premios.FirstOrDefaultAsync(p => p.Id == id && !p.Deletado && !p.IdEventoNavigation.Deletado);
 
             if (premioInfra == null) return false;
 

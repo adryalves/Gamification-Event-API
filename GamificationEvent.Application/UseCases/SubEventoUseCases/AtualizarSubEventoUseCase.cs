@@ -35,7 +35,7 @@ namespace GamificationEvent.Application.UseCases.SubEventoUseCases
                 // var palestranteCadastrado = await _subEventoRepository.PalestranteJaEstaNesseSubEvento(subEvento.Id, palestranteSubEvento.IdPalestrante);
                 //tirar duvida com Malu
 
-                if (palestranteValido == null || palestranteValido.IdEvento != subEvento.IdEvento)
+                if (palestranteValido == null || palestranteValido.IdEvento != subEventoExistente.IdEvento)
                 {
                     continue;
                 }

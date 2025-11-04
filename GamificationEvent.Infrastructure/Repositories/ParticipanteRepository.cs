@@ -140,7 +140,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         {
             var participante = await _context.Participantes
                 .Include(p => p.ParticipanteInteresses)
-            .Where(p => p.IdUsuarioNavigation.Cpf == cpf && !p.IdUsuarioNavigation.Deletado)
+            .Where(p => p.IdUsuarioNavigation.Cpf == cpf && !p.IdUsuarioNavigation.Deletado && !p.IdEventoNavigation.Deletado)
                     .FirstOrDefaultAsync();
 
             if (participante != null)

@@ -37,6 +37,9 @@ namespace GamificationEvent.Application.UseCases.QuizParticipanteUseCases
 
             if (participante.Cargo == Cargo.Admin) return Resultado<Guid>.Falha("Um Admin não pode participar do quiz");
 
+            var participanteJaNesseQuiz = await _quizParticipanteRepository.ParticipanteEstaNesseQuiz(quizParticipante.IdParticipante, quizParticipante.IdQuiz);
+            if (participanteJaNesseQuiz) return Resultado<Guid>.Falha("Esse participante já está nesse Quiz");
+
             var cadastroQuizParticipante = await _quizParticipanteRepository.AdicionarQuizParticipante(quizParticipante);
 
             // Foi cadastrado e agr é a questão de gamificação

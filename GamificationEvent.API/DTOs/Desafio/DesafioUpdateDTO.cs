@@ -1,4 +1,5 @@
 ﻿using GamificationEvent.Core.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace GamificationEvent.API.DTOs.Desafio
@@ -14,12 +15,14 @@ namespace GamificationEvent.API.DTOs.Desafio
 
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "A pontuação não pode ter valor 0.")]
+        [DefaultValue(1)]
         public int Pontuacao { get; set; }
 
         public Tipo_Desafio TipoDesafio { get; set; }
 
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "O Quantidade Desafio não pode ter valor 0.")]
+        [DefaultValue(1)]
         public int QuantidadeDesafio { get; set; }
 
         public DateTime? DataHoraInicio { get; set; }

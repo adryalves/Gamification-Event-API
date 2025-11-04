@@ -26,7 +26,7 @@ namespace GamificationEvent.Application.UseCases.DesafioUseCases
             if (evento == null) return Resultado<Guid>.Falha($"O id {desafio.IdEvento} não corresponde a um evento existente");
 
             var desafioExiste = await _desafioRepository.DesafioJaCadastradoNesseEvento(desafio.IdEvento, desafio.TipoDesafio);
-            if (desafioExiste != null) return Resultado<Guid>.Falha($"Um desafio igual a esse já esta cadastrados. O id dele é: {desafio.Id}");
+            if (desafioExiste != null) return Resultado<Guid>.Falha($"Um desafio igual a esse já esta cadastrados. O id dele é: {desafioExiste.Id}");
 
             var resultado = await _desafioRepository.AdicionarDesafio(desafio);
             return Resultado<Guid>.Ok(resultado);

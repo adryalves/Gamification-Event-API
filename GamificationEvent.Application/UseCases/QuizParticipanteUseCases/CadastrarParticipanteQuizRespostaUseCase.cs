@@ -30,8 +30,12 @@ namespace GamificationEvent.Application.UseCases.QuizParticipanteUseCases
             var quizPergunta = await _quizRepository.GetPerguntaPorId(participanteResposta.IdQuizPergunta);
             if (quizPergunta == null) return Resultado<Guid>.Falha($"Esse id pergunta não corresponde a uma pergunta válida");
 
-            var quizAlternativa = await _quizRepository.GetAlternativaPoId(participanteResposta.IdQuizAlternativa);
-            if (quizAlternativa == null) return Resultado<Guid>.Falha($"Esse id alternativa bão corresponde a uma alternativa");
+            var quizAlternativa = await _quizRepository.GetAlternativaPoId(participanteResposta.IdQuizAlternativa,participanteResposta.IdQuizPergunta);
+            if (quizAlternativa == null) return Resultado<Guid>.Falha($"Esse id alternativa não corresponde a uma alternativa válida dessa pergunta");
+
+            var participanteEstaNoQuiz = await _quizParticipanteRepository.ParticipanteEstaNesseQuiz(participanteResposta.IdParticipante, quizPergunta.IdQuiz);
+            if (!participanteEstaNoQuiz) return Resultado<Guid>.Falha("O participante precisa fazer parte do quiz para responder");
+
 
             var resultado = await _quizParticipanteRepository.AdicionarParticipanteQuizResposta(participanteResposta);
             return Resultado<Guid>.Ok(resultado);

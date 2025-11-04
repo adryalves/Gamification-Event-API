@@ -84,6 +84,7 @@ namespace GamificationEvent.Infrastructure.Repositories
 
         public async Task<QuizParticipanteResultadoModel> GetResultadoParticipanteQuiz(Guid idQuiz, Guid idParticipante)
         {
+
             var quiz = await _context.Quizzes
         .Include(q => q.QuizPergunta)
             .ThenInclude(p => p.QuizAlternativas)
@@ -94,6 +95,12 @@ namespace GamificationEvent.Infrastructure.Repositories
 
             if (quiz == null)
                 return null;
+
+        var participanteEstaNesseQuiz = await _context.QuizParticipantes.FirstOrDefaultAsync(x => x.IdParticipante == idParticipante
+            && x.IdQuiz == idQuiz && !x.IdQuizNavigation.Deletado && !x.IdQuizNavigation.IdEventoNavigation.Deletado &&
+            (x.IdQuizNavigation.IdSubEvento == null || !x.IdQuizNavigation.IdSubEventoNavigation.Deletado) && !x.IdParticipanteNavigation.IdUsuarioNavigation.Deletado);
+
+            if (participanteEstaNesseQuiz == null) return null;
 
 
             var perguntasAtivas = quiz.QuizPergunta
@@ -144,7 +151,7 @@ namespace GamificationEvent.Infrastructure.Repositories
         .FirstOrDefaultAsync(q => q.Id == idQuiz && q.Deletado == false && q.IdEventoNavigation.Deletado == false);
 
             if (quizValido == null)
-                throw new Exception("Quiz não encontrado ou inválido.");
+                return null;
 
             var participantes = _context.QuizParticipantes
                 .Include(qp => qp.IdParticipanteNavigation)
@@ -227,5 +234,15 @@ namespace GamificationEvent.Infrastructure.Repositories
                 Participantes = top
             };
         }
+
+        public async Task<bool> ParticipanteEstaNesseQuiz (Guid idParticipante, Guid idQuiz)
+        {
+            var existe = await _context.QuizParticipantes.FirstOrDefaultAsync(x => x.IdParticipante == idParticipante
+            && x.IdQuiz == idQuiz && !x.IdQuizNavigation.Deletado && !x.IdQuizNavigation.IdEventoNavigation.Deletado &&
+            (x.IdQuizNavigation.IdSubEvento == null || !x.IdQuizNavigation.IdSubEventoNavigation.Deletado) && !x.IdParticipanteNavigation.IdUsuarioNavigation.Deletado);
+
+            return existe != null;
+        }
+
     }
 }
