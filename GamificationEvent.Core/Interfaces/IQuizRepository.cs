@@ -23,6 +23,7 @@ namespace GamificationEvent.Core.Interfaces
         Task<Quiz> GetQuizPorId(Guid id);
         Task<QuizPergunta> GetPerguntaPorId(Guid idPergunta);
         Task<QuizAlternativa> GetAlternativaPoId(Guid idAlternativa, Guid idQuizPergunta);
+        Task<bool> JaExisteUmaAlternativaCorretaParaEssaQuestao(Guid idPergunta);
 
 
     }

@@ -23,16 +23,24 @@ namespace GamificationEvent.Application.UseCases.QuizUseCases
             var pergunta = await _quizRepository.GetPerguntaPorId(idPergunta);
             if (pergunta == null) return Resultado<List<QuizAlternativa>>.Falha("Não foi encontrado uma pergunta com esse Id");
 
+
             List<QuizAlternativa> alternativasValidas = new List<QuizAlternativa>();
+
+            var alternativasVerdadeiras = 0;
+            var jaExisteUmaAlternativaCorreta = await _quizRepository.JaExisteUmaAlternativaCorretaParaEssaQuestao(idPergunta);
+            if (jaExisteUmaAlternativaCorreta) alternativasVerdadeiras = 1;
+      
 
             foreach (var alternativa in quizAlternativas)
             {
-                //testar se mandando sem nenhum valor de deletado ele vai falso
                 if (String.IsNullOrEmpty(alternativa.Resposta))
                     continue;
 
+                if (alternativa.ECorreta) alternativasVerdadeiras++;
                 alternativasValidas.Add(alternativa);
             }
+            if (alternativasVerdadeiras > 1) return Resultado<List<QuizAlternativa>>.Falha("Uma pergunta só pode ter uma alternativa Correta");
+
             var resultado = await _quizRepository.AdicionarAlternativas(alternativasValidas);
             return Resultado<List<QuizAlternativa>>.Ok(resultado);
         }

@@ -45,6 +45,9 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
 
             usuario.SenhaHash = _senhaHash.CriptografarSenha(senha);
 
+            string telefoneValido = Regex.Replace(usuario.Telefone ?? string.Empty, @"[\s\-\(\)]", "");
+            usuario.Telefone = telefoneValido;
+
             if (usuarioExistenteEDeletado != null)
             {
                 usuarioExistenteEDeletado.Deletado = false;

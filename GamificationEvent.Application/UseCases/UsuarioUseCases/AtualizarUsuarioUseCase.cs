@@ -37,6 +37,9 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             if(cpfExiste && usuarioExistente.Cpf != cpfValido)
                 return Resultado<bool>.Falha("Esse cpf já existe para outro usuário");
 
+            string telefoneValido = Regex.Replace(usuario.Telefone ?? string.Empty, @"[\s\-\(\)]", "");
+            usuario.Telefone = telefoneValido;
+
             usuario.Cpf = cpfValido;
             var resultado = await _usuarioRepository.AtualizarUsuario(usuario);
             return Resultado<bool>.Ok(resultado);

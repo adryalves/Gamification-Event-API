@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Validações;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
@@ -23,7 +24,11 @@ namespace GamificationEvent.API.DTOs.Usuario
         [Required(AllowEmptyStrings = false)]
         public string Senha { get; set; } = null!;
 
+        [RegularExpression(@"^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$",
+ErrorMessage = "O telefone deve estar no formato (XX) XXXXX-XXXX ou XX XXXX-XXXX.")]
+        [DefaultValue("(77) 98765-4321")]
         public string? Telefone { get; set; }
+
         public DateOnly? DataDeNascimento { get; set; }
         public string? Foto { get; set; }
 

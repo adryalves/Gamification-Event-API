@@ -43,10 +43,6 @@ namespace GamificationEvent.API.Controllers
                 {
                     return BadRequest("A cor deve ter um valor válido");
                 }
-                if (corDTO.HexCodigo.Length != 7)
-                {
-                    return BadRequest("A cor deve ter um valor válido, ou seja com 7 caracteres");
-                }
 
                 var cor = corDTO.ConverterCorCore();
                 var corCadastrada = await _cadastrarCorUseCase.CadastrarCor(cor);

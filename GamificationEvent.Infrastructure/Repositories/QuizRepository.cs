@@ -272,5 +272,14 @@ namespace GamificationEvent.Infrastructure.Repositories
             };
         }
 
+        public async Task<bool> JaExisteUmaAlternativaCorretaParaEssaQuestao(Guid idPergunta)
+        {
+            var alternativaCorreta = await _context.QuizAlternativas.Where(x => x.IdQuizPergunta == idPergunta && x.ECorreta
+            && !x.Deletado && !x.IdQuizPerguntaNavigation.Deletado && !x.IdQuizPerguntaNavigation.IdQuizNavigation.Deletado
+            && !x.IdQuizPerguntaNavigation.IdQuizNavigation.IdEventoNavigation.Deletado).AnyAsync();
+
+            return alternativaCorreta;
+        }
+
     }
 }
