@@ -20,6 +20,9 @@ namespace GamificationEvent.Application.UseCases.QuizUseCases
 
         public async Task<Resultado<bool>> AtualizarQuizPergunta(Guid id, QuizPergunta quizPergunta)
         {
+            var quizPossuiresposta = await _quizRepository.QuizPossuiRespostas(id);
+            if (quizPossuiresposta) return Resultado<bool>.Falha("Não é possível atualizar uma pergunta quando um quiz já possui resppsta, delete as resposta do quiz para prosseguir");
+
             var resultado = await _quizRepository.AtualizarPergunta(id, quizPergunta);
 
             if (!resultado) return Resultado<bool>.Falha("Não foi encontrado uma pergunta com esse id");

@@ -70,7 +70,7 @@ namespace GamificationEvent.API.Mappings
                     IdParticipante = p.IdParticipante,
                     Nome = p.Nome,
                     QuantidadeAcertos = p.QuantidadeAcertos,
-                    TempoTotalRespostas = p.TempoTotalRespostas
+                    Pontuacao = p.Pontuacao
                 }).ToList()
             };
         }

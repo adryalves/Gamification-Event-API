@@ -11,6 +11,9 @@ using InfraParticipanteQuizResposta = GamificationEvent.Infrastructure.Data.Pers
 using Microsoft.EntityFrameworkCore;
 using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Core.Models;
+using GamificationEvent.Core.Entidades;
+using SkiaSharp;
+
 
 namespace GamificationEvent.Infrastructure.Repositories
 {
@@ -147,85 +150,105 @@ namespace GamificationEvent.Infrastructure.Repositories
         public async Task<QuizRankingModel> GetQuizRanking(Guid idQuiz, Guid? idParticipante = null, int take = 10)
         {
             var quizValido = await _context.Quizzes
-        .Include(q => q.IdEventoNavigation)
-        .FirstOrDefaultAsync(q => q.Id == idQuiz && q.Deletado == false && q.IdEventoNavigation.Deletado == false);
+          .Include(q => q.IdEventoNavigation)
+          .FirstOrDefaultAsync(q => q.Id == idQuiz && !q.Deletado && !q.IdEventoNavigation.Deletado);
 
             if (quizValido == null)
                 return null;
 
+            
             var participantes = _context.QuizParticipantes
                 .Include(qp => qp.IdParticipanteNavigation)
                     .ThenInclude(p => p.IdUsuarioNavigation)
-                .Include(qp => qp.IdParticipanteNavigation)
-                    .ThenInclude(p => p.IdEventoNavigation)
                 .Where(qp =>
                     qp.IdQuiz == idQuiz &&
-                    qp.IdParticipanteNavigation.IdUsuarioNavigation.Deletado == false &&
-                    qp.IdParticipanteNavigation.IdEventoNavigation.Deletado == false)
+                    !qp.IdParticipanteNavigation.IdUsuarioNavigation.Deletado)
                 .Select(qp => new
                 {
                     qp.IdParticipante,
                     Nome = qp.IdParticipanteNavigation.IdUsuarioNavigation.Nome
                 });
 
-            var respostas = _context.ParticipanteQuizResposta
+            
+            var respostas = await _context.ParticipanteQuizResposta
                 .Include(r => r.IdQuizPerguntaNavigation)
                 .Include(r => r.IdQuizAlternativaNavigation)
                 .Where(r =>
                     r.IdQuizPerguntaNavigation.IdQuiz == idQuiz &&
-                    r.IdQuizPerguntaNavigation.Deletado == false &&
-                    r.IdQuizAlternativaNavigation.Deletado == false)
+                    !r.IdQuizPerguntaNavigation.Deletado &&
+                    !r.IdQuizAlternativaNavigation.Deletado)
                 .Select(r => new
                 {
                     r.IdParticipante,
+                    r.IdQuizPergunta,
                     r.HoraResposta,
                     r.IdQuizAlternativaNavigation.ECorreta
-                });
+                })
+                .ToListAsync();
 
-            var rankingBase = await participantes
-                .GroupJoin(
-                    respostas,
-                    p => p.IdParticipante,
-                    r => r.IdParticipante,
-                    (p, respostas) => new QuizRankingParticipanteModel
+
+
+            var rankingBase = participantes
+                .AsEnumerable()
+                .Select(p =>
+                {
+                    var respostasDoParticipante = respostas
+                        .Where(r => r.IdParticipante == p.IdParticipante)
+                        .ToList();
+
+                    double pontuacao = 0.000;
+                    int acertos = 0;
+
+                    foreach (var r in respostasDoParticipante)
+                    {
+                        double segundos = (r.HoraResposta.Hour * 3600 + r.HoraResposta.Minute * 60 + r.HoraResposta.Second);
+
+                        if (segundos == 0)
+                            segundos = 1; 
+
+                        
+                        if (r.ECorreta)
+                        {
+                            pontuacao += 100000.0 / segundos; 
+                            acertos++;
+                        }
+                        else
+                        {
+                            pontuacao += 10.0 / segundos;
+
+                        }
+                    }
+
+                    return new QuizRankingParticipanteModel
                     {
                         IdParticipante = p.IdParticipante,
                         Nome = p.Nome,
-                        QuantidadeAcertos = respostas.Count(x => x.ECorreta),
-                        TempoTotalRespostas = respostas.Any()
-    ? (
-        respostas.Count() == 1
-            ? respostas.Min(x => x.HoraResposta.Hour * 3600 + x.HoraResposta.Minute * 60 + x.HoraResposta.Second)
-            : (respostas.Max(x => x.HoraResposta.Hour * 3600 + x.HoraResposta.Minute * 60 + x.HoraResposta.Second)
-                - respostas.Min(x => x.HoraResposta.Hour * 3600 + x.HoraResposta.Minute * 60 + x.HoraResposta.Second))
-      )
-    : 0
-                    })
-                .ToListAsync();
-
-            var rankingOrdenado = rankingBase
-                .OrderByDescending(r => r.QuantidadeAcertos)
-                .ThenBy(r => r.TempoTotalRespostas)
-                .ThenBy(r =>
-                    r.QuantidadeAcertos == 0 && r.TempoTotalRespostas == 0
-                        ? r.Nome
-                        : null)
+                        QuantidadeAcertos = acertos,
+                        Pontuacao = Math.Round(pontuacao * 100, 2)
+                    };
+                })
                 .ToList();
 
-            for (int i = 0; i < rankingOrdenado.Count; i++)
-            {
-                rankingOrdenado[i].Posicao = i + 1;
-            }
+            
+            var rankingOrdenado = rankingBase
+                .OrderByDescending(r => r.Pontuacao)
+                .ThenByDescending(r => r.QuantidadeAcertos)
+                .ThenBy(r => r.Nome)
+                .ToList();
 
+           
+            for (int i = 0; i < rankingOrdenado.Count; i++)
+                rankingOrdenado[i].Posicao = i + 1;
+
+            
             var top = rankingOrdenado.Take(take).ToList();
 
+            
             if (idParticipante.HasValue)
             {
                 var participante = rankingOrdenado.FirstOrDefault(p => p.IdParticipante == idParticipante.Value);
                 if (participante != null && !top.Any(p => p.IdParticipante == participante.IdParticipante))
-                {
                     top.Add(participante);
-                }
             }
 
             return new QuizRankingModel
@@ -244,5 +267,27 @@ namespace GamificationEvent.Infrastructure.Repositories
             return existe != null;
         }
 
+        public async Task<bool> ParticipanteJaRespondeuEssaPergunta(Guid idQuizPergunta, Guid idParticipante)
+        {
+            var existe = await _context.ParticipanteQuizResposta.FirstOrDefaultAsync(x => x.IdQuizPergunta == idQuizPergunta
+            && x.IdParticipante == idParticipante);
+
+            return existe != null;
+        }
+        public async Task<bool> DeletarTodasAsRespostasDoQuiz(Guid idQuiz)
+        {
+
+            var respostas = await _context.ParticipanteQuizResposta
+        .Where(r => r.IdQuizPerguntaNavigation.IdQuiz == idQuiz && !r.IdQuizPerguntaNavigation.IdQuizNavigation.Deletado)
+        .ToListAsync();
+
+            if (!respostas.Any())
+                return false;
+
+            _context.ParticipanteQuizResposta.RemoveRange(respostas);
+            await _context.SaveChangesAsync();
+            return true;
+
+        }
     }
 }

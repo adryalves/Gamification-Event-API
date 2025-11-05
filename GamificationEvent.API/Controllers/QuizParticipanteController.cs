@@ -3,6 +3,7 @@ using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.QuizParticipanteUseCases;
 using GamificationEvent.Core.Resultados;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Printing;
 
 namespace GamificationEvent.API.Controllers
 {
@@ -16,8 +17,9 @@ namespace GamificationEvent.API.Controllers
         private readonly GetQuizzesPorIdParticipanteUseCase _getQuizzesPorIdParticipanteUseCase;
         private readonly GetResultadoParticipanteQuizUseCase _getResultadoParticipanteQuizUseCase;
         private readonly GetQuizRankingUseCase _getQuizRankingUseCase;
+        private readonly DeletarTodasAsRespostasDoQuizUseCase _deletarTodasAsRespostasDoQuizUseCase;
 
-        public QuizParticipanteController(CadastrarQuizParticipanteUseCase cadastrarQuizParticipanteUseCase, CadastrarParticipanteQuizRespostaUseCase cadastrarParticipanteQuizRespostaUseCase, GetParticipantesQuizPorIdQuizUseCase getParticipantesQuizPorIdQuizUseCase, GetQuizzesPorIdParticipanteUseCase getQuizzesPorIdParticipanteUseCase, GetResultadoParticipanteQuizUseCase getResultadoParticipanteQuizUseCase, GetQuizRankingUseCase getQuizRankingUseCase)
+        public QuizParticipanteController(CadastrarQuizParticipanteUseCase cadastrarQuizParticipanteUseCase, CadastrarParticipanteQuizRespostaUseCase cadastrarParticipanteQuizRespostaUseCase, GetParticipantesQuizPorIdQuizUseCase getParticipantesQuizPorIdQuizUseCase, GetQuizzesPorIdParticipanteUseCase getQuizzesPorIdParticipanteUseCase, GetResultadoParticipanteQuizUseCase getResultadoParticipanteQuizUseCase, GetQuizRankingUseCase getQuizRankingUseCase, DeletarTodasAsRespostasDoQuizUseCase deletarTodasAsRespostasDoQuizUseCase)
         {
             _cadastrarQuizParticipanteUseCase = cadastrarQuizParticipanteUseCase;
             _cadastrarParticipanteQuizRespostaUseCase = cadastrarParticipanteQuizRespostaUseCase;
@@ -25,6 +27,7 @@ namespace GamificationEvent.API.Controllers
             _getQuizzesPorIdParticipanteUseCase = getQuizzesPorIdParticipanteUseCase;
             _getResultadoParticipanteQuizUseCase = getResultadoParticipanteQuizUseCase;
             _getQuizRankingUseCase = getQuizRankingUseCase;
+            _deletarTodasAsRespostasDoQuizUseCase = deletarTodasAsRespostasDoQuizUseCase;
         }
 
         [HttpPost("CadastrarParticipanteQuizResposta")]
@@ -166,6 +169,32 @@ namespace GamificationEvent.API.Controllers
                 return BadRequest(new { erro = ex.Message });
             }
         }
+
+        [HttpDelete("DeletarTodasAsRespostaDoQuiz/{idQuiz}")]
+        public async Task<IActionResult> DeletarTodasAsRespostaDoQuizPorIdQuiz([FromRoute] Guid idQuiz)
+        {
+            try
+            {
+                if(idQuiz == Guid.Empty) return BadRequest("Insira um id válido");
+
+                var resultado = await _deletarTodasAsRespostasDoQuizUseCase.DeletarTodasAsRespostaDoQuiz(idQuiz);
+
+                if (resultado.Sucesso)
+                {
+                    if (resultado.Valor) return Ok("Respostas deletadas");
+
+                    return Ok("Não foram encontradas respostas");
+                }
+
+                return BadRequest(new { Erro = resultado.MensagemDeErro });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
         }
-    }
+
+        }
+        }
+    
 

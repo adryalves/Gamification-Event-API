@@ -18,7 +18,7 @@ namespace GamificationEvent.Core.Models
         public Guid IdParticipante { get; set; }
         public string Nome { get; set; } = null!;
         public int QuantidadeAcertos { get; set; }
-        public double TempoTotalRespostas { get; set; }
+        public double Pontuacao { get; set; }
         public int Posicao { get; set; }
     }
 }

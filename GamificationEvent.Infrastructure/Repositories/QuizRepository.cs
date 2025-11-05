@@ -253,7 +253,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             };
         }
 
-        public async Task<CoreAlternativa> GetAlternativaPoId(Guid idAlternativa, Guid idQuizPergunta)
+        public async Task<CoreAlternativa> GetAlternativaQuestãoPorId(Guid idAlternativa, Guid idQuizPergunta)
         {
             var alternativaExistente = await _context.QuizAlternativas.FirstOrDefaultAsync(x => x.Id == idAlternativa && x.IdQuizPergunta == idQuizPergunta
             && !x.Deletado && !x.IdQuizPerguntaNavigation.Deletado && !x.IdQuizPerguntaNavigation.IdQuizNavigation.Deletado
@@ -279,6 +279,37 @@ namespace GamificationEvent.Infrastructure.Repositories
             && !x.IdQuizPerguntaNavigation.IdQuizNavigation.IdEventoNavigation.Deletado).AnyAsync();
 
             return alternativaCorreta;
+        }
+
+        public async Task<bool> QuizPossuiRespostas(Guid idPergunta)
+        {
+            var idQuiz = await _context.QuizPergunta
+            .Where(p => p.Id == idPergunta && !p.Deletado && !p.IdQuizNavigation.Deletado)
+            .Select(p => p.IdQuiz)
+            .FirstOrDefaultAsync();
+
+            if (idQuiz == Guid.Empty)
+                return false;
+
+            return await _context.ParticipanteQuizResposta
+       .AnyAsync(r => r.IdQuizPerguntaNavigation.IdQuiz == idQuiz && !r.IdQuizPerguntaNavigation.Deletado);
+        }
+
+        public async Task<CoreAlternativa> GetAlternativaPorId(Guid id)
+        {
+            var alternativa = await _context.QuizAlternativas.FirstOrDefaultAsync(x => x.Id == id && !x.Deletado
+            && !x.IdQuizPerguntaNavigation.Deletado && !x.IdQuizPerguntaNavigation.IdQuizNavigation.Deletado);
+
+            if (alternativa == null) return null;
+
+            return new CoreAlternativa
+            {
+                Id = alternativa.Id,
+                IdQuizPergunta = alternativa.IdQuizPergunta,
+                Resposta = alternativa.Resposta,
+                ECorreta = alternativa.ECorreta,
+                Deletado = alternativa.Deletado
+            };
         }
 
     }

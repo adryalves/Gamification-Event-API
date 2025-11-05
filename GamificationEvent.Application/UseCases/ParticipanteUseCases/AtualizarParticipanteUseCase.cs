@@ -29,7 +29,7 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
             foreach (var interesse in participante.ParticipanteInteresses)
             {
                 var interesseExiste = await _interesseRepository.GetInteressePorId(interesse.IdInteresse);
-                if (interesseExiste != null)
+                if (interesseExiste != null && !participanteInteresseValidos.Any(i => i.IdInteresse == interesse.IdInteresse))
                 {
                     interesse.IdParticipante = participante.Id;
                     participanteInteresseValidos.Add(interesse);

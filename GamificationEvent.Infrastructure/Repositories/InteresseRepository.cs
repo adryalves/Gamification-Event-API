@@ -103,6 +103,17 @@ namespace GamificationEvent.Infrastructure.Repositories
             };
         }
 
+        public async Task<bool> ParticipanteJaPossuiEsseInteresse(Guid idInteresse, Guid idParticipante)
+        {
+            var existe = await _context.ParticipanteInteresses.FirstOrDefaultAsync(x => x.IdInteresse == idInteresse
+            && x.IdParticipante == idParticipante);
+
+            return existe != null;
+        }
+        
+
+        
+
     }
 }
 

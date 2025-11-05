@@ -170,6 +170,7 @@ builder.Services.AddScoped<GetParticipantesQuizPorIdQuizUseCase>();
 builder.Services.AddScoped<GetQuizzesPorIdParticipanteUseCase>();
 builder.Services.AddScoped<GetResultadoParticipanteQuizUseCase>();
 builder.Services.AddScoped<GetQuizRankingUseCase>();
+builder.Services.AddScoped<DeletarTodasAsRespostasDoQuizUseCase>();
 
 
 

@@ -13,6 +13,8 @@ namespace GamificationEvent.Core.Interfaces
         Task<QuizParticipanteResultadoModel> GetResultadoParticipanteQuiz(Guid idQuiz, Guid idParticipante);
         Task<QuizRankingModel> GetQuizRanking(Guid idQuiz, Guid? idParticipante = null, int take = 10);
         Task<bool> ParticipanteEstaNesseQuiz(Guid idParticipante, Guid idQuiz);
+        Task<bool> ParticipanteJaRespondeuEssaPergunta(Guid idQuizPergunta, Guid idParticipante);
+        Task<bool> DeletarTodasAsRespostasDoQuiz(Guid idQuiz);
 
 
 
