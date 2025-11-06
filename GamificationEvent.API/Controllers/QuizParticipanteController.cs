@@ -2,6 +2,7 @@
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.QuizParticipanteUseCases;
 using GamificationEvent.Core.Resultados;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Printing;
 
@@ -9,6 +10,7 @@ namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class QuizParticipanteController : ControllerBase
     {
         private readonly CadastrarQuizParticipanteUseCase _cadastrarQuizParticipanteUseCase;

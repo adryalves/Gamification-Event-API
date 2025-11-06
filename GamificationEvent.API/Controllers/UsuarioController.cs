@@ -4,6 +4,7 @@ using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Resultados;
 using GamificationEvent.Infrastructure.Data.Persistence;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 
@@ -11,6 +12,7 @@ namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+   
     public class UsuarioController : ControllerBase
     {
         private readonly CadastrarUsuarioUseCase _cadastrarUsuarioUseCase;
@@ -18,14 +20,16 @@ namespace GamificationEvent.API.Controllers
         private readonly GetUsuarioPorIdUseCase _getUsuarioPorIdUseCase;
         private readonly DeletarUsuarioUseCase _deletarUsuarioUseCase;
         private readonly AtualizarUsuarioUseCase _atualizarUsuarioUseCase;
+        private readonly UsuarioLoginUseCase _usuarioLoginUseCase;
 
-        public UsuarioController(CadastrarUsuarioUseCase cadastrarUsuarioUseCase, GetUsuariosUseCase getUsuariosUseCase, GetUsuarioPorIdUseCase getUsuarioPorIdUseCase, DeletarUsuarioUseCase deletarUsuarioUseCase, AtualizarUsuarioUseCase atualizarUsuarioUseCase)
+        public UsuarioController(CadastrarUsuarioUseCase cadastrarUsuarioUseCase, GetUsuariosUseCase getUsuariosUseCase, GetUsuarioPorIdUseCase getUsuarioPorIdUseCase, DeletarUsuarioUseCase deletarUsuarioUseCase, AtualizarUsuarioUseCase atualizarUsuarioUseCase, UsuarioLoginUseCase usuarioLoginUseCase)
         {
             _cadastrarUsuarioUseCase = cadastrarUsuarioUseCase;
             _getUsuariosUseCase = getUsuariosUseCase;
             _getUsuarioPorIdUseCase = getUsuarioPorIdUseCase;
             _deletarUsuarioUseCase = deletarUsuarioUseCase;
             _atualizarUsuarioUseCase = atualizarUsuarioUseCase;
+            _usuarioLoginUseCase = usuarioLoginUseCase;
         }
 
         [HttpPost("CadastrarUsuario")]
@@ -36,7 +40,13 @@ namespace GamificationEvent.API.Controllers
                 var usuario = usuarioDTO.ConverterUsuarioCore();
                 var novoUsuario = await _cadastrarUsuarioUseCase.CadastrarUsuario(usuario, usuarioDTO.Senha);
 
-                if(novoUsuario.Sucesso) return Ok(novoUsuario.Valor.Id);
+
+                if (novoUsuario.Sucesso)
+                {
+                    var token = new UsuarioTokenResponseDTO { Token = novoUsuario.Valor.Token };
+                    return Ok(token);
+                }
+               
 
                 return BadRequest(new { Erro = novoUsuario.MensagemDeErro });
             }
@@ -46,7 +56,36 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
+        [HttpPost("LoginUsuario")]
+        public async Task<IActionResult> LoginUsuario(UsuarioLoginRequestDTO usuarioLoginDTO)
+        {
+            try
+            {
+                var usuarioLogin = usuarioLoginDTO.ConverterLoginParaCore();
+
+                var login = await _usuarioLoginUseCase.LoginUsario(usuarioLogin);
+
+                if (login.Sucesso)
+                {
+                    var token = new UsuarioTokenResponseDTO { Token = login.Valor.Token };
+                    return Ok(token);
+                }
+
+                if (login.MensagemDeErro!.Contains("inválido"))
+                    return Unauthorized(new { Erro = login.MensagemDeErro });
+
+
+                return BadRequest(new { Erro = login.MensagemDeErro });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
+        }
+
+
         [HttpGet("GetUsuarios")]
+        [Authorize]
         public async Task<IActionResult> GetUsuarios()
         {
             try
@@ -76,6 +115,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetUsuarioPorId")]
+        [Authorize]
         public async Task<IActionResult> GetUsuarioPorId([FromQuery] Guid id)
         {
             try
@@ -102,6 +142,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpDelete("DeletarUsuario/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletarUsuarioPorId([FromRoute] Guid id)
         {
             try
@@ -126,6 +167,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpPut("AtualizarUsuario/{id}")]
+        [Authorize]
         public async Task<IActionResult> AtualizarUsuarioPorId([FromRoute]Guid id, [FromBody] UsuarioUpdateDTO usuarioDTO)
         {
             try

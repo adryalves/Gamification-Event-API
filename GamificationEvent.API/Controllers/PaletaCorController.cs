@@ -3,12 +3,14 @@ using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PaletaCorController : ControllerBase
     {
         private readonly AtualizarPaletaUseCase _atualizarPaletaUseCase;

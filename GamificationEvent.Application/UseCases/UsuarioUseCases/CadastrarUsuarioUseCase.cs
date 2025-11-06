@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GamificationEvent.Core.Resultados;
 using System.Text.RegularExpressions;
+using GamificationEvent.Core.Models;
 
 namespace GamificationEvent.Application.UseCases.UsuarioUseCases
 {
@@ -15,14 +16,16 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
     {
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly ISenhaHash _senhaHash;
+        private readonly IAuthenticate _authenticate;
 
-        public CadastrarUsuarioUseCase(IUsuarioRepository usuarioRepository, ISenhaHash senhaHash)
+        public CadastrarUsuarioUseCase(IUsuarioRepository usuarioRepository, ISenhaHash senhaHash, IAuthenticate authenticate)
         {
             _usuarioRepository = usuarioRepository;
             _senhaHash = senhaHash;
+            _authenticate = authenticate;
         }
 
-        public async Task<Resultado<Usuario>> CadastrarUsuario(Usuario usuario, string senha)
+        public async Task<Resultado<UsuarioTokenModel>> CadastrarUsuario(Usuario usuario, string senha)
         {
 
             string padraoRegex = @"\D"; 
@@ -37,10 +40,10 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             usuario.Cpf = cpfValido;
 
             if (cpfUsuarioExiste)
-                return Resultado<Usuario>.Falha("CPF já cadastrados");
+                return Resultado<UsuarioTokenModel>.Falha("CPF já cadastrado");
 
             if (emailUsuarioExiste)
-                return Resultado<Usuario>.Falha("Email já cadastrado");
+                return Resultado<UsuarioTokenModel>.Falha("Email já cadastrado");
 
 
             usuario.SenhaHash = _senhaHash.CriptografarSenha(senha);
@@ -59,10 +62,18 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
                 usuarioExistenteEDeletado.SenhaHash = usuario.SenhaHash;
                 usuarioExistenteEDeletado.RedesSociais = usuario.RedesSociais;
 
-                await _usuarioRepository.AtualizarUsuario(usuarioExistenteEDeletado);
-                return Resultado<Usuario>.Ok(usuarioExistenteEDeletado);
+                var atualizacao =  _usuarioRepository.AtualizarUsuario(usuarioExistenteEDeletado);
+                if(atualizacao != null)
+                {
+                    var token = _authenticate.GenerateToken(usuario.Id, usuario.Email);
+                    return Resultado<UsuarioTokenModel>.Ok(new UsuarioTokenModel { Token = token});
+                }
+                else
+                {
+                    return Resultado<UsuarioTokenModel>.Falha("Algo deu errado no cadastro de usuário");
+                }
+              
             }
-
 
             usuario.Id = Guid.NewGuid();
 
@@ -73,8 +84,13 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             }
 
             var resultado = await _usuarioRepository.AdicionarUsuario(usuario);
-            return Resultado<Usuario>.Ok(resultado);
+            if (resultado != null)
+            {
+                var token = _authenticate.GenerateToken(usuario.Id, usuario.Email);
+                return Resultado<UsuarioTokenModel>.Ok(new UsuarioTokenModel { Token = token });
+            }
 
+            return Resultado<UsuarioTokenModel>.Falha("Algo deu errado no cadastro de usuário");
 
         }
     }

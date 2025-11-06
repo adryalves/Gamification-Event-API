@@ -1,12 +1,15 @@
 ﻿using GamificationEvent.API.DTOs.Participante;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.ParticipanteUseCases;
+using GamificationEvent.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ParticipanteController : ControllerBase
     {
         private readonly AtualizarParticipanteUseCase _atualizarParticipanteUseCase;
@@ -14,14 +17,16 @@ namespace GamificationEvent.API.Controllers
         private readonly GetParticipantePorIdUseCase _getParticipantePorIdUseCase;
         private readonly GetParticipantesPorIdEventoUseCase _getParticipantesPorIdEventoUseCase;
         private readonly GetParticipantePorCpfUseCase _getParticipantePorCpfUseCase;
+        private readonly IValidaçãoPermissões _validaçãoPermissões;
 
-        public ParticipanteController(AtualizarParticipanteUseCase atualizarParticipanteUseCase, CadastrarParticipanteUseCase cadastrarParticipanteUseCase, GetParticipantePorIdUseCase getParticipantePorIdUseCase, GetParticipantesPorIdEventoUseCase getParticipantesPorIdEventoUseCase, GetParticipantePorCpfUseCase getParticipantePorCpfUseCase)
+        public ParticipanteController(AtualizarParticipanteUseCase atualizarParticipanteUseCase, CadastrarParticipanteUseCase cadastrarParticipanteUseCase, GetParticipantePorIdUseCase getParticipantePorIdUseCase, GetParticipantesPorIdEventoUseCase getParticipantesPorIdEventoUseCase, GetParticipantePorCpfUseCase getParticipantePorCpfUseCase, IValidaçãoPermissões validaçãoPermissões)
         {
             _atualizarParticipanteUseCase = atualizarParticipanteUseCase;
             _cadastrarParticipanteUseCase = cadastrarParticipanteUseCase;
             _getParticipantePorIdUseCase = getParticipantePorIdUseCase;
             _getParticipantesPorIdEventoUseCase = getParticipantesPorIdEventoUseCase;
             _getParticipantePorCpfUseCase = getParticipantePorCpfUseCase;
+            _validaçãoPermissões = validaçãoPermissões;
         }
         [HttpPost("CadastrarParticipante")]
         public async Task<IActionResult> CadastrarParticipante(ParticipanteRequestDTO participanteDTO)
@@ -61,6 +66,21 @@ namespace GamificationEvent.API.Controllers
 
                 var participante = participanteDTO.ConverterUpdateParCore();
                 participante.Id = id;
+
+                //Como é possivel que um admin atualize o cargo de outro participante tem-se essa lógica
+
+                var participanteExistente = await _getParticipantePorIdUseCase.GetParticipantePorId(id);
+                if (participanteExistente.Valor == null) return NotFound();
+
+                if ((participante.PrimeiroParticipante == true && participanteExistente.Valor.PrimeiroParticipante == false) || (participanteExistente.Valor.Cargo == Core.Enums.Cargo.Membro && participante.Cargo == Core.Enums.Cargo.Admin))
+                {
+                    // Estamos usando o usuario/participante que fez a requisição e nao o participante que esta sendo atualizado. Apenas estamos usando o memso id evento
+                    var permissao = await _validaçãoPermissões.ParticipanteEhAdmin(User, participanteExistente.Valor.IdEvento);
+                    if (!permissao) return StatusCode(StatusCodes.Status403Forbidden, new
+                    {
+                        message = "Essa ação é restrita para admins"
+                    });
+                }
 
                 var resultado = await _atualizarParticipanteUseCase.AtualizarParticipante(participante);
         

@@ -2,6 +2,7 @@
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.InscritoUseCases;
 using GamificationEvent.Core.Resultados;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
@@ -9,6 +10,7 @@ namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class IncritoController : ControllerBase
     {
         private readonly CadastrarInscritosUseCase _cadastrarInscritosUseCase;

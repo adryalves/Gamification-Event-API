@@ -3,6 +3,7 @@ using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Resultados;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
@@ -10,6 +11,7 @@ namespace GamificationEvent.API.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EventoController : ControllerBase
     {
         private readonly AtualizarEventoUseCase _atualizarEventoUseCase;

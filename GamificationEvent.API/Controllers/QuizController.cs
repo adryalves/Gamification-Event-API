@@ -1,12 +1,14 @@
 ﻿using GamificationEvent.API.DTOs.Quiz;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.QuizUseCases;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] 
+    [Route("api/[controller]")]
+    [Authorize]
     public class QuizController : ControllerBase
     {
         private readonly AdicionarAlternativasQuizUseCase _adicionarAlternativasQuizUseCase;

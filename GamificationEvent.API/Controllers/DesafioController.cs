@@ -3,12 +3,14 @@ using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.DesafioUseCases;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Infrastructure.Data.Persistence;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class DesafioController : ControllerBase
     {
         private readonly AtualizarDesafioUseCase _atualizarDesafioUseCase;

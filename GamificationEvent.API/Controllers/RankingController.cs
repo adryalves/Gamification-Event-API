@@ -2,12 +2,14 @@
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.RankingUseCases;
 using GamificationEvent.Core.Resultados;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RankingController : ControllerBase
     {
         private readonly GetRankingGeralPorIdEventoUseCase _getRankingGeralPorIdEventoUseCase;

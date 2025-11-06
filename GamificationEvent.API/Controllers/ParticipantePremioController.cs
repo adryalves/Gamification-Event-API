@@ -1,12 +1,14 @@
 ﻿using GamificationEvent.API.DTOs.ParticipantePremio;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.ParticipantePremioUseCases;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ParticipantePremioController : ControllerBase
     {
         private readonly AtualizarParticipantePremioUseCase _atualizarParticipantePremioUseCase;

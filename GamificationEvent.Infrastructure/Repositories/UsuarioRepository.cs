@@ -5,6 +5,7 @@ using InfraUsuario = GamificationEvent.Infrastructure.Data.Persistence.Usuario;
 using Microsoft.EntityFrameworkCore;
 using GamificationEvent.Core.Entidades;
 using static QRCoder.PayloadGenerator;
+using GamificationEvent.Infrastructure.Serviços;
 
 namespace GamificationEvent.Infrastructure.Repositories
 {
@@ -55,7 +56,7 @@ namespace GamificationEvent.Infrastructure.Repositories
 
         public async Task<bool> EmailExiste(string email)
         {
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email && !x.Deletado);
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower() && !x.Deletado);
             return usuario != null;
         }
 
@@ -208,6 +209,25 @@ namespace GamificationEvent.Infrastructure.Repositories
 
             return false;
         }
+        public async Task<CoreUsuario> GetUsuarioPorEmail(string email)
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower() && !x.Deletado);
+
+            if (usuario == null) return null;
+
+            return new CoreUsuario
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                Cpf = usuario.Cpf,
+                SenhaHash = usuario.SenhaHash,
+                Telefone = usuario.Telefone,
+                DataDeNascimento = usuario.DataDeNascimento,
+            };
+        }
 
     }
 }
+
+            

@@ -30,6 +30,7 @@ namespace GamificationEvent.API.Mappings
                
                 Cargo = participanteDTO.Cargo,
                 Pontuacao = participanteDTO.Pontuacao,
+                PrimeiroParticipante = participanteDTO.PrimeiroParticipante,
                 ParticipanteInteresses = participanteDTO.ParticipanteInteresses.Select(i => new ParticipanteInteresse
                 {
                     IdInteresse = i.IdInteresse,

@@ -1,4 +1,5 @@
-﻿using GamificationEvent.Core.Interfaces;
+﻿using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Interfaces;
 using GamificationEvent.Infrastructure.Data.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -32,7 +33,7 @@ namespace GamificationEvent.Infrastructure.Repositories
                 Pontuacao = participanteCore.Pontuacao,
                 PrimeiroParticipante = participanteCore.PrimeiroParticipante,
                 DataHoraCriacao = DateTime.UtcNow,
-                ParticipanteInteresses = participanteCore.ParticipanteInteresses.Select(x => new ParticipanteInteresse
+                ParticipanteInteresses = participanteCore.ParticipanteInteresses.Select(x => new Data.Persistence.ParticipanteInteresse
                 {
                     Id = x.Id,
                     IdInteresse = x.IdInteresse,
@@ -112,6 +113,25 @@ namespace GamificationEvent.Infrastructure.Repositories
             return participantesCore;
         }
 
+        public async Task<CoreParticipante> GetParticipantePorIdUsuarioEIdEvento(Guid idUsuario, Guid idEvento)
+        {
+            var participante = await _context.Participantes.Where(x => x.IdEvento == idEvento &&x.IdUsuario == idUsuario &&  !x.IdUsuarioNavigation.Deletado &&
+                      !x.IdEventoNavigation.Deletado).FirstOrDefaultAsync();
+
+            if (participante == null) return null;
+
+            return new CoreParticipante
+            {
+                Id = participante.Id,
+                IdEvento = participante.IdEvento,
+                IdUsuario = participante.IdUsuario,
+                Cargo = participante.Cargo,
+                Pontuacao = participante.Pontuacao,
+                PrimeiroParticipante = participante.PrimeiroParticipante,
+                DataHoraCriacao = participante.DataHoraCriacao
+            };
+        }
+
         public async Task<bool> AtualizarParticipante(CoreParticipante participante)
         {
             var participanteEF = await _context.Participantes.Include(p => p.ParticipanteInteresses).FirstOrDefaultAsync(x => x.Id == participante.Id);
@@ -122,7 +142,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             _context.ParticipanteInteresses.RemoveRange(participanteEF.ParticipanteInteresses);
 
             participanteEF.ParticipanteInteresses = participante.ParticipanteInteresses.Select(
-                pi => new ParticipanteInteresse
+                pi => new Data.Persistence.ParticipanteInteresse
                 {
                     Id = pi.Id,
                     IdInteresse = pi.IdInteresse,

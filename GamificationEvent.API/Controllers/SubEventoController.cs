@@ -3,12 +3,14 @@ using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.PremioUseCases;
 using GamificationEvent.Application.UseCases.SubEventoUseCases;
 using GamificationEvent.Core.Resultados;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class SubEventoController : ControllerBase
     {
         private readonly AdicionarPerguntaProSubEventoUseCase _adicionarPerguntaProSubEventoUseCase;

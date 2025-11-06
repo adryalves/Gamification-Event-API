@@ -1,5 +1,6 @@
 ﻿using GamificationEvent.API.DTOs.Usuario;
 using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -72,6 +73,15 @@ namespace GamificationEvent.Application.Mappings
                 }).ToList()
             };
             return usuario;
+        }
+
+        public static UsuarioLoginModel ConverterLoginParaCore(this UsuarioLoginRequestDTO usuarioLoginRequestDTO)
+        {
+            return new UsuarioLoginModel
+            {
+                Email = usuarioLoginRequestDTO.Email,
+                Senha = usuarioLoginRequestDTO.Senha
+            };
         }
 
     }

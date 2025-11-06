@@ -15,13 +15,19 @@ using GamificationEvent.Application.UseCases.RankingUseCases;
 using GamificationEvent.Application.UseCases.SubEventoUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
+using GamificationEvent.Core.Validações;
 using GamificationEvent.Infrastructure.Data.Persistence;
 using GamificationEvent.Infrastructure.Repositories;
 using GamificationEvent.Infrastructure.Serviços;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using System.Text;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthorization();
 
 builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -43,6 +49,29 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     );
 });
 
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}
+).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
+        ValidIssuer = builder.Configuration["jwt:issuer"],
+        ValidAudience = builder.Configuration["jwt:audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["jwt:secretKey"])),
+        ClockSkew = TimeSpan.Zero
+
+    };
+});
+
 // Repository
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IPaletaCorRepository, PaletaCorRepository>();
@@ -61,9 +90,12 @@ builder.Services.AddScoped<IQuizRepository, QuizRepository>();
 builder.Services.AddScoped<IQuizParticipanteRepository, QuizParticipanteRepository>();
 
 
+
 // Serviços Infra
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
 builder.Services.AddScoped<IQrCode, QrCode>();
+builder.Services.AddScoped<IAuthenticate, Authenticate>();
+builder.Services.AddScoped<IValidaçãoPermissões, ValidaçãoPermissões>();
 
 
 // UseCase
@@ -72,6 +104,7 @@ builder.Services.AddScoped<GetUsuariosUseCase>();
 builder.Services.AddScoped<GetUsuarioPorIdUseCase>();
 builder.Services.AddScoped<DeletarUsuarioUseCase>();
 builder.Services.AddScoped<AtualizarUsuarioUseCase>();
+builder.Services.AddScoped<UsuarioLoginUseCase>();
 
 builder.Services.AddScoped<AtualizarCorUseCase>();
 builder.Services.AddScoped<AtualizarPaletaUseCase>();
@@ -181,10 +214,40 @@ builder.Services.AddControllers() .AddJsonOptions(options =>
     });;
 
 
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "GamificationEvent.API", Version = "v1" });
 
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header usando o esquema Bearer.Digite **'Bearer' [espaço] seu token** no campo abaixo.",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
+            },
+            new List<string>()
+        }
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -196,6 +259,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

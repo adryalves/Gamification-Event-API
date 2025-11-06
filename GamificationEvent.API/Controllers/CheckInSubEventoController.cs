@@ -2,12 +2,14 @@
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.CheckInSubEventoCases;
 using GamificationEvent.Core.Resultados;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CheckInSubEventoController : ControllerBase
     {
        private readonly CadastrarCheckInSubEventoUseCase _cadastrarCheckInSubEventoUseCase;

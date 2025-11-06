@@ -4,12 +4,14 @@ using GamificationEvent.Application.UseCases.PalestranteUseCases;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Resultados;
 using GamificationEvent.Infrastructure.Data.Persistence;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PalestranteController : ControllerBase
     {
         private readonly AtualizarPalestranteUseCase _atualizarPalestranteUseCase;
