@@ -62,8 +62,8 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
                 usuarioExistenteEDeletado.SenhaHash = usuario.SenhaHash;
                 usuarioExistenteEDeletado.RedesSociais = usuario.RedesSociais;
 
-                var atualizacao =  _usuarioRepository.AtualizarUsuario(usuarioExistenteEDeletado);
-                if(atualizacao != null)
+                var atualizacao = await _usuarioRepository.AtualizarUsuario(usuarioExistenteEDeletado);
+                if(atualizacao)
                 {
                     var token = _authenticate.GenerateToken(usuario.Id, usuario.Email);
                     return Resultado<UsuarioTokenModel>.Ok(new UsuarioTokenModel { Token = token});

@@ -192,7 +192,7 @@ namespace GamificationEvent.Infrastructure.Repositories
             usuarioEF.DataDeNascimento = usuario.DataDeNascimento;
             usuarioEF.Foto = usuario.Foto;
 
-            usuarioEF.Deletado = usuarioEF.Deletado; // no geral, eu nao to deixando atualizar esse campo pra manter a logica de deleçao so no metodo de deletar, esse está aqui apenas pra lógica de reativar usuario
+            usuarioEF.Deletado = usuario.Deletado; // no geral, eu nao to deixando atualizar esse campo pra manter a logica de deleçao so no metodo de deletar, esse está aqui apenas pra lógica de reativar usuario
           
             _context.UsuarioRedeSocials.RemoveRange(usuarioEF.UsuarioRedeSocials);
             usuarioEF.UsuarioRedeSocials = usuario.RedesSociais.Select(rs => new Data.Persistence.UsuarioRedeSocial
