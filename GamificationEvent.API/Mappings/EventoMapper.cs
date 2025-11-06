@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Evento;
 using GamificationEvent.Core.Entidades;
 using System.Runtime.CompilerServices;
 
@@ -20,6 +20,22 @@ namespace GamificationEvent.API.Mappings
                 DataFinal = eventoDTO.DataFinal,
             };
         }
+
+        public static Evento ConverterUpdateParaEventoCore(this EventoUpdateDTO eventoDTO)
+        {
+            return new Evento
+            {
+                IdPaleta = eventoDTO.IdPaleta,
+                Titulo = eventoDTO.Titulo,
+                Descricao = eventoDTO.Descricao,
+                Objetivo = eventoDTO.Objetivo,
+                Categoria = eventoDTO.Categoria,
+                PublicoAlvo = eventoDTO.PublicoAlvo,
+                DataInicio = eventoDTO.DataInicio,
+                DataFinal = eventoDTO.DataFinal,
+            };
+        }
+
 
         public static EventoResponseDTO ConverterParaEventoResponse(this Evento evento)
         {

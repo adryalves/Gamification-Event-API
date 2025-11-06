@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GamificationEvent.Application.UseCases.InscritoUseCases
@@ -31,15 +32,20 @@ namespace GamificationEvent.Application.UseCases.InscritoUseCases
           
             var inscritosValidos = new List<Inscrito>();
 
+            string padraoRegex = @"\D";
             foreach (var inscrito in inscritos)
             {
- 
-                var inscritoExiste = await _inscritoRepository.JaExisteEsseInscrito(inscrito.Cpf, idEvento);
+                string cpfValido = Regex.Replace(inscrito.Cpf, padraoRegex, "");
+
+
+                var inscritoExiste = await _inscritoRepository.JaExisteEsseInscrito(cpfValido, idEvento);
                 if(String.IsNullOrEmpty(inscrito.Nome) || inscrito.Cargo == null || inscritoExiste != null)
                 {
                     continue;
                 }
                 inscrito.Id = Guid.NewGuid();
+                inscrito.Cpf = cpfValido;
+
                 inscritosValidos.Add(inscrito);
             }
             var resultado = await _inscritoRepository.AdicionarTodosOsInscrito(inscritosValidos);

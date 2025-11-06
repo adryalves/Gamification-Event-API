@@ -44,7 +44,7 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
                 participante.PrimeiroParticipante = false;
             }
 
-                if (!(bool)participante.PrimeiroParticipante)
+                if (!(bool)participante.PrimeiroParticipante && participante.Cargo == Core.Enums.Cargo.Membro)
                 {
                     var inscrição = await _inscritoRepository.JaExisteEsseInscrito(usuario.Cpf, participante.IdEvento);
 
@@ -62,7 +62,8 @@ namespace GamificationEvent.Application.UseCases.ParticipanteUseCases
             foreach (var interesse in participante.ParticipanteInteresses)
             {
                 var interesseExiste = await _interesseRepository.GetInteressePorId(interesse.IdInteresse);
-                if (interesseExiste != null)
+
+                if (interesseExiste != null && !participanteInteresseValidos.Any(i => i.IdInteresse == interesse.IdInteresse))
                 {
                     interesse.IdParticipante = participante.Id;
                     participanteInteresseValidos.Add(interesse);

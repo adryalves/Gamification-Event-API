@@ -33,8 +33,7 @@ namespace GamificationEvent.Application.UseCases.SubEventoUseCases
             foreach (var palestranteSubEvento in subEvento.Palestrantes)
             {
                 var palestranteValido = await _palestranteRepository.GetPalestrantePorId(palestranteSubEvento.IdPalestrante);
-               // var palestranteCadastrado = await _subEventoRepository.PalestranteJaEstaNesseSubEvento(subEvento.Id, palestranteSubEvento.IdPalestrante);
-                //tirar duvida com Malu
+               // var palestranteCadastrado = await _subEventoRepository.PalestranteJaEstaNesseSubEvento(subEvento.Id, palestranteSubEvento.IdPalestrante);            
 
                 if(palestranteValido == null || palestranteValido.IdEvento != subEvento.IdEvento)
                 {
@@ -44,6 +43,11 @@ namespace GamificationEvent.Application.UseCases.SubEventoUseCases
 
             }
             subEvento.Palestrantes = palestrantesValidos;
+
+            // criação automatica do código
+
+            subEvento.CodigoCheckin = $"EVT{subEvento.IdEvento.ToString().Substring(0, 3).ToUpper()}-CHK-{Guid.NewGuid().ToString().Substring(0, 10).ToUpper()}";
+
 
             var resultado = await _subEventoRepository.AdicionarSubEvento(subEvento);
             return Resultado<Guid>.Ok(resultado);

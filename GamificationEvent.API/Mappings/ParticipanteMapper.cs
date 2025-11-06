@@ -1,6 +1,7 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Participante;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Enums;
+
 
 namespace GamificationEvent.API.Mappings
 {
@@ -22,13 +23,14 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
-        public static Participante ConverterUpdateParCore(this ParticipanteUpdateDTO participanteDTO)
+        public static Participante ConverterUpdateParaCore(this ParticipanteUpdateDTO participanteDTO)
         {
             return new Participante
             {
                
                 Cargo = participanteDTO.Cargo,
                 Pontuacao = participanteDTO.Pontuacao,
+                PrimeiroParticipante = participanteDTO.PrimeiroParticipante,
                 ParticipanteInteresses = participanteDTO.ParticipanteInteresses.Select(i => new ParticipanteInteresse
                 {
                     IdInteresse = i.IdInteresse,
@@ -36,31 +38,7 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
-        public static List<ParticipanteResponseDTO> ConverterParaListaResponse(this List<Participante> participantes)
-        {
-            var listaParticipantesDTO = new List<ParticipanteResponseDTO>();
-
-            foreach(var participante in participantes)
-            {
-                var participanteDTO = new ParticipanteResponseDTO
-                {
-                    Id = participante.Id,
-                    IdEvento = participante.IdEvento,
-                    IdUsuario = participante.IdUsuario,
-                    Cargo = participante.Cargo,
-                    Pontuacao = participante.Pontuacao,
-                    PrimeiroParticipante = participante.PrimeiroParticipante,
-                    DataHoraCriacao = participante.DataHoraCriacao,
-                    ParticipanteInteresses = participante.ParticipanteInteresses.Select(p => new ParticipanteInteresseResponseDTO
-                    {
-                        Id = p.Id,
-                        IdInteresse = p.IdInteresse
-                    }).ToList()
-                };
-                listaParticipantesDTO.Add(participanteDTO);
-            }
-            return listaParticipantesDTO;
-        }
+ 
 
         public static ParticipanteResponseDTO ConverterParaResponse(this Participante participante)
         {
@@ -84,7 +62,13 @@ namespace GamificationEvent.API.Mappings
             return participanteDTO;
         }
 
-        
+        public static List<ParticipanteResponseDTO> ConverterParaListaResponse(this List<Participante> participantes)
+        {
+            return participantes.Select(p => p.ConverterParaResponse()).ToList();
+
+        }
+
+
     }
 }
 

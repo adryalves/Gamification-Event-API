@@ -1,8 +1,9 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Evento;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.EventoUseCases;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Resultados;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
@@ -10,6 +11,7 @@ namespace GamificationEvent.API.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EventoController : ControllerBase
     {
         private readonly AtualizarEventoUseCase _atualizarEventoUseCase;
@@ -32,7 +34,7 @@ namespace GamificationEvent.API.Controllers
         {
             try {
 
-                if (eventoDTO.IdPaleta == null || eventoDTO.IdPaleta == Guid.Empty ||
+                if (eventoDTO.IdPaleta == Guid.Empty ||
                     String.IsNullOrEmpty(eventoDTO.Titulo) || String.IsNullOrEmpty(eventoDTO.Descricao) ||
                     String.IsNullOrEmpty(eventoDTO.Objetivo) || String.IsNullOrEmpty(eventoDTO.Categoria) ||
                     String.IsNullOrEmpty(eventoDTO.PublicoAlvo) || eventoDTO.DataInicio == null ||
@@ -55,12 +57,12 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarEvento")]
-        public async Task<IActionResult> AtualizarEvento(Guid id, [FromBody] EventoRequestDTO eventoDTO)
+        [HttpPut("AtualizarEvento/{id}")]
+        public async Task<IActionResult> AtualizarEvento([FromRoute]Guid id, [FromBody] EventoUpdateDTO eventoDTO)
         {
             try {
 
-                if (eventoDTO.IdPaleta == null || eventoDTO.IdPaleta == Guid.Empty ||
+                if ( eventoDTO.IdPaleta == Guid.Empty ||
                     String.IsNullOrEmpty(eventoDTO.Titulo) || String.IsNullOrEmpty(eventoDTO.Descricao) ||
                     String.IsNullOrEmpty(eventoDTO.Objetivo) || String.IsNullOrEmpty(eventoDTO.Categoria) ||
                     String.IsNullOrEmpty(eventoDTO.PublicoAlvo) || eventoDTO.DataInicio == null ||
@@ -70,7 +72,7 @@ namespace GamificationEvent.API.Controllers
 
                 }
 
-                var evento = eventoDTO.ConverterParaEventoCore();
+                var evento = eventoDTO.ConverterUpdateParaEventoCore();
                 evento.Id = id;
                 evento.Deletado = false;
 
@@ -92,12 +94,12 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarEvento")]
-        public async Task<IActionResult> DeletarEvento(Guid id)
+        [HttpDelete("DeletarEvento/{id}")]
+        public async Task<IActionResult> DeletarEvento([FromRoute]Guid id)
         {
             try {
 
-                if (id == Guid.Empty || id == null)
+                if (id == Guid.Empty)
                     return BadRequest("Insira um id válido");
 
                 var resultado = await _deletarEventoUseCase.DeletarEvento(id);
@@ -117,7 +119,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetEventos")]
-        public async Task<IActionResult> GetEventos()
+        public async Task<ActionResult<List<EventoResponseDTO>>> GetEventos()
         {
             try
             {
@@ -145,13 +147,15 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetEventoPorId")]
-        public async Task<IActionResult> GetEventoPorId(Guid id)
+        public async Task<ActionResult<EventoResponseDTO>> GetEventoPorId([FromQuery]Guid id)
         {
             try
             {
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
+
                 var evento = await _getEventoPorIdUseCase.GetEventoPorId(id);
 
-                if (evento.Valor == null) return NotFound();
+                if (evento.Valor == null) return NotFound("Não foi encontrado um evento válido com esse Id");
 
                 if (evento.Sucesso)
                 {

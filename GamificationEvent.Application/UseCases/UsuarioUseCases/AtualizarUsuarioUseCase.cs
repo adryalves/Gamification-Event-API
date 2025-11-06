@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GamificationEvent.Application.UseCases.UsuarioUseCases
@@ -24,16 +25,22 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
 
             if(usuarioExistente == null) return Resultado<bool>.Falha($"Uusario de id {usuario.Id} não encontrado.");
 
+            string padraoRegex = @"\D";
+            string cpfValido = Regex.Replace(usuario.Cpf, padraoRegex, "");
 
             var emailExiste = await _usuarioRepository.EmailExiste(usuario.Email);
-            var cpfExiste = await _usuarioRepository.CpfExiste(usuario.Cpf);
+            var cpfExiste = await _usuarioRepository.CpfExiste(cpfValido);
 
             if(emailExiste && (usuarioExistente.Email != usuario.Email))
                 return Resultado<bool>.Falha("Esse email já existe para outro usuário");            
 
-            if(cpfExiste && usuarioExistente.Cpf != usuario.Cpf)
+            if(cpfExiste && usuarioExistente.Cpf != cpfValido)
                 return Resultado<bool>.Falha("Esse cpf já existe para outro usuário");
 
+            string telefoneValido = Regex.Replace(usuario.Telefone ?? string.Empty, @"[\s\-\(\)]", "");
+            usuario.Telefone = telefoneValido;
+
+            usuario.Cpf = cpfValido;
             var resultado = await _usuarioRepository.AtualizarUsuario(usuario);
             return Resultado<bool>.Ok(resultado);
 

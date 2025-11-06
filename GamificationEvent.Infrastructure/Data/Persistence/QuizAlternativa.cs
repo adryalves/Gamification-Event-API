@@ -15,7 +15,7 @@ public partial class QuizAlternativa
 
     public bool Deletado { get; set; }
 
-    public virtual QuizPerguntum IdQuizPerguntaNavigation { get; set; } = null!;
+    public virtual QuizPergunta IdQuizPerguntaNavigation { get; set; } = null!;
 
-    public virtual ICollection<ParticipanteQuizRespostum> ParticipanteQuizResposta { get; set; } = new List<ParticipanteQuizRespostum>();
+    public virtual ICollection<ParticipanteQuizResposta> ParticipanteQuizResposta { get; set; } = new List<ParticipanteQuizResposta>();
 }

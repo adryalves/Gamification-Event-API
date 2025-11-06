@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GamificationEvent.Core.Resultados;
+using System.Text.RegularExpressions;
+using GamificationEvent.Core.Models;
 
 namespace GamificationEvent.Application.UseCases.UsuarioUseCases
 {
@@ -14,27 +16,65 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
     {
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly ISenhaHash _senhaHash;
+        private readonly IAuthenticate _authenticate;
 
-        public CadastrarUsuarioUseCase(IUsuarioRepository usuarioRepository, ISenhaHash senhaHash)
+        public CadastrarUsuarioUseCase(IUsuarioRepository usuarioRepository, ISenhaHash senhaHash, IAuthenticate authenticate)
         {
             _usuarioRepository = usuarioRepository;
             _senhaHash = senhaHash;
+            _authenticate = authenticate;
         }
 
-        public async Task<Resultado<Usuario>> CadastrarUsuario(Usuario usuario, string senha)
+        public async Task<Resultado<UsuarioTokenModel>> CadastrarUsuario(Usuario usuario, string senha)
         {
 
-            var cpfUsuarioExiste = await _usuarioRepository.CpfExiste(usuario.Cpf);
-            var emailUsuarioExiste = await _usuarioRepository.CpfExiste(usuario.Email);
+            string padraoRegex = @"\D"; 
+
+            string cpfValido = Regex.Replace(usuario.Cpf, padraoRegex, "");
+
+            var cpfUsuarioExiste = await _usuarioRepository.CpfExiste(cpfValido);
+            var emailUsuarioExiste = await _usuarioRepository.EmailExiste(usuario.Email);
+
+            var usuarioExistenteEDeletado = await _usuarioRepository.CpfJaFoiCadastradoEDeletado(cpfValido);
+
+            usuario.Cpf = cpfValido;
 
             if (cpfUsuarioExiste)
-                return Resultado<Usuario>.Falha("CPF já cadastrados");
+                return Resultado<UsuarioTokenModel>.Falha("CPF já cadastrado");
 
             if (emailUsuarioExiste)
-                return Resultado<Usuario>.Falha("Email já cadastrado");
+                return Resultado<UsuarioTokenModel>.Falha("Email já cadastrado");
 
 
             usuario.SenhaHash = _senhaHash.CriptografarSenha(senha);
+
+            string telefoneValido = Regex.Replace(usuario.Telefone ?? string.Empty, @"[\s\-\(\)]", "");
+            usuario.Telefone = telefoneValido;
+
+            if (usuarioExistenteEDeletado != null)
+            {
+                usuarioExistenteEDeletado.Deletado = false;
+                usuarioExistenteEDeletado.Nome = usuario.Nome;
+                usuarioExistenteEDeletado.Email = usuario.Email;
+                usuarioExistenteEDeletado.Telefone = usuario.Telefone;
+                usuarioExistenteEDeletado.DataDeNascimento = usuario.DataDeNascimento;
+                usuarioExistenteEDeletado.Foto = usuario.Foto;
+                usuarioExistenteEDeletado.SenhaHash = usuario.SenhaHash;
+                usuarioExistenteEDeletado.RedesSociais = usuario.RedesSociais;
+
+                var atualizacao =  _usuarioRepository.AtualizarUsuario(usuarioExistenteEDeletado);
+                if(atualizacao != null)
+                {
+                    var token = _authenticate.GenerateToken(usuario.Id, usuario.Email);
+                    return Resultado<UsuarioTokenModel>.Ok(new UsuarioTokenModel { Token = token});
+                }
+                else
+                {
+                    return Resultado<UsuarioTokenModel>.Falha("Algo deu errado no cadastro de usuário");
+                }
+              
+            }
+
             usuario.Id = Guid.NewGuid();
 
             foreach(var redeSocial in usuario.RedesSociais)
@@ -44,8 +84,13 @@ namespace GamificationEvent.Application.UseCases.UsuarioUseCases
             }
 
             var resultado = await _usuarioRepository.AdicionarUsuario(usuario);
-            return Resultado<Usuario>.Ok(resultado);
+            if (resultado != null)
+            {
+                var token = _authenticate.GenerateToken(usuario.Id, usuario.Email);
+                return Resultado<UsuarioTokenModel>.Ok(new UsuarioTokenModel { Token = token });
+            }
 
+            return Resultado<UsuarioTokenModel>.Falha("Algo deu errado no cadastro de usuário");
 
         }
     }

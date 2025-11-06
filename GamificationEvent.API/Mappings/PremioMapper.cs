@@ -1,5 +1,6 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Premio;
 using GamificationEvent.Core.Entidades;
+
 
 namespace GamificationEvent.API.Mappings
 {
@@ -27,20 +28,6 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
-        public static List<PremioResponseDTO> ConverterParaListaResponse(this List<Premio> premios)
-        {
-            return premios.Select(x => new PremioResponseDTO
-            {
-                Id = x.Id,
-                IdEvento = x.IdEvento,
-                IdPatrocinador = x.IdPatrocinador,
-                Nome = x.Nome,
-                Descricao = x.Descricao,
-                Tipo = x.Tipo,
-                InfoResgate = x.InfoResgate,
-                Deletado = x.Deletado,
-            }).ToList();
-        }
 
         public static PremioResponseDTO ConverterParaResponse(this Premio premio)
         {
@@ -55,6 +42,12 @@ namespace GamificationEvent.API.Mappings
                 InfoResgate = premio.InfoResgate,
                 Deletado = premio.Deletado,
             };
+        }
+
+        public static List<PremioResponseDTO> ConverterParaListaResponse(this List<Premio> premios)
+        {
+            return premios.Select(p => p.ConverterParaResponse()).ToList();
+
         }
     }
 }

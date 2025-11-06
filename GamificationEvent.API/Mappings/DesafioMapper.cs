@@ -1,5 +1,6 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Desafio;
 using GamificationEvent.Core.Entidades;
+using GamificationEvent.Core.Enums;
 
 namespace GamificationEvent.API.Mappings
 {
@@ -60,5 +61,22 @@ namespace GamificationEvent.API.Mappings
         }
 
 
+        public static DesafioParticipanteResponseDTO ConverterDesafioParticipanteParaResponse(this DesafioParticipante desafioParticipante)
+        {
+            return new DesafioParticipanteResponseDTO
+            {
+                Id = desafioParticipante.Id,
+                IdParticipante = desafioParticipante.IdParticipante,
+                IdDesafio = desafioParticipante.IdDesafio,
+                StatusDesafio = desafioParticipante.StatusDesafio,
+                QuantidadeRealizada = desafioParticipante.QuantidadeRealizada,
+                DataHoraConclusao = desafioParticipante.DataHoraConclusao,
+            };
+        }
+
+        public static List<DesafioParticipanteResponseDTO> ConverterDesafioParticipanteListaParaResponse(this List<DesafioParticipante> desafiosParticipante)
+        {
+            return desafiosParticipante.Select(d => d.ConverterDesafioParticipanteParaResponse()).ToList();
+        }
     }
 }

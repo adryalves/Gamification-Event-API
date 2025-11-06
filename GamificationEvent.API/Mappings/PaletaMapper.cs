@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.PaletaCor;
 using GamificationEvent.Core.Entidades;
 
 namespace GamificationEvent.API.Mappings
@@ -16,6 +16,19 @@ namespace GamificationEvent.API.Mappings
                 IdCor4 = paletaRequestDTO.IdCor4,
             };
         }
+
+        public static PaletaCor ConverterUpdatePaletaCore(this PaletaCorUpdateDTO paletaRequestDTO)
+        {
+            return new PaletaCor
+            {
+                Nome = paletaRequestDTO.Nome,
+                IdCor1 = paletaRequestDTO.IdCor1,
+                IdCor2 = paletaRequestDTO.IdCor2,
+                IdCor3 = paletaRequestDTO.IdCor3,
+                IdCor4 = paletaRequestDTO.IdCor4,
+            };
+        }
+
 
         public static PaletaCorResponseDTO ConverterPaletaResponse(this PaletaCor paletaCor)
         {

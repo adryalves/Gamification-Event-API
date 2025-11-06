@@ -1,14 +1,16 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Desafio;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.DesafioUseCases;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Infrastructure.Data.Persistence;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class DesafioController : ControllerBase
     {
         private readonly AtualizarDesafioUseCase _atualizarDesafioUseCase;
@@ -16,14 +18,16 @@ namespace GamificationEvent.API.Controllers
         private readonly DeletarDesafioUseCase _deletarDesafioUseCase;
         private readonly GetDesafioPorIdUseCase _getDesafioPorIdUseCase;
         private readonly GetDesafiosPorIdEventoUseCase _getDesafiosPorIdEventoUseCase;
+        private readonly GetDesafiosParticipantePorIdParticipanteUseCase _getDesafiosParticipantePorIdParticipanteUseCase;
 
-        public DesafioController(AtualizarDesafioUseCase atualizarDesafioUseCase, CadastrarDesafioUseCase cadastrarDesafioUseCase, DeletarDesafioUseCase deletarDesafioUseCase, GetDesafioPorIdUseCase getDesafioPorIdUseCase, GetDesafiosPorIdEventoUseCase getDesafiosPorIdEventoUseCase)
+        public DesafioController(AtualizarDesafioUseCase atualizarDesafioUseCase, CadastrarDesafioUseCase cadastrarDesafioUseCase, DeletarDesafioUseCase deletarDesafioUseCase, GetDesafioPorIdUseCase getDesafioPorIdUseCase, GetDesafiosPorIdEventoUseCase getDesafiosPorIdEventoUseCase, GetDesafiosParticipantePorIdParticipanteUseCase getDesafiosParticipantePorIdParticipanteUseCase )
         {
             _atualizarDesafioUseCase = atualizarDesafioUseCase;
             _cadastrarDesafioUseCase = cadastrarDesafioUseCase;
             _deletarDesafioUseCase = deletarDesafioUseCase;
             _getDesafioPorIdUseCase = getDesafioPorIdUseCase;
             _getDesafiosPorIdEventoUseCase = getDesafiosPorIdEventoUseCase;
+            _getDesafiosParticipantePorIdParticipanteUseCase = getDesafiosParticipantePorIdParticipanteUseCase;
         }
 
         [HttpPost("CadastrarDesafios")]
@@ -47,8 +51,8 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarDesafio")]
-        public async Task<IActionResult> AtualizarDesafio(Guid id, DesafioUpdateDTO desafioDTO)
+        [HttpPut("AtualizarDesafio/{id}")]
+        public async Task<IActionResult> AtualizarDesafio([FromRoute] Guid id, DesafioUpdateDTO desafioDTO)
         {
             try
             {
@@ -70,8 +74,8 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarDesafio")]
-        public async Task<IActionResult> DeletarDesafio(Guid id)
+        [HttpDelete("DeletarDesafio/{id}")]
+        public async Task<IActionResult> DeletarDesafio([FromRoute] Guid id)
         {
             try
             {
@@ -92,7 +96,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetDesafioPorId")]
-        public async Task<IActionResult> GetDesafioPorId(Guid id)
+        public async Task<ActionResult<DesafioResponseDTO>> GetDesafioPorId([FromQuery]Guid id)
         {
             try
             {
@@ -116,7 +120,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetDesafiosPorIdEvento")]
-        public async Task<IActionResult> GetDesafiosPorIdEvento(Guid idEvento)
+        public async Task<ActionResult<List<DesafioResponseDTO>>> GetDesafiosPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {
@@ -130,6 +134,28 @@ namespace GamificationEvent.API.Controllers
                     return Ok(desafioResponse);
                 }
                 return BadRequest(new { Erro = desafios.MensagemDeErro });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
+        }
+
+        [HttpGet("GetDesafiosParticipantePorIdParticipante")]
+        public async Task<ActionResult<List<DesafioParticipanteResponseDTO>>> GetDesafiosParticipantePorIdParticipante([FromQuery] Guid idParticipante)
+        {
+            try
+            {
+                if (idParticipante == Guid.Empty) return BadRequest("Insira um id válido");
+
+                var desafioPart = await _getDesafiosParticipantePorIdParticipanteUseCase.GetDesafiosPaticipantePorIdParticipante(idParticipante);
+
+                if (desafioPart.Sucesso)
+                {
+                   var desafioPartDTO = desafioPart.Valor.ConverterDesafioParticipanteListaParaResponse();
+                    return Ok(desafioPartDTO);
+                }
+                return BadRequest(new { Erro = desafioPart.MensagemDeErro });
             }
             catch (Exception ex)
             {

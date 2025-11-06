@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GamificationEvent.Application.UseCases.PalestranteUseCases
@@ -25,7 +26,9 @@ namespace GamificationEvent.Application.UseCases.PalestranteUseCases
             var evento = await _eventoRepository.GetEventoPorId(palestrante.IdEvento);
             if (evento == null) return Resultado<Guid>.Falha($"O id {palestrante.IdEvento} não corresponde a um evento existente");
 
-           
+            string telefoneValido = Regex.Replace(palestrante.Telefone ?? string.Empty, @"[\s\-\(\)]", "");
+            palestrante.Telefone = telefoneValido;
+
             var resultado = await _palestranteRepository.AdicionarPalestrante(palestrante);
             return Resultado<Guid>.Ok(resultado);
 

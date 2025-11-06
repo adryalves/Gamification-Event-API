@@ -13,6 +13,8 @@ namespace GamificationEvent.Core.Interfaces
          Task<bool> DeletarInteresse(Guid id);
          Task<List<Interesse>> GetInteressesPorIdEvento(Guid idEvento);
          Task<Interesse> GetInteressePorId(Guid id);
+        Task<bool> ParticipanteJaPossuiEsseInteresse(Guid idInteresse, Guid idParticipante);
+
 
     }
 }

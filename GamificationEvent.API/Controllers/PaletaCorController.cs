@@ -1,14 +1,16 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.PaletaCor;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.PaletaCorUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PaletaCorController : ControllerBase
     {
         private readonly AtualizarPaletaUseCase _atualizarPaletaUseCase;
@@ -43,10 +45,6 @@ namespace GamificationEvent.API.Controllers
                 {
                     return BadRequest("A cor deve ter um valor válido");
                 }
-                if (corDTO.HexCodigo.Length != 7)
-                {
-                    return BadRequest("A cor deve ter um valor válido, ou seja com 7 caracteres");
-                }
 
                 var cor = corDTO.ConverterCorCore();
                 var corCadastrada = await _cadastrarCorUseCase.CadastrarCor(cor);
@@ -65,7 +63,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCores")]
-        public async Task<IActionResult> GetCores()
+        public async Task<ActionResult<List<CorResponseDTO>>> GetCores()
         {
             try
             {
@@ -93,11 +91,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCorPorId")]
-        public async Task<IActionResult> GetCorPorId(Guid id)
+        public async Task<ActionResult<CorResponseDTO>> GetCorPorId([FromQuery] Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null)
+                if (id == Guid.Empty)
                     return BadRequest("O id deve ser um válor válido");
 
                 var cor = await _getCorPorIdUseCase.GetCorPorId(id);
@@ -119,15 +117,15 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarCor")]
-        public async Task<IActionResult> AtualizarCor(Guid id, CorRequestDTO corDTO)
+        [HttpPut("AtualizarCor/{id}")]
+        public async Task<IActionResult> AtualizarCor([FromRoute]Guid id, CorUpdateDTO corDTO)
         {
             try
             {
-                if (id == null || id == Guid.Empty)
+                if (id == Guid.Empty)
                     return BadRequest("Insira uma valor válido");
 
-                var cor = corDTO.ConverterCorCore();
+                var cor = corDTO.ConverterUpdateCorCore();
                 cor.Id = id;
 
                var resultado = await _atualizarCorUseCase.AtualizarCor(cor);
@@ -152,8 +150,8 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (paletaDTO.IdCor1 == null || paletaDTO.IdCor2 == null
-                    || paletaDTO.IdCor3 == null || paletaDTO.IdCor4 == null)
+                if (paletaDTO.IdCor1 == Guid.Empty || paletaDTO.IdCor2 == Guid.Empty
+                    || paletaDTO.IdCor3 == Guid.Empty || paletaDTO.IdCor4 == Guid.Empty)
                 {
                     return BadRequest("Os ids precisam conter um valor válido");
                 }
@@ -176,7 +174,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPaletas")]
-        public async Task<IActionResult> GetPaletas()
+        public async Task<ActionResult<List<PaletaCorResponseDTO>>> GetPaletas()
         {
             try
             {
@@ -205,11 +203,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPaletaPorId")]
-        public async Task<IActionResult> GetPaletaPorId(Guid id)
+        public async Task<ActionResult<PaletaCorResponseDTO>> GetPaletaPorId([FromQuery]Guid id)
         {
             try
             {
-                if (id == null || id == Guid.Empty)
+                if (id == Guid.Empty)
                     return BadRequest("Insira um id válido");
 
                 var paleta = await _getPaletaPorIdUseCase.GetPaletaPorId(id);
@@ -232,15 +230,15 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarPaleta")]
-        public async Task<IActionResult> AtualizarPaleta(Guid id, [FromBody] PaletaCorRequestDTO paletaDTO)
+        [HttpPut("AtualizarPaleta/{id}")]
+        public async Task<IActionResult> AtualizarPaleta([FromRoute]Guid id, [FromBody] PaletaCorUpdateDTO paletaDTO)
         {
             try
             {
-                if (id == null || id == Guid.Empty)
+                if (id == Guid.Empty)
                     return BadRequest("Insira um valor válido");
 
-                var paleta = paletaDTO.ConverterPaletaCore();
+                var paleta = paletaDTO.ConverterUpdatePaletaCore();
                 paleta.Id = id;
                 paleta.Deletado = false;
 
@@ -262,12 +260,12 @@ namespace GamificationEvent.API.Controllers
 
         }
 
-        [HttpDelete("DeletarPaleta")]
-        public async Task<IActionResult> DeletarPaleta(Guid id)
+        [HttpDelete("DeletarPaleta/{id}")]
+        public async Task<IActionResult> DeletarPaleta([FromRoute]Guid id)
         {
             try {
 
-                if (id == null || id == Guid.Empty)
+                if (id == Guid.Empty)
                     return BadRequest("Insira um id válido");
 
                 var deleção = await _deletarPaletaUseCase.DeletarPaleta(id);

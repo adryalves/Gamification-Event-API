@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.SubEvento;
 using GamificationEvent.Core.Entidades;
 
 
@@ -21,7 +21,6 @@ namespace GamificationEvent.API.Mappings
                 DataSubEvento = subEventoDTO.DataSubEvento,
                 HorarioInicio = subEventoDTO.HorarioInicio,
                 HorarioFim = subEventoDTO.HorarioFim,
-                CodigoCheckin = subEventoDTO.CodigoCheckin,
                 Palestrantes = subEventoDTO.Palestrantes?.Select(p => new PalestrantesSubEvento
                 {
                     IdPalestrante = p.IdPalestrante
@@ -43,7 +42,6 @@ namespace GamificationEvent.API.Mappings
                 DataSubEvento = subEventoDTO.DataSubEvento,
                 HorarioInicio = subEventoDTO.HorarioInicio,
                 HorarioFim = subEventoDTO.HorarioFim,
-                CodigoCheckin = subEventoDTO.CodigoCheckin,
                 Palestrantes = subEventoDTO.Palestrantes?.Select(p => new PalestrantesSubEvento
                 {
                     Id = p.Id,

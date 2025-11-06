@@ -1,4 +1,4 @@
-﻿using GamificationEvent.Core.Entidades;
+﻿using GamificationEvent.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ namespace GamificationEvent.Core.Interfaces
 {
     public interface IRankingRepository
     {
-        Task<List<Ranking>> GetRankingGeralPorIdEvento(Guid idEvento, int quantidade);
+        Task<List<RankingModel>> GetRankingGeralPorIdEvento(Guid idEvento, int quantidade);
 
-        Task<List<Ranking>> GetRankingPersonalizado(Guid idEvento, Guid idParticipante, int quantidade);
+        Task<List<RankingModel>> GetRankingPersonalizado(Guid idEvento, Guid idParticipante, int quantidade);
 
     }
 }

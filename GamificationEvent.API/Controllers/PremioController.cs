@@ -1,12 +1,14 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Premio;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.PremioUseCases;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PremioController : ControllerBase
     {
         private readonly AtualizarPremioUseCase _atualizarPremioUseCase;
@@ -29,7 +31,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (premioDTO.IdEvento == null || premioDTO.IdEvento == Guid.Empty || String.IsNullOrEmpty(premioDTO.Nome)) 
+                if (premioDTO.IdEvento == Guid.Empty || String.IsNullOrEmpty(premioDTO.Nome)) 
                 {
                     return BadRequest("Preencha os campos obrigatórios com valores válidos");
                 }
@@ -49,12 +51,12 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarPremio")]
-        public async Task<IActionResult> AtualizarPremio(Guid id, PremioUpdateDTO premioDTO)
+        [HttpPut("AtualizarPremio/{id}")]
+        public async Task<IActionResult> AtualizarPremio([FromRoute] Guid id, PremioUpdateDTO premioDTO)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id válido para atualização");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido para atualização");
 
                 var premio = premioDTO.ConverterUpdateParaCore();
 
@@ -74,18 +76,18 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPremiosPorIdEvento")]
-        public async Task<IActionResult> GetPremiosPorIdEvento(Guid idEvento)
+        public async Task<ActionResult<List<PremioResponseDTO>>> GetPremiosPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {
-                if (idEvento == Guid.Empty || idEvento == null) return BadRequest("Insira um id válido para atualização");
+                if (idEvento == Guid.Empty) return BadRequest("Insira um id válido para atualização");
           
                 var premios = await _getPremiosPorIdEventoUseCase.GetPremiosPorIdEvento(idEvento);
 
                 if (premios.Sucesso)
                 {
-                    var participantesResponse = premios.Valor.ConverterParaListaResponse();
-                    return Ok(participantesResponse);
+                    var premioResponse = premios.Valor.ConverterParaListaResponse();
+                    return Ok(premioResponse);
                 }
 
                 return BadRequest(new { Erro = premios.MensagemDeErro });
@@ -98,11 +100,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPremioPorId")]
-        public async Task<IActionResult> GetPremioPorId(Guid id)
+        public async Task<ActionResult<PremioResponseDTO>> GetPremioPorId([FromQuery]Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id válido para atualização");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido para atualização");
                 var premio = await _getPremioPorIdUseCase.GetPremioPorId(id);
 
                 if (premio.Valor == null) return NotFound();
@@ -122,12 +124,12 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarPremio")]
-        public async Task<IActionResult> DeletarPremioPorId(Guid id)
+        [HttpDelete("DeletarPremio/{id}")]
+        public async Task<IActionResult> DeletarPremioPorId([FromRoute]Guid id)
         {
             try
             {
-                if (id == Guid.Empty || id == null) return BadRequest("Insira um id válido para atualização");
+                if (id == Guid.Empty) return BadRequest("Insira um id válido para atualização");
 
                 var resultado = await _deletarPremioUseCase.DeletarPremio(id);
 

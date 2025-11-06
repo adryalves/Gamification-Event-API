@@ -1,15 +1,17 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Palestrante;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.PalestranteUseCases;
 using GamificationEvent.Core.Entidades;
 using GamificationEvent.Core.Resultados;
 using GamificationEvent.Infrastructure.Data.Persistence;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamificationEvent.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PalestranteController : ControllerBase
     {
         private readonly AtualizarPalestranteUseCase _atualizarPalestranteUseCase;
@@ -34,7 +36,7 @@ namespace GamificationEvent.API.Controllers
         {
             try
             {
-                if (palestranteDTO.IdEvento == null || palestranteDTO.IdEvento == Guid.Empty || String.IsNullOrEmpty(palestranteDTO.Nome))
+                if (palestranteDTO.IdEvento == Guid.Empty || String.IsNullOrEmpty(palestranteDTO.Nome))
                     return BadRequest("Insira dados válidos");
 
                 var palestrante = palestranteDTO.ConverterRequestParaCore();
@@ -52,12 +54,12 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpPut("AtualizarPalestrante")]
-        public async Task<IActionResult> AtualizarPalestrante(Guid idPalestrante, PalestranteUpdateDTO palestranteDTO )
+        [HttpPut("AtualizarPalestrante/{idPalestrante}")]
+        public async Task<IActionResult> AtualizarPalestrante([FromRoute]Guid idPalestrante, PalestranteUpdateDTO palestranteDTO )
         {
             try
             {
-                if (idPalestrante == null || idPalestrante == Guid.Empty) return BadRequest("Insira dados válidos para a atualização");
+                if (idPalestrante == Guid.Empty) return BadRequest("Insira dados válidos para a atualização");
 
                 var palestrante = palestranteDTO.ConverterUpdateParaCore();
                 var resultado = await _atualizarPalestranteUseCase.AtualizarPalestrante(idPalestrante, palestrante);
@@ -76,12 +78,12 @@ namespace GamificationEvent.API.Controllers
             }
         }
 
-        [HttpDelete("DeletarPalestrante")]
-        public async Task<IActionResult> DeletarPalestrante(Guid id)
+        [HttpDelete("DeletarPalestrante/{id}")]
+        public async Task<IActionResult> DeletarPalestrante([FromRoute]Guid id)
         {
             try
             {
-                if (id == null || id == Guid.Empty) return BadRequest("Insira dados válidos para a deleção");
+                if (id == Guid.Empty) return BadRequest("Insira dados válidos para a deleção");
 
                 var resultado = await _deletarPalestranteUseCase.DeletarPalestrante(id);
 
@@ -100,11 +102,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPalestrantePorId")]
-        public async Task<IActionResult> GetPalestrantePorId(Guid id)
+        public async Task<ActionResult<PalestranteResponseDTO>> GetPalestrantePorId([FromQuery] Guid id)
         {
             try
             {
-                if (id == null || id == Guid.Empty) return BadRequest("Insira um Id válido");
+                if (id == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var palestrante = await _getPalestrantePorIdUseCase.GetPalestrantePorId(id);
                 if(palestrante.Valor == null) return NotFound("Palestrante não encontrado");
@@ -125,11 +127,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPalestrantesPorIdEvento")]
-        public async Task<IActionResult> GetPalestrantesPorIdEvento(Guid idEvento)
+        public async Task<ActionResult<List<PalestranteResponseDTO>>> GetPalestrantesPorIdEvento([FromQuery]Guid idEvento)
         {
             try
             {
-                if (idEvento == null || idEvento == Guid.Empty) return BadRequest("Insira um Id válido");
+                if (idEvento == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var palestrantes = await _getPalestrantesPorIdEventoUseCase.GetPalestrantesPorIdEvento(idEvento);
 
@@ -148,11 +150,11 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPalestrantesPorIdSubEvento")]
-        public async Task<IActionResult> GetPalestrantesPorIdSubEvento(Guid idSubEvento)
+        public async Task<ActionResult<List<PalestranteResponseDTO>>> GetPalestrantesPorIdSubEvento([FromQuery]Guid idSubEvento)
         {
             try
             {
-                if (idSubEvento == null || idSubEvento == Guid.Empty) return BadRequest("Insira um Id válido");
+                if (idSubEvento == Guid.Empty) return BadRequest("Insira um Id válido");
 
                 var palestrantes = await _getPalestrantesPorIdSubEventoUseCase.GetPalestrantesPorIdSubEvento(idSubEvento);
 

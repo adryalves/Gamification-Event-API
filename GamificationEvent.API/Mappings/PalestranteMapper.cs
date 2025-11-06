@@ -1,4 +1,4 @@
-﻿using GamificationEvent.API.DTOs;
+﻿using GamificationEvent.API.DTOs.Palestrante;
 using GamificationEvent.Core.Entidades;
 
 namespace GamificationEvent.API.Mappings

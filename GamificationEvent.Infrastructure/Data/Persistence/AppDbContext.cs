@@ -66,7 +66,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<ParticipantePremio> ParticipantePremios { get; set; }
 
-    public virtual DbSet<ParticipanteQuizRespostum> ParticipanteQuizResposta { get; set; }
+    public virtual DbSet<ParticipanteQuizResposta> ParticipanteQuizResposta { get; set; }
 
     public virtual DbSet<Passaporte> Passaportes { get; set; }
 
@@ -100,7 +100,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<QuizParticipante> QuizParticipantes { get; set; }
 
-    public virtual DbSet<QuizPerguntum> QuizPergunta { get; set; }
+    public virtual DbSet<QuizPergunta> QuizPergunta { get; set; }
 
     public virtual DbSet<RespostaParticipantePerguntum> RespostaParticipantePergunta { get; set; }
 
@@ -109,10 +109,6 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     public virtual DbSet<UsuarioRedeSocial> UsuarioRedeSocials { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;port=3306;database=gamification_events_DB;uid=root;pwd=alves0919", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.33-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -383,6 +379,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("data_hora_conclusao");
             entity.Property(e => e.IdDesafio).HasColumnName("id_desafio");
             entity.Property(e => e.IdParticipante).HasColumnName("id_participante");
+            entity.Property(e => e.QuantidadeRealizada).HasColumnName("quantidade_realizada");
             entity.Property(e => e.StatusDesafio)
                 .HasDefaultValueSql("'Aberto'")
                 .HasColumnType("enum('Aberto','Completo')")
@@ -920,7 +917,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_participante_premio_premio");
         });
 
-        modelBuilder.Entity<ParticipanteQuizRespostum>(entity =>
+        modelBuilder.Entity<ParticipanteQuizResposta>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -1465,7 +1462,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_quiz_participante_quiz");
         });
 
-        modelBuilder.Entity<QuizPerguntum>(entity =>
+        modelBuilder.Entity<QuizPergunta>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -1587,8 +1584,6 @@ public partial class AppDbContext : DbContext
 
             entity.HasIndex(e => e.Cpf, "cpf").IsUnique();
 
-            entity.HasIndex(e => e.Email, "email").IsUnique();
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cpf)
                 .HasMaxLength(11)
@@ -1598,7 +1593,9 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("data_hora_criacao");
             entity.Property(e => e.Deletado).HasColumnName("deletado");
-            entity.Property(e => e.Email).HasColumnName("email");
+            entity.Property(e => e.Email)
+                .HasMaxLength(255)
+                .HasColumnName("email");
             entity.Property(e => e.Foto)
                 .HasMaxLength(255)
                 .HasColumnName("foto");
