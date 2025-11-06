@@ -64,7 +64,7 @@ namespace GamificationEvent.API.Controllers
             {
                 if (id == Guid.Empty) return BadRequest("Insira um id válido");
 
-                var participante = participanteDTO.ConverterUpdateParCore();
+                var participante = participanteDTO.ConverterUpdateParaCore();
                 participante.Id = id;
 
                 //Como é possivel que um admin atualize o cargo de outro participante tem-se essa lógica

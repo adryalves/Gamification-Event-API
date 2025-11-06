@@ -23,7 +23,7 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
-        public static Participante ConverterUpdateParCore(this ParticipanteUpdateDTO participanteDTO)
+        public static Participante ConverterUpdateParaCore(this ParticipanteUpdateDTO participanteDTO)
         {
             return new Participante
             {
