@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace GamificationEvent.Infrastructure.Data.Persistence;
@@ -1585,8 +1584,6 @@ public partial class AppDbContext : DbContext
 
             entity.HasIndex(e => e.Cpf, "cpf").IsUnique();
 
-            entity.HasIndex(e => e.Email, "email").IsUnique();
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cpf)
                 .HasMaxLength(11)
@@ -1596,7 +1593,9 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("data_hora_criacao");
             entity.Property(e => e.Deletado).HasColumnName("deletado");
-            entity.Property(e => e.Email).HasColumnName("email");
+            entity.Property(e => e.Email)
+                .HasMaxLength(255)
+                .HasColumnName("email");
             entity.Property(e => e.Foto)
                 .HasMaxLength(255)
                 .HasColumnName("foto");
