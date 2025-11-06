@@ -102,7 +102,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPalestrantePorId")]
-        public async Task<IActionResult> GetPalestrantePorId([FromQuery] Guid id)
+        public async Task<ActionResult<PalestranteResponseDTO>> GetPalestrantePorId([FromQuery] Guid id)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPalestrantesPorIdEvento")]
-        public async Task<IActionResult> GetPalestrantesPorIdEvento([FromQuery]Guid idEvento)
+        public async Task<ActionResult<List<PalestranteResponseDTO>>> GetPalestrantesPorIdEvento([FromQuery]Guid idEvento)
         {
             try
             {
@@ -150,7 +150,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPalestrantesPorIdSubEvento")]
-        public async Task<IActionResult> GetPalestrantesPorIdSubEvento([FromQuery]Guid idSubEvento)
+        public async Task<ActionResult<List<PalestranteResponseDTO>>> GetPalestrantesPorIdSubEvento([FromQuery]Guid idSubEvento)
         {
             try
             {

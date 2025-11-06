@@ -63,7 +63,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCores")]
-        public async Task<IActionResult> GetCores()
+        public async Task<ActionResult<List<CorResponseDTO>>> GetCores()
         {
             try
             {
@@ -91,7 +91,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCorPorId")]
-        public async Task<IActionResult> GetCorPorId([FromQuery] Guid id)
+        public async Task<ActionResult<CorResponseDTO>> GetCorPorId([FromQuery] Guid id)
         {
             try
             {
@@ -174,7 +174,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPaletas")]
-        public async Task<IActionResult> GetPaletas()
+        public async Task<ActionResult<List<PaletaCorResponseDTO>>> GetPaletas()
         {
             try
             {
@@ -203,7 +203,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPaletaPorId")]
-        public async Task<IActionResult> GetPaletaPorId([FromQuery]Guid id)
+        public async Task<ActionResult<PaletaCorResponseDTO>> GetPaletaPorId([FromQuery]Guid id)
         {
             try
             {

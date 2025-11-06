@@ -169,7 +169,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizPorId")]
-        public async Task<IActionResult> GetQuizPorId([FromQuery]Guid id)
+        public async Task<ActionResult<QuizResponseDTO>> GetQuizPorId([FromQuery]Guid id)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizzesPorIdEvento")]
-        public async Task<IActionResult> GetQuizzesPorIdEvento([FromQuery]Guid idEvento)
+        public async Task<ActionResult<List<QuizResponseDTO>>> GetQuizzesPorIdEvento([FromQuery]Guid idEvento)
         {
             try
             {
@@ -216,7 +216,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetTodasAsPerguntasComRespostaPorIdQuiz")]
-        public async Task<IActionResult> GetTodasAsPerguntasComRespostaPorIdQuiz([FromQuery]Guid idQuiz)
+        public async Task<ActionResult<QuizPerguntasEAlternativasResponseDTO>> GetTodasAsPerguntasComRespostaPorIdQuiz([FromQuery]Guid idQuiz)
         {
             try
             {
@@ -238,7 +238,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetTodasAsPerguntasPorIdQuiz")]
-        public async Task<IActionResult> GetTodasAsPerguntasPorIdQuiz([FromQuery]Guid idQuiz)
+        public async Task<ActionResult<QuizPerguntasEAlternativasResponseDTO>> GetTodasAsPerguntasPorIdQuiz([FromQuery]Guid idQuiz)
         {
             try
             {

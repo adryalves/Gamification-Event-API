@@ -120,7 +120,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPerguntasPorIdSubEvento")]
-        public async Task<IActionResult> GetPerguntasPorIdSubEvento([FromQuery]Guid idSubEvento)
+        public async Task<ActionResult<List<PerguntasSubEventoResponseDTO>>> GetPerguntasPorIdSubEvento([FromQuery]Guid idSubEvento)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetSubEventoPorId")]
-        public async Task<IActionResult> GetSubEventoPorId([FromQuery] Guid id)
+        public async Task<ActionResult<SubEventoResponseDTO>> GetSubEventoPorId([FromQuery] Guid id)
         {
             try
             {
@@ -169,7 +169,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetSubEventosPorIdEvento")]
-        public async Task<IActionResult> GetSubEventosPorIdEvento([FromQuery] Guid idEvento)
+        public async Task<ActionResult<List<SubEventoResponseDTO>>> GetSubEventosPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {

@@ -76,7 +76,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPremiosPorIdEvento")]
-        public async Task<IActionResult> GetPremiosPorIdEvento([FromQuery] Guid idEvento)
+        public async Task<ActionResult<List<PremioResponseDTO>>> GetPremiosPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {
@@ -86,8 +86,8 @@ namespace GamificationEvent.API.Controllers
 
                 if (premios.Sucesso)
                 {
-                    var participantesResponse = premios.Valor.ConverterParaListaResponse();
-                    return Ok(participantesResponse);
+                    var premioResponse = premios.Valor.ConverterParaListaResponse();
+                    return Ok(premioResponse);
                 }
 
                 return BadRequest(new { Erro = premios.MensagemDeErro });
@@ -100,7 +100,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetPremioPorId")]
-        public async Task<IActionResult> GetPremioPorId([FromQuery]Guid id)
+        public async Task<ActionResult<PremioResponseDTO>> GetPremioPorId([FromQuery]Guid id)
         {
             try
             {

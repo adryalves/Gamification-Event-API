@@ -1,4 +1,5 @@
 ﻿using GamificationEvent.API.DTOs;
+using GamificationEvent.API.DTOs.Ranking;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.RankingUseCases;
 using GamificationEvent.Core.Resultados;
@@ -22,7 +23,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetRankingGeralPorIdEvento")]
-        public async Task<IActionResult> GetRankingGeralPorIdEvento([FromQuery] Guid idEvento, [FromQuery] int quantidade = 10)
+        public async Task<ActionResult<List<RankingDTO>>> GetRankingGeralPorIdEvento([FromQuery] Guid idEvento, [FromQuery] int quantidade = 10)
         {
             try
             {
@@ -52,7 +53,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetRakingPersonalizado")]
-        public async Task<IActionResult> GetRankingPersonalizado([FromQuery] Guid idEvento, [FromQuery]Guid idParticipante, [FromQuery] int quantidade = 10)
+        public async Task<ActionResult<List<RankingDTO>>> GetRankingPersonalizado([FromQuery] Guid idEvento, [FromQuery]Guid idParticipante, [FromQuery] int quantidade = 10)
         {
             try
             {

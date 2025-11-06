@@ -86,7 +86,7 @@ namespace GamificationEvent.API.Controllers
 
         [HttpGet("GetUsuarios")]
         [Authorize]
-        public async Task<IActionResult> GetUsuarios()
+        public async Task<ActionResult<List<UsuarioResponseDTO>>> GetUsuarios()
         {
             try
             {
@@ -116,7 +116,7 @@ namespace GamificationEvent.API.Controllers
 
         [HttpGet("GetUsuarioPorId")]
         [Authorize]
-        public async Task<IActionResult> GetUsuarioPorId([FromQuery] Guid id)
+        public async Task<ActionResult<UsuarioResponseDTO>> GetUsuarioPorId([FromQuery] Guid id)
         {
             try
             {

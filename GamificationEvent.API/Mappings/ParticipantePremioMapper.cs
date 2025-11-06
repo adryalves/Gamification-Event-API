@@ -38,7 +38,7 @@ namespace GamificationEvent.API.Mappings
             };
         }
 
-        public static List<ParticipantePremioResponseDTO> ConverterListaPararesponse(this List<ParticipantePremio> participantePremios)
+        public static List<ParticipantePremioResponseDTO> ConverterListaParaResponse(this List<ParticipantePremio> participantePremios)
         {
             return participantePremios.Select(p => p.ConverterParaResponse()).ToList();
 

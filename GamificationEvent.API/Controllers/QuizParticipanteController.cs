@@ -77,7 +77,7 @@ namespace GamificationEvent.API.Controllers
 
         
         [HttpGet("GetParticipantesQuizPorIdQuiz")]
-        public async Task<IActionResult> GetParticipantesQuizPorIdQuiz([FromQuery]Guid idQuiz)
+        public async Task<ActionResult<List<QuizParticipanteResponseDTO>>> GetParticipantesQuizPorIdQuiz([FromQuery]Guid idQuiz)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizzesPorIdParticipante")]
-        public async Task<IActionResult> GetQuizzesPorIdParticipante([FromQuery]Guid idParticipante)
+        public async Task<ActionResult<List<QuizParticipanteResponseDTO>>> GetQuizzesPorIdParticipante([FromQuery]Guid idParticipante)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizParticipanteResultado")]
-        public async Task<IActionResult> GetQuizParticipanteResultado([FromQuery] Guid IdQuiz, [FromQuery] Guid idParticipante)
+        public async Task<ActionResult<QuizParticipanteResultadoResponseDTO>> GetQuizParticipanteResultado([FromQuery] Guid IdQuiz, [FromQuery] Guid idParticipante)
         {
             try
             {
@@ -148,7 +148,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetQuizRanking")]
-        public async Task<IActionResult> GetQuizRanking([FromQuery] Guid idQuiz, Guid? idParticipante = null, int top = 10)
+        public async Task<ActionResult<QuizRankingResponseDTO>> GetQuizRanking([FromQuery] Guid idQuiz, Guid? idParticipante = null, int top = 10)
         {
             try
             {

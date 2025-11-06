@@ -119,7 +119,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetEventos")]
-        public async Task<IActionResult> GetEventos()
+        public async Task<ActionResult<List<EventoResponseDTO>>> GetEventos()
         {
             try
             {
@@ -147,7 +147,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetEventoPorId")]
-        public async Task<IActionResult> GetEventoPorId([FromQuery]Guid id)
+        public async Task<ActionResult<EventoResponseDTO>> GetEventoPorId([FromQuery]Guid id)
         {
             try
             {

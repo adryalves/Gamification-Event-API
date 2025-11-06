@@ -1,4 +1,5 @@
 ﻿using GamificationEvent.API.DTOs;
+using GamificationEvent.API.DTOs.SubEvento;
 using GamificationEvent.API.Mappings;
 using GamificationEvent.Application.UseCases.CheckInSubEventoCases;
 using GamificationEvent.Core.Resultados;
@@ -28,7 +29,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GerarQrCodeSubEvento")]
-        public async Task<IActionResult> GerarQrCode([FromQuery] Guid idSubEvento)
+        public async Task<ActionResult<QrCodeSubEventoResponseDTO>> GerarQrCode([FromQuery] Guid idSubEvento)
         {
             try
             {
@@ -75,7 +76,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCheckInSubEventoPorId")]
-        public async Task<IActionResult> GetCheckInSubEventoPorId([FromQuery] Guid id)
+        public async Task<ActionResult<CheckInSubEventoResponseDTO>> GetCheckInSubEventoPorId([FromQuery] Guid id)
         {
             try
             {
@@ -101,7 +102,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCheckInsPorIdParticipante")]
-        public async Task<IActionResult> GetCheckInsPorIdParticipante([FromQuery] Guid idParticipante)
+        public async Task<ActionResult<List<CheckInSubEventoResponseDTO>>> GetCheckInsPorIdParticipante([FromQuery] Guid idParticipante)
         {
             try
             {
@@ -124,7 +125,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetCheckInsPorIdSubEvento")]
-        public async Task<IActionResult> GetCheckInsPorIdSubEvento([FromQuery] Guid idSubEvento)
+        public async Task<ActionResult<List<CheckInSubEventoResponseDTO>>> GetCheckInsPorIdSubEvento([FromQuery] Guid idSubEvento)
         {
             try
             {

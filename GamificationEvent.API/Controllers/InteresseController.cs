@@ -85,7 +85,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetInteressesPorIdEvento")]
-        public async Task<IActionResult> GetInteressesPorIdEvento([FromQuery]Guid idEvento)
+        public async Task<ActionResult<ListaInteresseResponseDTO>> GetInteressesPorIdEvento([FromQuery]Guid idEvento)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetInteressePorId")]
-        public async Task<IActionResult> GetInteressePorId([FromQuery] Guid id)
+        public async Task<ActionResult<InteresseDTO>> GetInteressePorId([FromQuery] Guid id)
         {
             try
             {

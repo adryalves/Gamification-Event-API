@@ -95,7 +95,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetInscritos")]
-        public async Task<IActionResult> GetTodosOsInscritos()
+        public async Task<ActionResult<List<InscritosResponseDTO>>> GetTodosOsInscritos()
         {
             try
             {
@@ -118,7 +118,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetInscritosPorIdEvento")]
-        public async Task<IActionResult> GetInscritosPorEvento([FromQuery]Guid idEvento)
+        public async Task<ActionResult<InscritosResponseDTO>> GetInscritosPorEvento([FromQuery]Guid idEvento)
         {
             try
             {

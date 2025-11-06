@@ -101,7 +101,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantesPorIdEvento")]
-        public async Task<IActionResult> GetParticipantesPorIdEvento([FromQuery] Guid idEvento)
+        public async Task<ActionResult<List<ParticipanteResponseDTO>>> GetParticipantesPorIdEvento([FromQuery] Guid idEvento)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantePorId")]
-        public async Task<IActionResult> GetParticipantePorId([FromQuery]Guid id)
+        public async Task<ActionResult<ParticipanteResponseDTO>> GetParticipantePorId([FromQuery]Guid id)
         {
             try
             {
@@ -157,7 +157,7 @@ namespace GamificationEvent.API.Controllers
         }
 
         [HttpGet("GetParticipantePorCpf")]
-        public async Task<IActionResult> GetParticipantePorCpf([FromQuery] string cpf)
+        public async Task<ActionResult<ParticipanteResponseDTO>> GetParticipantePorCpf([FromQuery] string cpf)
         {
             try
             {
