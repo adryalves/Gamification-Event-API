@@ -15,10 +15,10 @@ using GamificationEvent.Application.UseCases.RankingUseCases;
 using GamificationEvent.Application.UseCases.SubEventoUseCases;
 using GamificationEvent.Application.UseCases.UsuarioUseCases;
 using GamificationEvent.Core.Interfaces;
-using GamificationEvent.Core.Valida��es;
+using GamificationEvent.Core.Validações;
 using GamificationEvent.Infrastructure.Data.Persistence;
 using GamificationEvent.Infrastructure.Repositories;
-using GamificationEvent.Infrastructure.Servi�os;
+using GamificationEvent.Infrastructure.Serviços;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -95,7 +95,7 @@ builder.Services.AddScoped<IQuizParticipanteRepository, QuizParticipanteReposito
 builder.Services.AddScoped<ISenhaHash, SenhaHash>();
 builder.Services.AddScoped<IQrCode, QrCode>();
 builder.Services.AddScoped<IAuthenticate, Authenticate>();
-builder.Services.AddScoped<IValida��oPermiss�es, Valida��oPermiss�es>();
+builder.Services.AddScoped<IValidaçãoPermissões, ValidaçãoPermissões>();
 
 
 // UseCase
