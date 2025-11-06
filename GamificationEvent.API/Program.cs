@@ -223,7 +223,7 @@ builder.Services.AddSwaggerGen(c =>
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header usando o esquema Bearer.Digite **'Bearer' [espa�o] seu token** no campo abaixo.",
+        Description = "JWT Authorization header usando o esquema Bearer.Digite **'Bearer' [espaco] seu token** no campo abaixo.",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
@@ -254,12 +254,11 @@ var app = builder.Build();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
-// Habilita Swagger tanto em dev quanto em produ��o (Render)
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// HTTPS redirection pode causar conflito em Render (n�o h� certificado interno)
-// Ent�o, s� use se estiver local
+
 if (app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
@@ -271,6 +270,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-app.MapGet("/", () => Results.Ok("API GamificationEvent est� rodando"));
+app.MapGet("/", () => Results.Ok("API GamificationEvent esta rodando"));
 
 app.Run();
