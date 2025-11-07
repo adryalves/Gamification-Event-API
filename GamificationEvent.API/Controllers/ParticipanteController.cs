@@ -74,7 +74,7 @@ namespace GamificationEvent.API.Controllers
 
                 if ((participante.PrimeiroParticipante == true && participanteExistente.Valor.PrimeiroParticipante == false) || (participanteExistente.Valor.Cargo == Core.Enums.Cargo.Membro && participante.Cargo == Core.Enums.Cargo.Admin))
                 {
-                    // Estamos usando o usuario/participante que fez a requisição e nao o participante que esta sendo atualizado. Apenas estamos usando o memso id evento
+                    // Estamos usando o usuario/participante que fez a requisição e nao o participante que esta sendo atualizado. Apenas estamos usando o mesmo id evento
                     var permissao = await _validaçãoPermissões.ParticipanteEhAdmin(User, participanteExistente.Valor.IdEvento);
                     if (!permissao) return StatusCode(StatusCodes.Status403Forbidden, new
                     {
